@@ -11,14 +11,20 @@ MMU::MMU()
     s.offset = 0x1FC00000;
     s.size = 0x7C0;
     s.max_size = s.size;
-    s.ptr = new std::byte[0x7C0];
+    s.ptr = new std::byte[s.size];
     this->register_memory("pif_rom", s);
 
     s.offset = 0x04040000;
-    s.size = 0x1F;
+    s.size = 0x20;
     s.max_size = s.size;
-    s.ptr = new std::byte[0x1F];
+    s.ptr = new std::byte[s.size];
     this->register_memory("sp_registers", s);
+
+    s.offset = 0x04600000;
+    s.size = 0x34;
+    s.max_size = s.size;
+    s.ptr = new std::byte[s.size];
+    this->register_memory("pi_registers", s);
 }
 
 MMU::~MMU()
