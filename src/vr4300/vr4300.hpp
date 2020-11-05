@@ -20,7 +20,9 @@ namespace ultra64
         IMPL_OP(lui);
         IMPL_OP(cp0);
         IMPL_OP(beql);
+        IMPL_OP(bnel);
         IMPL_OP(lw);
+        IMPL_OP(sw);
         // CP0
         IMPL_OP(mtc0);
         void step();

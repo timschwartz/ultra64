@@ -45,7 +45,9 @@ namespace ultra64
     const uint8_t LUI = 0x0F;
     const uint8_t _CP0 = 0x10;
     const uint8_t BEQL = 0x14;
+    const uint8_t BNEL = 0x15;
     const uint8_t LW = 0x23;
+    const uint8_t SW = 0x2B;
 
     // CP0
     const uint8_t MTC0 = 0x04;

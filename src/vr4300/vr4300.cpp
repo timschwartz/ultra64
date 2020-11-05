@@ -22,7 +22,9 @@ vr4300::vr4300(MMU &mmu)
     this->opcode[LUI] = vr4300::lui;
     this->opcode[_CP0] = vr4300::cp0;
     this->opcode[BEQL] = vr4300::beql;
+    this->opcode[BNEL] = vr4300::bnel;
     this->opcode[LW] = vr4300::lw;
+    this->opcode[SW] = vr4300::sw;
 
     this->opcode_cp0[MTC0] = vr4300::mtc0;
 
@@ -97,9 +99,27 @@ void vr4300::beql(vr4300 *cpu)
     else cpu->PC += 4;
 }
 
+void vr4300::bnel(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+    int32_t branch_offset = ((int16_t)op.immediate) << 2;
+    uint32_t branch = cpu->PC + branch_offset;
+
+    if(cpu->GPR[op.rs] != cpu->GPR[op.rt]) cpu->PC = branch;
+    else cpu->PC += 4;
+}
+
 void vr4300::lw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
     cpu->GPR[op.rt] = cpu->mmu->read_word(cpu->GPR[op.rs] + op.immediate);
+    cpu->PC += 4;
+}
+
+void vr4300::sw(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+    cpu->mmu->write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
+    std::cout << "Wrote " << std::hex << (cpu->GPR[op.rt] & 0xFFFFFFFF) << " to " << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
     cpu->PC += 4;
 }

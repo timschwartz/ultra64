@@ -38,8 +38,14 @@ std::string instruction::to_string()
         case BEQL:
             ss << "BEQL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
             break;
+        case BNEL:
+            ss << "BNEL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            break;
         case LW:
             ss << "LW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << static_cast<unsigned>(opcode.rs) << ")";
+            break;
+        case SW:
+            ss << "SW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << static_cast<unsigned>(opcode.rs) << ")";
             break;
         default:
             ss << "Unknown opcode 0x" << std::hex << static_cast<unsigned>(opcode.op);
