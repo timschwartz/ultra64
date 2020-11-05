@@ -2,6 +2,7 @@
 #include "ROM.hpp"
 #include "PIF.hpp"
 #include "vr4300/vr4300.hpp"
+#include "rcp/rsp.hpp"
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
     }
 
     ultra64::vr4300 cpu(mmu);
+    ultra64::rsp rsp(mmu);
 
     while(1) cpu.step();
     

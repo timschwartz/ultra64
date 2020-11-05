@@ -58,6 +58,11 @@ Makefile
 
 # End of https://www.toptal.com/developers/gitignore/api/autotools
 
+config.h
+.dirstamp
+*.o
+src/ultra64
+
 *.bin
 *.BIN
 *.n64

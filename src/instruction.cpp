@@ -20,6 +20,9 @@ std::string instruction::to_string()
 
     switch(opcode.op)
     {
+        case ADDIU:
+            ss << "ADDIU " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
+            break;
         case ANDI:
             ss << "ANDI " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
             break;

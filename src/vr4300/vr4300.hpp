@@ -14,6 +14,7 @@ namespace ultra64
         vr4300(MMU &mmu);
         uint32_t get_PC();
         IMPL_OP(not_implemented);
+        IMPL_OP(addiu);
         IMPL_OP(andi);
         IMPL_OP(ori);
         IMPL_OP(lui);

@@ -39,6 +39,7 @@ namespace ultra64
 
     const uint8_t _SPECIAL = 0x00;
     const uint8_t _REGIMM = 0x01;
+    const uint8_t ADDIU = 0x09;
     const uint8_t ANDI = 0x0C;
     const uint8_t ORI = 0x0D;
     const uint8_t LUI = 0x0F;

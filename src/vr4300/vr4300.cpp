@@ -11,11 +11,12 @@ vr4300::vr4300(MMU &mmu)
 {
     this->mmu = &mmu;
 
-    for(int i; i < 40; i++)
+    for(int i; i < 0x40; i++)
     {
         this->opcode[i] = this->opcode_cp0[i] = vr4300::not_implemented;
     }
 
+    this->opcode[ADDIU] = vr4300::addiu;
     this->opcode[ANDI] = vr4300::andi;
     this->opcode[ORI] = vr4300::ori;
     this->opcode[LUI] = vr4300::lui;
@@ -50,6 +51,13 @@ void vr4300::not_implemented(vr4300 *cpu)
     std::stringstream ss;
     ss << "0x" << std::hex << cpu->get_PC() << ": NOT IMPLEMENTED " << i.to_string();
     throw std::runtime_error(ss.str());
+}
+
+void vr4300::addiu(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+    cpu->GPR[op.rt] = cpu->GPR[op.rs] + (int16_t)(op.immediate);
+    cpu->PC += 4;
 }
 
 void vr4300::andi(vr4300 *cpu)
