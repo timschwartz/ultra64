@@ -20,6 +20,7 @@ vr4300::vr4300(MMU &mmu)
     this->opcode[_REGIMM] = vr4300::regimm;
     this->opcode[BEQ] = vr4300::beq;
     this->opcode[BNE] = vr4300::bne;
+    this->opcode[ADDI] = vr4300::addi;
     this->opcode[ADDIU] = vr4300::addiu;
     this->opcode[ANDI] = vr4300::andi;
     this->opcode[ORI] = vr4300::ori;
@@ -34,10 +35,14 @@ vr4300::vr4300(MMU &mmu)
     this->opcode_special[SLL] = vr4300::sll;
     this->opcode_special[SRL] = vr4300::srl;
     this->opcode_special[JR] = vr4300::jr;
+    this->opcode_special[MFLO] = vr4300::mflo;
+    this->opcode_special[MULTU] = vr4300::multu;
     this->opcode_special[OR] = vr4300::_or;
+    this->opcode_special[SLTU] = vr4300::sltu;
     this->opcode_special[DSLL32] = vr4300::dsll32;
 
     this->opcode_regimm[BLTZ] = vr4300::bltz;
+    this->opcode_regimm[BGEZAL] = vr4300::bgezal;
 
     this->opcode_cp0[MTC0] = vr4300::mtc0;
 
@@ -110,6 +115,15 @@ void vr4300::bne(vr4300 *cpu)
 
         cpu->PC += (((int16_t)op.immediate) << 2) - 4; 
     }
+}
+
+void vr4300::addi(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+    cpu->GPR[op.rt] = cpu->GPR[op.rs] + (int16_t)(op.immediate);
+    cpu->PC += 4;
+    std::cerr << "ADDI: overflow trap not implemented" << std::endl;
+    // Make an exception for this
 }
 
 void vr4300::addiu(vr4300 *cpu)

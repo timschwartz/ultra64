@@ -93,12 +93,17 @@ namespace ultra64
     const uint8_t SLL = 0x00;
     const uint8_t SRL = 0x02;
     const uint8_t JR = 0x08;
+    const uint8_t MFLO = 0x12;
+    const uint8_t MULTU = 0x19;
+    const uint8_t ADDU = 0x21;
     const uint8_t AND = 0x24;
     const uint8_t OR = 0x25;
+    const uint8_t SLTU = 0x2B;
     const uint8_t DSLL32 = 0x3C;
 
     // REGIMM
     const uint8_t BLTZ = 0x00;
+    const uint8_t BGEZAL = 0x11;
 
     // CP0
     const uint8_t MTC0 = 0x04;

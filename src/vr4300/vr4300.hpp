@@ -18,6 +18,7 @@ namespace ultra64
         IMPL_OP(regimm);
         IMPL_OP(beq);
         IMPL_OP(bne);
+        IMPL_OP(addi);
         IMPL_OP(addiu);
         IMPL_OP(andi);
         IMPL_OP(ori);
@@ -32,15 +33,19 @@ namespace ultra64
         IMPL_OP(sll);
         IMPL_OP(srl);
         IMPL_OP(jr);
+        IMPL_OP(mflo);
+        IMPL_OP(multu);
         IMPL_OP(_or);
+        IMPL_OP(sltu);
         IMPL_OP(dsll32);
         // REGIMM
         IMPL_OP(bltz);
+        IMPL_OP(bgezal);
         // CP0
         IMPL_OP(mtc0);
         void step();
       private:
-        uint32_t PC;
+        uint32_t PC, HI, LO;
         uint64_t GPR[32] = { 0 };
         uint64_t CP0[32] = { 0 };
         void (*opcode[0x40])(vr4300 *);

@@ -108,11 +108,23 @@ std::string instruction::special_to_string()
         case JR:
             ss << "JR " << std::dec << static_cast<unsigned>(opcode.rs);
             break;
+        case MFLO:
+            ss << "MFLO " << std::dec << static_cast<unsigned>(opcode.rd);
+            break;
+        case MULTU:
+            ss << "MULTU " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
+            break;
+        case ADDU:
+            ss << "ADDU " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
+            break;
         case AND:
-            ss << "AND " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rd);
+            ss << "AND " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
             break;
         case OR:
-            ss << "OR " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rd);
+            ss << "OR " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
+            break;
+        case SLTU:
+            ss << "SLTU " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
             break;
         case DSLL32:
             ss << "DSLL32 " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.sa);
@@ -134,6 +146,9 @@ std::string instruction::regimm_to_string()
     {
         case BLTZ:
             ss << "BLTZ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << static_cast<unsigned>(opcode.offset);
+            break;
+        case BGEZAL:
+            ss << "BGEZAL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << static_cast<unsigned>(opcode.offset);
             break;
         default:
             ss << "Unknown REGIMM sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.rt);
