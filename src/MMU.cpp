@@ -1,6 +1,7 @@
 #include "MMU.hpp"
 #include <iostream>
 #include <sstream>
+#include <cstring>
 
 using namespace ultra64;
 
@@ -35,18 +36,28 @@ MMU::MMU()
     s.size = 0x40;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     this->register_memory("pif_ram", s);
+
+    s.offset = 0x04000000;
+    s.size = 0x1000;
+    s.max_size = s.size;
+    s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
+    this->register_memory("sp_dmem", s);
 
     s.offset = 0x04001000;
     s.size = 0x1000;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     this->register_memory("sp_imem", s);
 
     s.offset = 0x04040000;
     s.size = 0x20;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     s.write_handler = &sp_register_write;
     this->register_memory("sp_registers", s);
     s.write_handler = nullptr;
@@ -55,12 +66,14 @@ MMU::MMU()
     s.size = 0x20;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     this->register_memory("dp_registers", s);
 
     s.offset = 0x04400000;
     s.size = 0x38;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     /* probably need a write handler */
     this->register_memory("vi_registers", s);
 
@@ -68,6 +81,7 @@ MMU::MMU()
     s.size = 0x18;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     /* probably need a write handler */
     this->register_memory("ai_registers", s);
 
@@ -75,6 +89,7 @@ MMU::MMU()
     s.size = 0x34;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     s.write_handler = &pi_register_write;
     this->register_memory("pi_registers", s);
     s.write_handler = nullptr;
@@ -83,6 +98,7 @@ MMU::MMU()
     s.size = 0x1C;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     s.read_handler = &si_register_read;
     this->register_memory("si_registers", s);
     s.read_handler = nullptr;
@@ -91,6 +107,7 @@ MMU::MMU()
     s.size = 0x400000;
     s.max_size = s.size;
     s.ptr = new std::byte[s.size];
+    memset(s.ptr, 0, s.size);
     this->register_memory("dd_ipl_rom", s);
 }
 
