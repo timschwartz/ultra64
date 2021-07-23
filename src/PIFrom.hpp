@@ -4,11 +4,11 @@
 
 namespace ultra64 
 {
-    class PIF
+    class PIFrom
     {
       public:
-        PIF(std::string filename);
-        ~PIF();
+        PIFrom(std::string filename);
+        ~PIFrom();
         std::byte *get_pointer();
       private:
         size_t filesize;

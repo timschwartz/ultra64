@@ -35,6 +35,7 @@ ROM::ROM(std::string filename)
     {
         case ROM_HIGHLOW: 
             std::cout << "Byte-swapped" << std::endl;
+            this->byte_swap();
             break;
         case ROM_LOWHIGH:
             std::cout << "Not byte-swapped" << std::endl;
@@ -50,15 +51,13 @@ ROM::ROM(std::string filename)
 
 void ROM::byte_swap()
 {
-    for(size_t count = 0; count < this->filesize; count += 4)
+    for(size_t count = 0; count < this->filesize; count += 2)
     {
         uint8_t *ptr = (uint8_t *)(this->data + count);
         uint32_t dword = *(uint32_t *)ptr;
 
-        ptr[0] = (dword & 0xFF000000) >> 24;
-        ptr[1] = (dword & 0x00FF0000) >> 16;
-        ptr[2] = (dword & 0x0000FF00) >> 8;
-        ptr[3] = dword & 0x000000FF;
+        ptr[0] = (dword & 0xFF00) >> 8;
+        ptr[1] = dword & 0x00FF;
     }
 }
 

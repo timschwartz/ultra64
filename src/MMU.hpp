@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <functional>
 
 namespace ultra64
 {
@@ -16,6 +17,7 @@ namespace ultra64
         uint32_t max_size = 0;
         std::byte *ptr = nullptr;
         void (*write_handler)(MMU *mmu, memory_section s) = nullptr;
+        void (*read_handler)(MMU *mmu, memory_section s, uint64_t value) = nullptr;
     } memory_section;
 
     class MMU

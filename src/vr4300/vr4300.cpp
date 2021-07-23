@@ -11,11 +11,15 @@ vr4300::vr4300(MMU &mmu)
 {
     this->mmu = &mmu;
 
-    for(int i; i < 0x40; i++)
+    for(int i = 0; i < 0x40; i++)
     {
-        this->opcode[i] = this->opcode_cp0[i] = vr4300::not_implemented;
+        this->opcode[i] = this->opcode_cp0[i] = this->opcode_special[i] = this->opcode_regimm[i] = vr4300::not_implemented;
     }
 
+    this->opcode[_SPECIAL] = vr4300::special;
+    this->opcode[_REGIMM] = vr4300::regimm;
+    this->opcode[BEQ] = vr4300::beq;
+    this->opcode[BNE] = vr4300::bne;
     this->opcode[ADDIU] = vr4300::addiu;
     this->opcode[ANDI] = vr4300::andi;
     this->opcode[ORI] = vr4300::ori;
@@ -23,8 +27,17 @@ vr4300::vr4300(MMU &mmu)
     this->opcode[_CP0] = vr4300::cp0;
     this->opcode[BEQL] = vr4300::beql;
     this->opcode[BNEL] = vr4300::bnel;
+    this->opcode[DADDI] = vr4300::daddi;
     this->opcode[LW] = vr4300::lw;
     this->opcode[SW] = vr4300::sw;
+
+    this->opcode_special[SLL] = vr4300::sll;
+    this->opcode_special[SRL] = vr4300::srl;
+    this->opcode_special[JR] = vr4300::jr;
+    this->opcode_special[OR] = vr4300::_or;
+    this->opcode_special[DSLL32] = vr4300::dsll32;
+
+    this->opcode_regimm[BLTZ] = vr4300::bltz;
 
     this->opcode_cp0[MTC0] = vr4300::mtc0;
 
@@ -41,7 +54,7 @@ void vr4300::step()
     this->current_instruction = mmu->read_word(this->PC);
     opcode_i_type icode(this->current_instruction);
     instruction i(this->current_instruction);
-    std::cout << i.to_string() << std::endl;
+    std::cout << std::hex << this->PC << ": " << i.to_string() << std::endl;
     this->opcode[icode.op](this);
     this->CP0[9] += 2;
 }
@@ -53,6 +66,50 @@ void vr4300::not_implemented(vr4300 *cpu)
     std::stringstream ss;
     ss << "0x" << std::hex << cpu->get_PC() << ": NOT IMPLEMENTED " << i.to_string();
     throw std::runtime_error(ss.str());
+}
+
+void vr4300::beq(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+
+    cpu->PC += 4;
+
+    if(cpu->GPR[op.rs] == cpu->GPR[op.rt])
+    {
+        try
+        {
+            cpu->step();
+        }
+        catch(std::runtime_error &e)
+        {
+            throw e;
+        }
+        cpu->CP0[9] += 2;
+
+        cpu->PC += (((int16_t)op.immediate) << 2) - 4;
+    }
+}
+
+void vr4300::bne(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+
+    cpu->PC += 4;
+
+    if(cpu->GPR[op.rs] != cpu->GPR[op.rt]) 
+    {
+        try
+        {
+            cpu->step(); 
+        }
+        catch(std::runtime_error &e)
+        {
+            throw e;
+        }
+        cpu->CP0[9] += 2;
+
+        cpu->PC += (((int16_t)op.immediate) << 2) - 4; 
+    }
 }
 
 void vr4300::addiu(vr4300 *cpu)
@@ -107,6 +164,13 @@ void vr4300::bnel(vr4300 *cpu)
 
     if(cpu->GPR[op.rs] != cpu->GPR[op.rt]) cpu->PC = branch;
     else cpu->PC += 4;
+}
+
+void vr4300::daddi(vr4300 *cpu)
+{
+    opcode_i_type op(cpu->current_instruction);
+    cpu->GPR[op.rt] = (int64_t)cpu->GPR[op.rs] + (int32_t)(int16_t)(op.immediate);
+    cpu->PC += 4;
 }
 
 void vr4300::lw(vr4300 *cpu)

@@ -5,6 +5,8 @@
 /** RSP status register */
 const uint32_t SP_STATUS_REG = 0x04040010;
 
+const uint32_t SP_DMA_BUSY_REG = 0x04040018;
+
 /** RSP Halt */
 const uint32_t  SP_STATUS_HALT = 0x00000001;
 /** RSP broke */

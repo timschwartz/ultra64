@@ -14,6 +14,10 @@ namespace ultra64
         vr4300(MMU &mmu);
         uint32_t get_PC();
         IMPL_OP(not_implemented);
+        IMPL_OP(special);
+        IMPL_OP(regimm);
+        IMPL_OP(beq);
+        IMPL_OP(bne);
         IMPL_OP(addiu);
         IMPL_OP(andi);
         IMPL_OP(ori);
@@ -21,8 +25,17 @@ namespace ultra64
         IMPL_OP(cp0);
         IMPL_OP(beql);
         IMPL_OP(bnel);
+        IMPL_OP(daddi);
         IMPL_OP(lw);
         IMPL_OP(sw);
+        // SPECIAL
+        IMPL_OP(sll);
+        IMPL_OP(srl);
+        IMPL_OP(jr);
+        IMPL_OP(_or);
+        IMPL_OP(dsll32);
+        // REGIMM
+        IMPL_OP(bltz);
         // CP0
         IMPL_OP(mtc0);
         void step();
@@ -32,6 +45,8 @@ namespace ultra64
         uint64_t CP0[32] = { 0 };
         void (*opcode[0x40])(vr4300 *);
         void (*opcode_cp0[0x40])(vr4300 *);
+        void (*opcode_special[0x40])(vr4300 *);
+        void (*opcode_regimm[0x40])(vr4300 *);
         uint32_t current_instruction;
         MMU *mmu;
     };
