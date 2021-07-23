@@ -90,16 +90,49 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> += 4;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span>((<span class="keywordtype">signed</span>)cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">GPR</a>[op.rs] &lt; 0)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> += op.offset;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;BLTZ: Jumping to &quot;</span> &lt;&lt; std::hex &lt;&lt; cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">catch</span>(std::runtime_error &amp;e)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">throw</span> e;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> += op.offset;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;BLTZ: Jumping to &quot;</span> &lt;&lt; std::hex &lt;&lt; cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> vr4300::bgezal(<a class="code" href="classultra64_1_1vr4300.html">vr4300</a> *cpu)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classultra64_1_1opcode__regimm__type.html">opcode_regimm_type</a> op(cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> += 4;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">if</span>((<span class="keywordtype">signed</span>)cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">GPR</a>[op.rs] &gt;= 0)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">GPR</a>[31] = cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> + 4;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">catch</span>(std::runtime_error &amp;e)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">throw</span> e;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> += op.offset;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;bgezal: Jumping to &quot;</span> &lt;&lt; std::hex &lt;&lt; cpu-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="ttc" id="aclassultra64_1_1opcode__regimm__type_html"><div class="ttname"><a href="classultra64_1_1opcode__regimm__type.html">ultra64::opcode_regimm_type</a></div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00044">opcodes.hpp:45</a></div></div>
 <div class="ttc" id="aclassultra64_1_1vr4300_html"><div class="ttname"><a href="classultra64_1_1vr4300.html">ultra64::vr4300</a></div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00011">vr4300.hpp:12</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a392f2a3d7797ac1804276fd69ec6303e"><div class="ttname"><a href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">ultra64::vr4300::GPR</a></div><div class="ttdeci">uint64_t GPR[32]</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00044">vr4300.hpp:44</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a5639eeb2b1e683591a861d840cc47d94"><div class="ttname"><a href="classultra64_1_1vr4300.html#a5639eeb2b1e683591a861d840cc47d94">ultra64::vr4300::opcode_regimm</a></div><div class="ttdeci">void(* opcode_regimm[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00049">vr4300.hpp:49</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a82323f15dcd7191e50b887e75ece15e9"><div class="ttname"><a href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">ultra64::vr4300::current_instruction</a></div><div class="ttdeci">uint32_t current_instruction</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00050">vr4300.hpp:50</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_af9c5aeef3f3865634a6fab6020040c72"><div class="ttname"><a href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">ultra64::vr4300::PC</a></div><div class="ttdeci">uint32_t PC</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00043">vr4300.hpp:43</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a392f2a3d7797ac1804276fd69ec6303e"><div class="ttname"><a href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">ultra64::vr4300::GPR</a></div><div class="ttdeci">uint64_t GPR[32]</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00049">vr4300.hpp:49</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a3e92b6bb2f2a332f13ebe4d3b411d802"><div class="ttname"><a href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">ultra64::vr4300::step</a></div><div class="ttdeci">void step()</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8cpp_source.html#l00057">vr4300.cpp:57</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a5639eeb2b1e683591a861d840cc47d94"><div class="ttname"><a href="classultra64_1_1vr4300.html#a5639eeb2b1e683591a861d840cc47d94">ultra64::vr4300::opcode_regimm</a></div><div class="ttdeci">void(* opcode_regimm[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00054">vr4300.hpp:54</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a82323f15dcd7191e50b887e75ece15e9"><div class="ttname"><a href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">ultra64::vr4300::current_instruction</a></div><div class="ttdeci">uint32_t current_instruction</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00055">vr4300.hpp:55</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_af9c5aeef3f3865634a6fab6020040c72"><div class="ttname"><a href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">ultra64::vr4300::PC</a></div><div class="ttdeci">uint32_t PC</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00048">vr4300.hpp:48</a></div></div>
 <div class="ttc" id="anamespaceultra64_html"><div class="ttname"><a href="namespaceultra64.html">ultra64</a></div><div class="ttdef"><b>Definition:</b> <a href="instruction_8hpp_source.html#l00005">instruction.hpp:6</a></div></div>
 <div class="ttc" id="avr4300_8hpp_html"><div class="ttname"><a href="vr4300_8hpp.html">vr4300.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
