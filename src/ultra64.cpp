@@ -63,12 +63,8 @@ void start(std::string filename)
     uint32_t *p = (uint32_t *)pifrom.get_pointer();
 
     ultra64::MMU mmu;
-    ultra64::memory_section s;
-    s.offset = 0x1FC00000;
-    s.size = 0x7C0;
-    s.max_size = s.size;
-    s.ptr = new std::byte[s.size]; // pifrom.get_pointer();
-    mmu.register_memory("pif_rom", s);
+
+    map_memory(&mmu, "pif_rom", 0x1FC00000, 0x7C0, 0x7C0, new std::byte[0x7C0], nullptr, nullptr);
 
     while(count < 0x7C0)
     {
@@ -77,11 +73,8 @@ void start(std::string filename)
     }
 
     ultra64::ROM rom(filename);
-    s.offset = 0x10000000;
-    s.max_size = 0x0FBFFFFF;
-    s.size = rom.size();
-    s.ptr = rom.get_pointer();
-    mmu.register_memory("rom", s);
+
+    map_memory(&mmu, "rom", 0x10000000, rom.size(), 0x0FBFFFFF, rom.get_pointer(), nullptr, nullptr);
 
     uint32_t crc = CRC::Calculate(rom.get_pointer() + 0x40, 0xFC0, CRC::CRC_32());
     std::cout << "CRC = " << std::hex << crc << std::endl;
@@ -104,7 +97,6 @@ void start(std::string filename)
 
     ultra64::vr4300 cpu(mmu);
     ultra64::rsp rsp(mmu);
-
 
     mmu.write_word(SP_DMA_BUSY_REG, 0x0);
 

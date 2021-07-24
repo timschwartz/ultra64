@@ -16,7 +16,7 @@ namespace ultra64
         uint32_t size = 0;
         uint32_t max_size = 0;
         std::byte *ptr = nullptr;
-        void (*write_handler)(MMU *mmu, memory_section s) = nullptr;
+        void (*write_handler)(MMU *mmu, memory_section s, uint64_t value) = nullptr;
         void (*read_handler)(MMU *mmu, memory_section s, uint64_t value) = nullptr;
     } memory_section;
 
@@ -32,4 +32,8 @@ namespace ultra64
         memory_section get_section(uint32_t addr);
         std::unordered_map<std::string, memory_section> memory;
     };
+
+    void map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr,
+                void (*write_handler)(MMU *mmu, memory_section s, uint64_t value),
+                void (*read_handler)(MMU *mmu, memory_section s, uint64_t value));
 }
