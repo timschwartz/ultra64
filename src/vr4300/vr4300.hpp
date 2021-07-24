@@ -32,10 +32,17 @@ namespace ultra64
         // SPECIAL
         IMPL_OP(sll);
         IMPL_OP(srl);
+        IMPL_OP(sllv);
+        IMPL_OP(srlv);
         IMPL_OP(jr);
+        IMPL_OP(mfhi);
         IMPL_OP(mflo);
         IMPL_OP(multu);
+        IMPL_OP(addu);
+        IMPL_OP(subu);
+        IMPL_OP(_and);
         IMPL_OP(_or);
+        IMPL_OP(_xor);
         IMPL_OP(sltu);
         IMPL_OP(dsll32);
         // REGIMM

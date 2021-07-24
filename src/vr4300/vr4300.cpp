@@ -34,10 +34,17 @@ vr4300::vr4300(MMU &mmu)
 
     this->opcode_special[SLL] = vr4300::sll;
     this->opcode_special[SRL] = vr4300::srl;
+    this->opcode_special[SLLV] = vr4300::sllv;
+    this->opcode_special[SRLV] = vr4300::srlv;
     this->opcode_special[JR] = vr4300::jr;
+    this->opcode_special[MFHI] = vr4300::mfhi;
     this->opcode_special[MFLO] = vr4300::mflo;
     this->opcode_special[MULTU] = vr4300::multu;
+    this->opcode_special[ADDU] = vr4300::addu;
+    this->opcode_special[SUBU] = vr4300::subu;
+    this->opcode_special[AND] = vr4300::_and;
     this->opcode_special[OR] = vr4300::_or;
+    this->opcode_special[XOR] = vr4300::_xor;
     this->opcode_special[SLTU] = vr4300::sltu;
     this->opcode_special[DSLL32] = vr4300::dsll32;
 
@@ -59,7 +66,7 @@ void vr4300::step()
     this->current_instruction = mmu->read_word(this->PC);
     opcode_i_type icode(this->current_instruction);
     instruction i(this->current_instruction);
-    std::cout << std::hex << this->PC << ": " << i.to_string() << std::endl;
+    std::cout << std::dec << this->CP0[9] << " - " << std::hex << this->PC << ": " << i.to_string() << std::endl;
     this->opcode[icode.op](this);
     this->CP0[9] += 2;
 }
@@ -81,6 +88,8 @@ void vr4300::beq(vr4300 *cpu)
 
     if(cpu->GPR[op.rs] == cpu->GPR[op.rt])
     {
+        uint32_t branch = cpu->PC + (((int16_t)op.immediate) << 2);
+        std::cout << "    BEQ: " << std::hex << cpu->GPR[op.rs] << " is equal to " << cpu->GPR[op.rt] << std::endl;
         try
         {
             cpu->step();
@@ -89,9 +98,9 @@ void vr4300::beq(vr4300 *cpu)
         {
             throw e;
         }
-        cpu->CP0[9] += 2;
 
-        cpu->PC += (((int16_t)op.immediate) << 2) - 4;
+        std::cout << "    BEQ branching to " << branch << std::endl;
+        cpu->PC = branch;
     }
 }
 
@@ -103,6 +112,9 @@ void vr4300::bne(vr4300 *cpu)
 
     if(cpu->GPR[op.rs] != cpu->GPR[op.rt]) 
     {
+        uint32_t branch = cpu->PC + (((int16_t)op.immediate) << 2);
+        std::cout << "    BNE: " << std::hex << cpu->GPR[op.rs] << " is not equal to " << cpu->GPR[op.rt] << std::endl;
+
         try
         {
             cpu->step(); 
@@ -111,9 +123,9 @@ void vr4300::bne(vr4300 *cpu)
         {
             throw e;
         }
-        cpu->CP0[9] += 2;
 
-        cpu->PC += (((int16_t)op.immediate) << 2) - 4; 
+        std::cout << "    BNE branching to " << branch << std::endl;
+        cpu->PC = branch;
     }
 }
 
@@ -163,20 +175,51 @@ void vr4300::cp0(vr4300 *cpu)
 void vr4300::beql(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
-    int32_t branch_offset = ((int16_t)op.immediate) << 2;
-    uint32_t branch = cpu->PC + branch_offset;
+
+    cpu->PC += 4;
+
+    uint32_t branch = cpu->PC + ((int16_t)op.immediate << 2);
         
-    if(cpu->GPR[op.rs] == cpu->GPR[op.rt]) cpu->PC = branch;
+    if(cpu->GPR[op.rs] == cpu->GPR[op.rt])
+    {
+        std::cout << "    BEQL " << std::hex << cpu->GPR[op.rs] << " is equal to " << cpu->GPR[op.rt] << std::endl;
+        try
+        {
+            cpu->step();
+        }
+        catch(std::runtime_error &e)
+        {
+            throw e;
+        }
+
+        std::cout << "    BEQL branching to " << branch << std::endl;
+
+        cpu->PC = branch;
+    }
     else cpu->PC += 4;
 }
 
 void vr4300::bnel(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
-    int32_t branch_offset = ((int16_t)op.immediate) << 2;
-    uint32_t branch = cpu->PC + branch_offset;
+    cpu->PC += 4;
 
-    if(cpu->GPR[op.rs] != cpu->GPR[op.rt]) cpu->PC = branch;
+    if(cpu->GPR[op.rs] != cpu->GPR[op.rt])
+    {
+        uint32_t branch = cpu->PC + ((int16_t)op.immediate << 2);
+        std::cout << "    BNEL " << std::hex << cpu->GPR[op.rs] << " is not equal to " << cpu->GPR[op.rt] << std::endl;
+        try
+        {
+            cpu->step();
+        }
+        catch(std::runtime_error &e)
+        {
+            throw e;
+        }
+        
+        cpu->PC = branch;
+        std::cout << "    BNEL branching to 0x" << std::hex << cpu->PC << std::endl;
+    }
     else cpu->PC += 4;
 }
 
@@ -191,6 +234,7 @@ void vr4300::lw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
     cpu->GPR[op.rt] = cpu->mmu->read_word(cpu->GPR[op.rs] + op.immediate);
+    std::cout << "    Read 0x" << std::hex << cpu->GPR[op.rt] << " from 0x" << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
     cpu->PC += 4;
 }
 
@@ -198,6 +242,6 @@ void vr4300::sw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
     cpu->mmu->write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
-    std::cout << "Wrote " << std::hex << (cpu->GPR[op.rt] & 0xFFFFFFFF) << " to " << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
+    std::cout << "    Wrote 0x" << std::hex << (cpu->GPR[op.rt] & 0xFFFFFFFF) << " to 0x" << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
     cpu->PC += 4;
 }

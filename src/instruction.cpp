@@ -105,8 +105,17 @@ std::string instruction::special_to_string()
         case SRL:
             ss << "SRL " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.sa);
             break;
+        case SLLV:
+            ss << "SLLV " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.sa);
+            break;
+        case SRLV:
+            ss << "SRLV " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.sa);
+            break;
         case JR:
             ss << "JR " << std::dec << static_cast<unsigned>(opcode.rs);
+            break;
+        case MFHI:
+            ss << "MFHI " << std::dec << static_cast<unsigned>(opcode.rd);
             break;
         case MFLO:
             ss << "MFLO " << std::dec << static_cast<unsigned>(opcode.rd);
@@ -117,11 +126,17 @@ std::string instruction::special_to_string()
         case ADDU:
             ss << "ADDU " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
             break;
+        case SUBU:
+            ss << "SUBU " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
+            break;
         case AND:
             ss << "AND " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
             break;
         case OR:
             ss << "OR " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
+            break;
+        case XOR:
+            ss << "XOR " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
             break;
         case SLTU:
             ss << "SLTU " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);
