@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ultra64: src/opcodes.hpp File Reference</title>
+<title>ultra64: src/n64/opcodes.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a61a2fcb4880ff4def9528285a1a39d.html">n64</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -136,6 +136,8 @@ Variables</h2></td></tr>
 <tr class="separator:acaf0b17cc7a446f164023e6fecf144d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acff2d2b375ba6c3d0b49e4678b28837d"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#acff2d2b375ba6c3d0b49e4678b28837d">ultra64::LW</a> = 0x23</td></tr>
 <tr class="separator:acff2d2b375ba6c3d0b49e4678b28837d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b181cec383fa6bc3e81066d847859a"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#ae2b181cec383fa6bc3e81066d847859a">ultra64::MFHI</a> = 0x10</td></tr>
+<tr class="separator:ae2b181cec383fa6bc3e81066d847859a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac78ec61e835554fe5f39aab63e59bd00"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#ac78ec61e835554fe5f39aab63e59bd00">ultra64::MFLO</a> = 0x12</td></tr>
 <tr class="separator:ac78ec61e835554fe5f39aab63e59bd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f12e559fef368e0dd4509147affabf4"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a4f12e559fef368e0dd4509147affabf4">ultra64::MTC0</a> = 0x04</td></tr>
@@ -148,12 +150,20 @@ Variables</h2></td></tr>
 <tr class="separator:af681477315a116f1091e3f0dab47138a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9910fdc652c1b1cb1769c9bbd7f3e224"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a9910fdc652c1b1cb1769c9bbd7f3e224">ultra64::SLL</a> = 0x00</td></tr>
 <tr class="separator:a9910fdc652c1b1cb1769c9bbd7f3e224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace0d566926869cb9039b0b81344bbe5"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#aace0d566926869cb9039b0b81344bbe5">ultra64::SLLV</a> = 0x04</td></tr>
+<tr class="separator:aace0d566926869cb9039b0b81344bbe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69a284db22a1e8364e0e0a9d45d09b49"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a69a284db22a1e8364e0e0a9d45d09b49">ultra64::SLTU</a> = 0x2B</td></tr>
 <tr class="separator:a69a284db22a1e8364e0e0a9d45d09b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5548296e81d4113309771b610f8700b"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#ad5548296e81d4113309771b610f8700b">ultra64::SRL</a> = 0x02</td></tr>
 <tr class="separator:ad5548296e81d4113309771b610f8700b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b70d626463dea18bed09dd6d8e10e32"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a0b70d626463dea18bed09dd6d8e10e32">ultra64::SRLV</a> = 0x06</td></tr>
+<tr class="separator:a0b70d626463dea18bed09dd6d8e10e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad25d116c722df0f279eadf995ef989"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a8ad25d116c722df0f279eadf995ef989">ultra64::SUBU</a> = 0x23</td></tr>
+<tr class="separator:a8ad25d116c722df0f279eadf995ef989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98b2de5975eb427809ef57947aa19711"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a98b2de5975eb427809ef57947aa19711">ultra64::SW</a> = 0x2B</td></tr>
 <tr class="separator:a98b2de5975eb427809ef57947aa19711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240a3b863b38370a2a32143ba7aba99e"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceultra64.html#a240a3b863b38370a2a32143ba7aba99e">ultra64::XOR</a> = 0x26</td></tr>
+<tr class="separator:a240a3b863b38370a2a32143ba7aba99e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['instruction_196',['instruction',['../classultra64_1_1instruction.html',1,'ultra64']]]
+  ['debuggerwindow_257',['DebuggerWindow',['../class_debugger_window.html',1,'']]]
 ];

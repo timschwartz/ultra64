@@ -87,12 +87,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:ae2a892a46d0d8b8c2ff29a1b2d32133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_debugger_window.html">DebuggerWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#ae2a892a46d0d8b8c2ff29a1b2d32133b">debugger</a> = nullptr</td></tr>
+<tr class="separator:ae2a892a46d0d8b8c2ff29a1b2d32133b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46b06489d6a269c6be154cb0a7e1e4e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = nullptr</td></tr>
 <tr class="separator:a46b06489d6a269c6be154cb0a7e1e4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02a2ad3afae8c28cf2256318cf3916e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classultra64_1_1_n64.html">ultra64::N64</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#aa02a2ad3afae8c28cf2256318cf3916e">n64</a> = nullptr</td></tr>
+<tr class="separator:aa02a2ad3afae8c28cf2256318cf3916e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa287d484fb611c20ef6f3b2c422b5e2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_registers_window.html">RegistersWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#aa287d484fb611c20ef6f3b2c422b5e2c">registers</a> = nullptr</td></tr>
+<tr class="separator:aa287d484fb611c20ef6f3b2c422b5e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00016">16</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00030">30</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac90ecee574b2aaeb016f34d46f5ca87d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac90ecee574b2aaeb016f34d46f5ca87d">&#9670;&nbsp;</a></span>OnInit()</h2>
@@ -117,27 +123,43 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00042">42</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = <span class="keyword">new</span> <a class="code" href="class_main_window.html">MainWindow</a>(<span class="stringliteral">&quot;Ultra64&quot;</span>, wxPoint(20, 20), wxSize(640, 480));</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a>-&gt;Show(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().argc &lt; 2) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::string argv1 = wxGetApp().argv[1].ToStdString();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a>(argv1);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00005">ultra64.hpp:6</a></div></div>
-<div class="ttc" id="aclasswx_ultra64_html_a46b06489d6a269c6be154cb0a7e1e4e9"><div class="ttname"><a href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">wxUltra64::frame</a></div><div class="ttdeci">MainWindow * frame</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00020">ultra64.hpp:20</a></div></div>
-<div class="ttc" id="aultra64_8cpp_html_a848e3785d6cbc802d5477b72cc444d34"><div class="ttname"><a href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a></div><div class="ttdeci">void start(std::string filename)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00058">ultra64.cpp:58</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00111">111</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = <span class="keyword">new</span> <a class="code" href="class_main_window.html">MainWindow</a>(<span class="stringliteral">&quot;Ultra64&quot;</span>, wxPoint(20, 20), wxSize(320, 240));</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a>-&gt;Show(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().argc &lt; 2) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::string argv1 = wxGetApp().argv[1].ToStdString();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a>(argv1);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00013">ultra64.hpp:14</a></div></div>
+<div class="ttc" id="aclasswx_ultra64_html_a46b06489d6a269c6be154cb0a7e1e4e9"><div class="ttname"><a href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">wxUltra64::frame</a></div><div class="ttdeci">MainWindow * frame</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00034">ultra64.hpp:34</a></div></div>
+<div class="ttc" id="aultra64_8cpp_html_a848e3785d6cbc802d5477b72cc444d34"><div class="ttname"><a href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a></div><div class="ttdeci">void start(std::string filename)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00218">ultra64.cpp:218</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00020">frame</a>, and <a class="el" href="ultra64_8cpp_source.html#l00058">start()</a>.</p>
+<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00034">frame</a>, and <a class="el" href="ultra64_8cpp_source.html#l00218">start()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae2a892a46d0d8b8c2ff29a1b2d32133b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a892a46d0d8b8c2ff29a1b2d32133b">&#9670;&nbsp;</a></span>debugger</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_debugger_window.html">DebuggerWindow</a>* wxUltra64::debugger = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00036">36</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a46b06489d6a269c6be154cb0a7e1e4e9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a46b06489d6a269c6be154cb0a7e1e4e9">&#9670;&nbsp;</a></span>frame</h2>
 
@@ -150,9 +172,41 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00020">20</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00034">34</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00042">OnInit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00111">OnInit()</a>.</p>
+
+</div>
+</div>
+<a id="aa02a2ad3afae8c28cf2256318cf3916e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa02a2ad3afae8c28cf2256318cf3916e">&#9670;&nbsp;</a></span>n64</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classultra64_1_1_n64.html">ultra64::N64</a>* wxUltra64::n64 = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00037">37</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa287d484fb611c20ef6f3b2c422b5e2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa287d484fb611c20ef6f3b2c422b5e2c">&#9670;&nbsp;</a></span>registers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_registers_window.html">RegistersWindow</a>* wxUltra64::registers = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00035">35</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
 </div>
 </div>

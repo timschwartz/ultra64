@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "N64.hpp"
 
 const uint32_t ROM_LOWHIGH = 0x80371240;
 const uint32_t ROM_HIGHLOW = 0x12408037;
@@ -26,13 +27,14 @@ namespace ultra64
     class ROM
     {
       public:
-        ROM(std::string filename);
+        ROM();
         const ROM_header *header;
         const size_t size();
         std::byte *get_pointer();
+        void Open(N64 *n64, std::string filename);
+        std::byte *data = nullptr;
       private:
         std::string filename;
-        std::byte *data = nullptr;
         size_t filesize = 0;
         void byte_swap();
     };

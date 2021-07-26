@@ -10,6 +10,11 @@ void sp_register_write(MMU *mmu, memory_section s, uint64_t value)
     std::cout << "    sp_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
 }
 
+void sp_register_read(MMU *mmu, memory_section s, uint64_t value)
+{
+    std::cout << "    sp_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+}
+
 void pi_register_write(MMU *mmu, memory_section s, uint64_t value)
 {
     std::cout << "    pi_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
@@ -60,13 +65,22 @@ MMU::MMU()
     map_memory(this, "pif_ram", 0x1FC007C0, 0x40, 0x40, new std::byte[0x40], &pif_ram_write, nullptr);
     map_memory(this, "sp_dmem", 0x04000000, 0x1000, 0x1000, new std::byte[0x1000], nullptr, nullptr);
     map_memory(this, "sp_imem", 0x04001000, 0x1000, 0x1000, new std::byte[0x1000], nullptr, nullptr);
-    map_memory(this, "sp_registers", 0x04040000, 0x20, 0x20, new std::byte[0x20], &sp_register_write, nullptr);
+    map_memory(this, "sp_registers", 0x04040000, 0x20, 0x20, new std::byte[0x20], &sp_register_write, &sp_register_read);
     map_memory(this, "dp_registers", 0x04100000, 0x20, 0x20, new std::byte[0x20], nullptr, nullptr);
     map_memory(this, "vi_registers", 0x04400000, 0x38, 0x38, new std::byte[0x38], nullptr, nullptr);
     map_memory(this, "ai_registers", 0x04500000, 0x18, 0x18, new std::byte[0x18], nullptr, nullptr);
     map_memory(this, "pi_registers", 0x04600000, 0x34, 0x34, new std::byte[0x34], &pi_register_write, nullptr);
     map_memory(this, "si_registers", 0x04800000, 0x1C, 0x1C, new std::byte[0x1C], nullptr, &si_register_read);
     map_memory(this, "dd_ipl_rom", 0x06000000, 0x400000, 0x400000, new std::byte[0x400000], nullptr, nullptr);
+}
+
+void MMU::Dump()
+{
+    std::cout << std::dec << this->memory.size() << " memory areas" << std::endl;
+    for(const auto &[name, section] : this->memory)
+    {
+        std::cout << name << ": " << std::dec << section.size << " bytes at " << std::hex << section.offset << std::endl;
+    }
 }
 
 MMU::~MMU()

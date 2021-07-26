@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['instruction_2ecpp_216',['instruction.cpp',['../instruction_8cpp.html',1,'']]],
-  ['instruction_2ehpp_217',['instruction.hpp',['../instruction_8hpp.html',1,'']]]
+  ['debuggerwindow_2ecpp_280',['DebuggerWindow.cpp',['../_debugger_window_8cpp.html',1,'']]],
+  ['debuggerwindow_2ehpp_281',['DebuggerWindow.hpp',['../_debugger_window_8hpp.html',1,'']]]
 ];

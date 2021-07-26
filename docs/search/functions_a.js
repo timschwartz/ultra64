@@ -1,9 +1,20 @@
 var searchData=
 [
-  ['si_5fregister_5fread_283',['si_register_read',['../_m_m_u_8cpp.html#a05c71fab8e1e01447fe9d3a03ad09181',1,'MMU.cpp']]],
-  ['size_284',['size',['../classultra64_1_1_r_o_m.html#a310d72a40dea367e22aaf2225b2b961c',1,'ultra64::ROM']]],
-  ['sp_5fregister_5fwrite_285',['sp_register_write',['../_m_m_u_8cpp.html#acd3d347e124d6195955c3461b5bf4811',1,'MMU.cpp']]],
-  ['special_5fto_5fstring_286',['special_to_string',['../classultra64_1_1instruction.html#a960ff4a9336978bcf04869194ca98f3d',1,'ultra64::instruction']]],
-  ['start_287',['start',['../ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34',1,'ultra64.cpp']]],
-  ['step_288',['step',['../classultra64_1_1rsp.html#a888d3e8dd8c86bbc512c6afed1922b9e',1,'ultra64::rsp::step()'],['../classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802',1,'ultra64::vr4300::step()']]]
+  ['oncpustep_341',['OnCPUStep',['../class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6',1,'DebuggerWindow']]],
+  ['oncpusteps_342',['OnCPUSteps',['../class_debugger_window.html#aa55764ee2525bfbefc0b4e59f3a5d3b6',1,'DebuggerWindow']]],
+  ['ondebugpifrom_343',['OnDebugPIFROM',['../class_main_window.html#ad417cf49adddf2caaab6b42eaca297e3',1,'MainWindow']]],
+  ['ondebugregisters_344',['OnDebugRegisters',['../class_main_window.html#a19dd4cc763eefb616417f390a5ecd1fa',1,'MainWindow']]],
+  ['ondebugrom_345',['OnDebugROM',['../class_main_window.html#af112afb589538613e918372017a64084',1,'MainWindow']]],
+  ['onexit_346',['OnExit',['../class_main_window.html#a1a605e490ac5deeb89ed16cfc871bf3f',1,'MainWindow']]],
+  ['oninit_347',['OnInit',['../classwx_ultra64.html#ac90ecee574b2aaeb016f34d46f5ca87d',1,'wxUltra64']]],
+  ['onpaint_348',['OnPaint',['../class_main_window.html#a040de5f88ae4da8b96e25f5e98028c1f',1,'MainWindow']]],
+  ['onselectpifrom_349',['OnSelectPIFROM',['../class_main_window.html#ae682d2c2712378c2eb507bcf7f5bbc1f',1,'MainWindow']]],
+  ['opcode_5fco_5ftype_350',['opcode_co_type',['../classultra64_1_1opcode__co__type.html#a079f74a8ba7bb87418a508bd1838ff5f',1,'ultra64::opcode_co_type']]],
+  ['opcode_5fi_5ftype_351',['opcode_i_type',['../classultra64_1_1opcode__i__type.html#a2d271cbd8490d1b88526c9d78bd5b3b0',1,'ultra64::opcode_i_type']]],
+  ['opcode_5fregimm_5ftype_352',['opcode_regimm_type',['../classultra64_1_1opcode__regimm__type.html#afde5a297b45c1b1457fe34a467b615c7',1,'ultra64::opcode_regimm_type']]],
+  ['opcode_5fspecial_5ftype_353',['opcode_special_type',['../classultra64_1_1opcode__special__type.html#a90cf1fb2cc3131d927950bb1e0dc5bfe',1,'ultra64::opcode_special_type']]],
+  ['open_354',['Open',['../classultra64_1_1_r_o_m.html#a7f216988743ad631a5b43c7f9ac8ba36',1,'ultra64::ROM']]],
+  ['open_5fdebugger_355',['open_debugger',['../ultra64_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8',1,'ultra64.cpp']]],
+  ['operator_3d_356',['operator=',['../class_c_r_c.html#a48051d8f4dc907665ba7307d8d5c1318',1,'CRC']]],
+  ['operator_5b_5d_357',['operator[]',['../struct_c_r_c_1_1_table.html#a84eaebd5423d4695aa32ec8d3ca53907',1,'CRC::Table']]]
 ];

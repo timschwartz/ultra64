@@ -38,6 +38,8 @@ CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
 CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
 LIBS="$LIBS $WX_LIBS"
 
+PKG_CHECK_MODULES([JSONCPP], jsoncpp)
+
 # Checks for header files.
 
 # Checks for typedefs, structures, and compiler characteristics.

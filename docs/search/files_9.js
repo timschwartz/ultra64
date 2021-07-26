@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vr4300_2ecpp_228',['vr4300.cpp',['../vr4300_8cpp.html',1,'']]],
-  ['vr4300_2ehpp_229',['vr4300.hpp',['../vr4300_8hpp.html',1,'']]]
+  ['ultra64_2ecpp_299',['ultra64.cpp',['../ultra64_8cpp.html',1,'']]],
+  ['ultra64_2ehpp_300',['ultra64.hpp',['../ultra64_8hpp.html',1,'']]]
 ];

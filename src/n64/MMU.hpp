@@ -28,7 +28,7 @@ namespace ultra64
         void register_memory(std::string name, memory_section s);
         void write_word(uint32_t addr, uint32_t value);
         uint32_t read_word(uint32_t addr);
-      private:
+        void Dump();
         memory_section get_section(uint32_t addr);
         std::unordered_map<std::string, memory_section> memory;
     };

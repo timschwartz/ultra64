@@ -1,3 +1,4 @@
+#include "../N64.hpp"
 #include "vr4300.hpp"
 #include "../opcodes.hpp"
 #include "../instruction.hpp"
@@ -7,10 +8,8 @@
 
 using namespace ultra64;
 
-vr4300::vr4300(MMU &mmu)
+vr4300::vr4300()
 {
-    this->mmu = &mmu;
-
     for(int i = 0; i < 0x40; i++)
     {
         this->opcode[i] = this->opcode_cp0[i] = this->opcode_special[i] = this->opcode_regimm[i] = vr4300::not_implemented;
@@ -56,6 +55,11 @@ vr4300::vr4300(MMU &mmu)
     this->PC = 0x1FC00000;
 }
 
+void vr4300::set_n64(void *n64)
+{
+    this->n64 = (ultra64::N64 *)n64;
+}
+
 uint32_t vr4300::get_PC()
 {
     return this->PC;
@@ -63,7 +67,7 @@ uint32_t vr4300::get_PC()
 
 void vr4300::step()
 {
-    this->current_instruction = mmu->read_word(this->PC);
+    this->current_instruction = this->n64->mmu->read_word(this->PC);
     opcode_i_type icode(this->current_instruction);
     instruction i(this->current_instruction);
     std::cout << std::dec << this->CP0[9] << " - " << std::hex << this->PC << ": " << i.to_string() << std::endl;
@@ -233,15 +237,16 @@ void vr4300::daddi(vr4300 *cpu)
 void vr4300::lw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
-    cpu->GPR[op.rt] = cpu->mmu->read_word(cpu->GPR[op.rs] + op.immediate);
-    std::cout << "    Read 0x" << std::hex << cpu->GPR[op.rt] << " from 0x" << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
+    uint32_t address = cpu->GPR[op.rs] | op.immediate;
+    cpu->GPR[op.rt] = cpu->n64->mmu->read_word(address);
+    std::cout << "    Read 0x" << std::hex << cpu->GPR[op.rt] << " from 0x" << address << std::endl;
     cpu->PC += 4;
 }
 
 void vr4300::sw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
-    cpu->mmu->write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
+    cpu->n64->mmu->write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
     std::cout << "    Wrote 0x" << std::hex << (cpu->GPR[op.rt] & 0xFFFFFFFF) << " to 0x" << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
     cpu->PC += 4;
 }

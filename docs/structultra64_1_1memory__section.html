@@ -91,8 +91,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9b6ef8fa95c8c843b10c3c572c55226e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3766ff936a10e403f01f64309bd9d08"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structultra64_1_1memory__section.html#ac3766ff936a10e403f01f64309bd9d08">size</a> = 0</td></tr>
 <tr class="separator:ac3766ff936a10e403f01f64309bd9d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a919956b0f2c57ad6773d00d5530b17f1"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structultra64_1_1memory__section.html#a919956b0f2c57ad6773d00d5530b17f1">write_handler</a> )(<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s) = nullptr</td></tr>
-<tr class="separator:a919956b0f2c57ad6773d00d5530b17f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2522e9dbc9f57f8678c9c51ea432c8f"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structultra64_1_1memory__section.html#ac2522e9dbc9f57f8678c9c51ea432c8f">write_handler</a> )(<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value) = nullptr</td></tr>
+<tr class="separator:ac2522e9dbc9f57f8678c9c51ea432c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -112,7 +112,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00014">14</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00132">ultra64::MMU::get_section()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00013">pi_register_write()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00018">si_register_read()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00008">sp_register_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00104">ultra64::MMU::get_section()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00018">pi_register_write()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00028">pif_ram_write()</a>, <a class="el" href="_r_o_m_8cpp_source.html#l00013">rom_read()</a>, <a class="el" href="_r_o_m_8cpp_source.html#l00008">rom_write()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00023">si_register_read()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00013">sp_register_read()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00008">sp_register_write()</a>.</p>
 
 </div>
 </div>
@@ -130,7 +130,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00017">17</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00132">ultra64::MMU::get_section()</a>, and <a class="el" href="ultra64_8cpp_source.html#l00058">start()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00104">ultra64::MMU::get_section()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>.</p>
 
 </div>
 </div>
@@ -148,7 +148,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00015">15</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00132">ultra64::MMU::get_section()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00182">ultra64::MMU::read_word()</a>, <a class="el" href="ultra64_8cpp_source.html#l00058">start()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00155">ultra64::MMU::write_word()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00104">ultra64::MMU::get_section()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00028">pif_ram_write()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00154">ultra64::MMU::read_word()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00127">ultra64::MMU::write_word()</a>.</p>
 
 </div>
 </div>
@@ -166,7 +166,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00018">18</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00182">ultra64::MMU::read_word()</a>, <a class="el" href="ultra64_8cpp_source.html#l00058">start()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00155">ultra64::MMU::write_word()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00086">ultra64::MMU::~MMU()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00028">pif_ram_write()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00154">ultra64::MMU::read_word()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00127">ultra64::MMU::write_word()</a>.</p>
 
 </div>
 </div>
@@ -184,7 +184,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00020">20</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00182">ultra64::MMU::read_word()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00154">ultra64::MMU::read_word()</a>.</p>
 
 </div>
 </div>
@@ -202,30 +202,30 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00016">16</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00132">ultra64::MMU::get_section()</a>, and <a class="el" href="ultra64_8cpp_source.html#l00058">start()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00104">ultra64::MMU::get_section()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>.</p>
 
 </div>
 </div>
-<a id="a919956b0f2c57ad6773d00d5530b17f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a919956b0f2c57ad6773d00d5530b17f1">&#9670;&nbsp;</a></span>write_handler</h2>
+<a id="ac2522e9dbc9f57f8678c9c51ea432c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2522e9dbc9f57f8678c9c51ea432c8f">&#9670;&nbsp;</a></span>write_handler</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* ultra64::memory_section::write_handler) (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s) = nullptr</td>
+          <td class="memname">void(* ultra64::memory_section::write_handler) (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value) = nullptr</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="_m_m_u_8hpp_source.html#l00019">19</a> of file <a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00023">ultra64::MMU::MMU()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00155">ultra64::MMU::write_word()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00046">ultra64::map_memory()</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00127">ultra64::MMU::write_word()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/<a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a></li>
+<li>src/n64/<a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

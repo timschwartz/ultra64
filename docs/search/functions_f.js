@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['_7emmu_296',['~MMU',['../classultra64_1_1_m_m_u.html#a6037c8609281c7d11b74bebee6287ad5',1,'ultra64::MMU']]],
-  ['_7epifrom_297',['~PIFrom',['../classultra64_1_1_p_i_from.html#ae3bf627178b04aa015a26188fb5bfe69',1,'ultra64::PIFrom']]],
-  ['_7ersp_298',['~rsp',['../classultra64_1_1rsp.html#ac31547610349434e51969ed84c8c43ed',1,'ultra64::rsp']]]
+  ['undofinalize_381',['UndoFinalize',['../class_c_r_c.html#a5818ddbe23b318349e59323ee03cb28f',1,'CRC']]],
+  ['updateregisters_382',['UpdateRegisters',['../class_registers_window.html#a9ae9029133a3ffd66b3f80b0dbd73b8e',1,'RegistersWindow']]]
 ];

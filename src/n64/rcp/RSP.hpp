@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../MMU.hpp"
-
 /** RSP status register */
 const uint32_t SP_STATUS_REG = 0x04040010;
 
@@ -14,13 +12,16 @@ const uint32_t  SP_STATUS_BROKE	= 0x00000002;
 
 namespace ultra64
 {
-    class rsp
+    class N64;
+
+    class RSP
     {
       public:
-        rsp(MMU &mmu);
-        ~rsp();
+        RSP();
+        ~RSP();
+        void set_n64(void *n64);
         void step();
       private:
-       MMU *mmu = nullptr;
+        N64 *n64 = nullptr;
     };
 }
