@@ -7,111 +7,22 @@
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include <json/json.h>
 #include "CRC.h"
 
 const std::string config_path = ".config/ultra64";
 
-wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
-    EVT_MENU(wxID_EXIT,  MainWindow::OnExit)
-    EVT_MENU(ID_select_pif_rom, MainWindow::OnSelectPIFROM)
-    EVT_MENU(ID_debug_pif_rom, MainWindow::OnDebugPIFROM)
-    EVT_MENU(ID_debug_rom, MainWindow::OnDebugROM)
-    EVT_MENU(ID_debug_registers, MainWindow::OnDebugRegisters)
-    EVT_PAINT(MainWindow::OnPaint)
-wxEND_EVENT_TABLE()
-
 wxIMPLEMENT_APP(wxUltra64);
 
-Json::Value load_config();
-std::vector<std::string> render_debugger_registers(ultra64::N64 *n64);
 void start(std::string filename);
-
-MainWindow::MainWindow(const wxString& title, const wxPoint& pos, const wxSize& size)
-        : wxFrame(NULL, wxID_ANY, title, pos, size)
-{
-    wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_select_pif_rom, "Select &PIF ROM", "");
-    menuFile->Append(wxID_EXIT);
-
-    wxMenu *menuDebug = new wxMenu;
-    menuDebug->Append(ID_debug_pif_rom, "View &PIF ROM", "");
-    menuDebug->Append(ID_debug_rom, "View &ROM", "");
-    menuDebug->Append(ID_debug_registers, "View R&egisters", "");
-
-    wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuDebug, "&Debug");
-    SetMenuBar(menuBar);
-
-    CreateStatusBar(1);
-}
-
-void MainWindow::OnPaint(wxPaintEvent& event)
-{
-    wxPaintDC dc(this);
-}
-
-void MainWindow::OnExit(wxCommandEvent& event)
-{
-    Close(true);
-}
-
-void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
-{
-    Json::Value config = load_config();
-
-    std::string pif_path = config["pif_rom_path"].asString();
-
-    wxFileDialog rom_dialog(this, _("Open PIF ROM file"), pif_path, "",
-                                "ROM files (*.bin)|*.bin|All files (*.*)|*.*",
-                                wxFD_OPEN|wxFD_FILE_MUST_EXIST);
-
-    if(wxID_CANCEL == rom_dialog.ShowModal()) return;
-
-    std::string filename = rom_dialog.GetPath().ToStdString();
-    if(!filename.size()) return;
-    std::cout << "PIF ROM: " << filename << std::endl;
-}
-
-void open_debugger()
-{
-    if(!wxGetApp().debugger) 
-    {
-        wxGetApp().debugger = new DebuggerWindow(wxGetApp().frame, 
-                              "Ultra 64 Debugger", wxPoint(150, 50), wxSize(700, 480));
-    }
-}
-
-void MainWindow::OnDebugPIFROM(wxCommandEvent& event)
-{
-    open_debugger();
-    wxGetApp().debugger->view(0x1FC00000, 0x1FC007BF);
-}
-
-void MainWindow::OnDebugROM(wxCommandEvent& event)
-{
-    open_debugger();
-    wxGetApp().debugger->view(0x10000000, 0x10008000);
-}
-
-void MainWindow::OnDebugRegisters(wxCommandEvent &event)
-{
-    if(!wxGetApp().registers)
-    {
-        wxGetApp().registers = new RegistersWindow(wxGetApp().frame,
-                               "Registers", wxPoint(200, 50), wxSize(820, 450));
-    }
-    wxGetApp().registers->SetBackgroundColour(wxColour(*wxWHITE));
-    wxGetApp().registers->Show(true);
-
-    wxGetApp().registers->UpdateRegisters(render_debugger_registers(wxGetApp().n64));
-}
+void load_pif_rom(ultra64::N64 *n64);
 
 bool wxUltra64::OnInit()
 {
     this->frame = new MainWindow("Ultra64", wxPoint(20, 20), wxSize(320, 240));
     this->frame->Show(true);
+
+    this->n64 = new ultra64::N64();
+    load_pif_rom(this->n64);
 
     if(wxGetApp().argc < 2) return true;
 
@@ -161,6 +72,21 @@ Json::Value load_config()
     std::ifstream config_file(config_file_path);
     config_file >> config;
     return config;
+}
+
+void save_config(Json::Value config)
+{
+    std::string home_dir(getenv("HOME"));
+    std::string config_dir = home_dir + "/" + config_path;
+    std::string config_file_path =  config_dir + "/config.json";
+
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = " ";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+    std::ofstream config_file(config_file_path);
+    writer->write(config, &config_file);
+    config_file.close();
 }
 
 void load_pif_rom(ultra64::N64 *n64)
@@ -217,9 +143,7 @@ std::vector<std::string> render_debugger_registers(ultra64::N64 *n64)
 
 void start(std::string filename)
 {
-    wxGetApp().n64 = new ultra64::N64();
     ultra64::N64 *n64 = wxGetApp().n64;
-    load_pif_rom(n64);
 
     n64->rom = new ultra64::ROM();
     n64->rom->Open(n64, filename);
