@@ -14,6 +14,7 @@ instruction::instruction(uint32_t i)
 std::string instruction::to_string()
 {
     std::stringstream ss;
+    uint32_t target;
 
     opcode_i_type opcode(this->i);
 
@@ -24,6 +25,10 @@ std::string instruction::to_string()
             break;
         case _REGIMM:
             return this->regimm_to_string();
+            break;
+        case JAL:
+            target = this->i & 0x3FFFFFF;
+            ss << "JAL 0x" << std::hex << target;;
             break;
         case BEQ:
             ss << "BEQ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
@@ -49,6 +54,9 @@ std::string instruction::to_string()
         case _CP0:
             return this->cp0_to_string();
             break;
+        case _CP1:
+            return this->cp1_to_string();
+            break;
         case BEQL:
             ss << "BEQL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
             break;
@@ -64,6 +72,9 @@ std::string instruction::to_string()
         case SW:
             ss << "SW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
             break;
+        case SD:
+            ss << "SD " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
+            break;
         default:
             ss << "Unknown opcode 0x" << std::hex << static_cast<unsigned>(opcode.op);
             break;
@@ -75,17 +86,37 @@ std::string instruction::to_string()
 std::string instruction::cp0_to_string()
 {
     std::stringstream ss;
-//    ss << "0x" << std::hex << this->i << " ";
 
     opcode_co_type opcode(this->i);
 
     switch(opcode.sub)
     {
+        case MFC0:
+            ss << "MFC0 " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rd);
+            break;
         case MTC0:
             ss << "MTC0 " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rd);
             break;
         default:
             ss << "Unknown CP0 sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.sub);
+            break;
+    }
+    return ss.str();
+}
+
+std::string instruction::cp1_to_string()
+{
+    std::stringstream ss;
+
+    opcode_co_type opcode(this->i);
+
+    switch(opcode.sub)
+    {
+        case MFC1:
+            ss << "MFC1 " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rd);
+            break;
+        default:
+            ss << "Unknown CP1 sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.sub);
             break;
     }
     return ss.str();
@@ -119,6 +150,9 @@ std::string instruction::special_to_string()
             break;
         case MFLO:
             ss << "MFLO " << std::dec << static_cast<unsigned>(opcode.rd);
+            break;
+        case MTLO:
+            ss << "MTLO " << std::dec << static_cast<unsigned>(opcode.rd);
             break;
         case MULTU:
             ss << "MULTU " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt);

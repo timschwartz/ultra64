@@ -75,6 +75,7 @@ namespace ultra64
 
     const uint8_t _SPECIAL = 0x00;
     const uint8_t _REGIMM = 0x01;
+    const uint8_t JAL = 0x03;
     const uint8_t BEQ = 0x04;
     const uint8_t BNE = 0x05;
     const uint8_t ADDI = 0x08;
@@ -83,11 +84,13 @@ namespace ultra64
     const uint8_t ORI = 0x0D;
     const uint8_t LUI = 0x0F;
     const uint8_t _CP0 = 0x10;
+    const uint8_t _CP1 = 0x11;
     const uint8_t BEQL = 0x14;
     const uint8_t BNEL = 0x15;
     const uint8_t DADDI = 0x18;
     const uint8_t LW = 0x23;
     const uint8_t SW = 0x2B;
+    const uint8_t SD = 0x3F;
 
     // SPECIAL
     const uint8_t SLL = 0x00;
@@ -97,6 +100,7 @@ namespace ultra64
     const uint8_t JR = 0x08;
     const uint8_t MFHI = 0x10;
     const uint8_t MFLO = 0x12;
+    const uint8_t MTLO = 0x13;
     const uint8_t MULTU = 0x19;
     const uint8_t ADDU = 0x21;
     const uint8_t SUBU = 0x23;
@@ -111,5 +115,9 @@ namespace ultra64
     const uint8_t BGEZAL = 0x11;
 
     // CP0
+    const uint8_t MFC0 = 0x00;
     const uint8_t MTC0 = 0x04;
+
+    // CP1
+    const uint8_t MFC1 = 0x00; 
 }
