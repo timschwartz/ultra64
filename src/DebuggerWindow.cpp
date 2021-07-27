@@ -20,16 +20,16 @@ DebuggerWindow::DebuggerWindow(wxWindow *parent, const wxString& title, const wx
     label_memory_address->SetFont(font);
 
     wxFont mem_font(wxFontInfo(12).FaceName("Courier"));
-    this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(550, 380));
+    this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(600, 380));
     this->memory_listbox->SetFont(mem_font);
 
-    this->debugger_pc = new wxTextCtrl(this, ID_DEBUGGER_PC, "0x0000 0000", wxPoint(580, 30), wxSize(90, 25), 0);
+    this->debugger_pc = new wxTextCtrl(this, ID_DEBUGGER_PC, "0x0000 0000", wxPoint(630, 30), wxSize(120, 25), 0);
 
-    this->cpu_step = new wxButton(this, BUTTON_cpu_step, _T("Step"), wxPoint(580, 60), wxDefaultSize, 0);
+    this->cpu_step = new wxButton(this, BUTTON_cpu_step, _T("Step"), wxPoint(630, 60), wxDefaultSize, 0);
 
-    this->cpu_steps_count = new wxTextCtrl(this, ID_CPU_STEP_COUNT, "2", wxPoint(580, 110), wxSize(90, 25), 0);
+    this->cpu_steps_count = new wxTextCtrl(this, ID_CPU_STEP_COUNT, "2", wxPoint(630, 110), wxSize(120, 25), 0);
 
-    this->cpu_steps = new wxButton(this, BUTTON_cpu_steps, _T("Multi-step"), wxPoint(580, 140), wxDefaultSize, 0);
+    this->cpu_steps = new wxButton(this, BUTTON_cpu_steps, _T("Multi-step"), wxPoint(630, 140), wxDefaultSize, 0);
 }
 
 DebuggerWindow::~DebuggerWindow()
