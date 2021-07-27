@@ -42,8 +42,6 @@ void ROM::Open(N64 *n64, std::string filename)
 
     std::cout << "File format: ";
 
-//    this->byte_swap();
-
     this->header = (ROM_header *)this->data;
     switch(header->signature)
     {
@@ -65,10 +63,11 @@ void ROM::Open(N64 *n64, std::string filename)
     ultra64::map_memory(n64->mmu, "rom", 0x10000000, this->filesize, 0x0FBFFFFF, new std::byte[this->filesize], nullptr, nullptr);
     
     uint32_t count = 0;
+    uint32_t *v = (uint32_t *)this->data;
     while(count < this->filesize)
     {
-        uint32_t *v = (uint32_t *)(this->data + (count / 4));
         n64->mmu->write_word(0x10000000 + count, *v);
+        v++;
         count += 4;
     }    
 
@@ -85,10 +84,10 @@ void ROM::byte_swap()
     for(size_t count = 0; count < this->filesize; count += 2)
     {
         uint8_t *ptr = (uint8_t *)(this->data + count);
-        uint32_t dword = *(uint32_t *)ptr;
+        uint16_t hword = *(uint16_t *)ptr;
 
-        ptr[0] = (dword & 0xFF00) >> 8;
-        ptr[1] = dword & 0x00FF;
+        ptr[0] = (hword & 0xFF00) >> 8;
+        ptr[1] = hword & 0x00FF;
     }
 }
 
