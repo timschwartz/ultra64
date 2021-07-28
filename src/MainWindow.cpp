@@ -77,8 +77,10 @@ void open_debugger()
     if(!wxGetApp().debugger) 
     {
         wxGetApp().debugger = new DebuggerWindow(wxGetApp().frame, 
-                              "Ultra 64 Debugger", wxPoint(150, 50), wxSize(780, 480));
+                              "Ultra 64 Debugger", wxPoint(150, 50), wxSize(1000, 480));
     }
+
+    wxGetApp().debugger->Layout();
 }
 
 void MainWindow::OnDebugPIFROM(wxCommandEvent& event)

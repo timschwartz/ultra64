@@ -32,7 +32,6 @@ enum
     ID_debug_registers = 12,
 
     BUTTON_cpu_step = 20,
-    BUTTON_cpu_steps = 21
 };
 
 std::vector<std::string> render_debugger_registers(ultra64::N64 *n64);

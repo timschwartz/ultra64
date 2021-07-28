@@ -4,7 +4,6 @@
 
 wxBEGIN_EVENT_TABLE(DebuggerWindow, wxFrame)
     EVT_BUTTON(BUTTON_cpu_step, DebuggerWindow::OnCPUStep)
-    EVT_BUTTON(BUTTON_cpu_steps, DebuggerWindow::OnCPUSteps)
 wxEND_EVENT_TABLE()
 
 DECLARE_APP(wxUltra64)
@@ -23,13 +22,14 @@ DebuggerWindow::DebuggerWindow(wxWindow *parent, const wxString& title, const wx
     this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(600, 380));
     this->memory_listbox->SetFont(mem_font);
 
-    this->debugger_pc = new wxTextCtrl(this, ID_DEBUGGER_PC, "0x0000 0000", wxPoint(630, 30), wxSize(120, 25), 0);
+    wxStaticText *label_pc = new wxStaticText(this, wxID_ANY, wxT("PC"), wxPoint(850, 30), wxSize(100, 50));
+    label_pc->SetFont(font);
+    this->debugger_pc = new wxTextCtrl(this, ID_DEBUGGER_PC, "0x0000 0000", wxPoint(850, 60), wxSize(120, 25), 0);
 
-    this->cpu_step = new wxButton(this, BUTTON_cpu_step, _T("Step"), wxPoint(630, 60), wxDefaultSize, 0);
-
-    this->cpu_steps_count = new wxTextCtrl(this, ID_CPU_STEP_COUNT, "2", wxPoint(630, 110), wxSize(120, 25), 0);
-
-    this->cpu_steps = new wxButton(this, BUTTON_cpu_steps, _T("Multi-step"), wxPoint(630, 140), wxDefaultSize, 0);
+    wxStaticText *label_steps = new wxStaticText(this, wxID_ANY, wxT("Step count"), wxPoint(850, 100), wxSize(150, 50));
+    label_steps->SetFont(font);
+    this->cpu_steps_count = new wxTextCtrl(this, ID_CPU_STEP_COUNT, "1", wxPoint(850, 130), wxSize(120, 25), 0);
+    this->cpu_step = new wxButton(this, BUTTON_cpu_step, _T("Step"), wxPoint(850, 170), wxDefaultSize, 0);
 }
 
 DebuggerWindow::~DebuggerWindow()
@@ -38,27 +38,6 @@ DebuggerWindow::~DebuggerWindow()
 }
 
 void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
-{
-    ultra64::N64 *n64 = wxGetApp().n64;
-
-    try
-    {
-        n64->cpu.step();
-    }
-    catch(std::string e)
-    {
-        wxGetApp().frame->SetStatusText(e, 0);
-    }
-
-    char message[1024];
-    sprintf(message, "0x%.4X %.4X", n64->cpu.get_PC() >> 16, n64->cpu.get_PC() & 0xFFFF);
-    debugger_pc->Clear();
-    debugger_pc->AppendText(message);
-
-    if(wxGetApp().registers != nullptr) wxGetApp().registers->UpdateRegisters(render_debugger_registers(wxGetApp().n64));
-}
-
-void DebuggerWindow::OnCPUSteps(wxCommandEvent& event)
 {
     ultra64::N64 *n64 = wxGetApp().n64;
 

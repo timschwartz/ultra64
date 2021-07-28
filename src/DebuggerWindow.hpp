@@ -13,6 +13,5 @@ class DebuggerWindow: public wxFrame
     void OnCPUStep(wxCommandEvent &event);
     wxTextCtrl *cpu_steps_count = NULL;
     wxButton *cpu_steps = NULL;
-    void OnCPUSteps(wxCommandEvent &event);
     wxDECLARE_EVENT_TABLE();
 };
