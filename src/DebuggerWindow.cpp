@@ -85,7 +85,7 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
     {
         try
         {
-            value = n64->mmu->read_word(addr);
+            value = n64->mmu->read_word_raw(addr);
             sprintf(message, "%.4X %.4X   %.2X %.2X %.2X %.2X   ", (addr >> 16), (addr & 0xFFFF), 
                    value >> 24, (value >> 16) & 0xFF, (value >> 8) & 0xFF, value & 0xFF);
             ultra64::instruction i(value);

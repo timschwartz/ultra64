@@ -66,7 +66,7 @@ void ROM::Open(N64 *n64, std::string filename)
     uint32_t *v = (uint32_t *)this->data;
     while(count < this->filesize)
     {
-        n64->mmu->write_word(0x10000000 + count, *v);
+        n64->mmu->write_word_raw(0x10000000 + count, *v);
         v++;
         count += 4;
     }    

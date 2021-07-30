@@ -28,19 +28,6 @@ void si_register_read(MMU *mmu, memory_section s, uint64_t value)
 void pif_ram_write(MMU *mmu, memory_section s, uint64_t value)
 {
     std::cout << "    pif_ram_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
-return;
-
-    uint32_t pointer = s.addr - s.offset;
-    if(pointer) pointer /= 4;
-
-    uint32_t *p = (uint32_t *)s.ptr;
-    asm ("movl %1, %%eax;"
-          "bswap %%eax;"
-          "movl %%eax, %0;"
-         :"=r"(p[pointer])        /* output */
-         :"r"(0)         /* input */
-         :"%eax"         /* clobbered register */
-     );
 }
 
 void ultra64::map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr, 
@@ -126,6 +113,16 @@ memory_section MMU::get_section(uint32_t addr)
 
 void MMU::write_word(uint32_t addr, uint32_t value)
 {
+    this->write_word_impl(addr, value, true);
+}
+
+void MMU::write_word_raw(uint32_t addr, uint32_t value)
+{
+    this->write_word_impl(addr, value, false);
+}
+
+void MMU::write_word_impl(uint32_t addr, uint32_t value, bool call_handler)
+{
     uint32_t phys_addr = addr & 0x1FFFFFFF;
     memory_section s;
     try {
@@ -136,39 +133,34 @@ void MMU::write_word(uint32_t addr, uint32_t value)
         throw std::runtime_error(ss.str());
     }
 
-    uint32_t pointer = phys_addr - s.offset;
-    if(pointer) pointer /= 4;
+    uint32_t offset = phys_addr - s.offset;
+    uint32_t *p = (uint32_t *)(s.ptr + offset);
 
-    uint32_t *p = (uint32_t *)s.ptr;
-    asm ("movl %1, %%eax;"
-          "bswap %%eax;"
-          "movl %%eax, %0;"
-         :"=r"(p[pointer])        /* output */
-         :"r"(value)         /* input */
-         :"%eax"         /* clobbered register */
-     );
-
-     if(s.write_handler != nullptr) s.write_handler(this, s, value);
+    *p = value;
+    if(!call_handler) return;
+    if(s.write_handler != nullptr) s.write_handler(this, s, value);
 }
 
 uint32_t MMU::read_word(uint32_t addr)
+{
+    return this->read_word_impl(addr, true);
+}
+
+uint32_t MMU::read_word_raw(uint32_t addr)
+{
+    return this->read_word_impl(addr, false);
+}
+
+uint32_t MMU::read_word_impl(uint32_t addr, bool call_handler)
 {
     uint32_t phys_addr = addr & 0x1FFFFFFF;
     memory_section s = get_section(phys_addr);
 
     uint32_t pointer = phys_addr - s.offset;
-    if(pointer) pointer /= 4;
 
-    uint32_t *p = (uint32_t *)s.ptr;
-    uint32_t value;
+    uint32_t value = *(uint32_t *)(s.ptr + pointer);
 
-    asm ("movl %1, %%eax;" 
-          "bswap %%eax;"
-          "movl %%eax, %0;"
-         :"=r"(value)        /* output */
-         :"r"(p[pointer])         /* input */
-         :"%eax"         /* clobbered register */
-     );
+    if(!call_handler) return value;
 
     if(s.read_handler != nullptr) s.read_handler(this, s, value);
     return value;

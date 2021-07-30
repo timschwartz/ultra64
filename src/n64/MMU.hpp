@@ -27,7 +27,11 @@ namespace ultra64
         ~MMU();
         void register_memory(std::string name, memory_section s);
         void write_word(uint32_t addr, uint32_t value);
+        void write_word_raw(uint32_t addr, uint32_t value);
+        void write_word_impl(uint32_t addr, uint32_t value, bool call_handler);
         uint32_t read_word(uint32_t addr);
+        uint32_t read_word_raw(uint32_t addr);
+        uint32_t read_word_impl(uint32_t addr, bool call_handler);
         void Dump();
         memory_section get_section(uint32_t addr);
         std::unordered_map<std::string, memory_section> memory;
