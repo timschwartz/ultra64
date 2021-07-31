@@ -65,11 +65,28 @@ void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
     if(!filename.size()) return;
     config["pif_rom"] = filename;
     save_config(config);
-    std::cout << "PIF ROM: " << filename << std::endl;
 }
 
 void MainWindow::OnOpenROM(wxCommandEvent& event)
 {
+    Json::Value config = load_config();
+
+    std::string rom_path = config["rom_path"].asString();
+
+    wxFileDialog rom_dialog(this, _("Open N64 ROM file"), rom_path, "",
+                                "N64 ROM files (*.n64;*.v64;*.z64;*.bin)|*.n64;*.v64;*.bin|All files (*.*)|*.*",
+                                wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+
+    if(wxID_CANCEL == rom_dialog.ShowModal()) return;
+
+    std::string directory = rom_dialog.GetDirectory().ToStdString();
+    config["rom_path"] = directory;
+    save_config(config);
+
+    std::string rom = rom_dialog.GetPath().ToStdString();
+    std::cout << "Opening " << rom << std::endl;
+
+    start(rom);
 }
 
 void open_debugger()
