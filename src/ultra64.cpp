@@ -13,7 +13,6 @@ const std::string config_path = ".config/ultra64";
 
 wxIMPLEMENT_APP(wxUltra64);
 
-void start(std::string filename);
 void load_pif_rom(ultra64::N64 *n64);
 
 bool wxUltra64::OnInit()
@@ -22,7 +21,14 @@ bool wxUltra64::OnInit()
     this->frame->Show(true);
 
     this->n64 = new ultra64::N64();
-    load_pif_rom(this->n64);
+    try
+    {
+        load_pif_rom(this->n64);
+    }
+    catch (std::runtime_error &e)
+    {
+        wxGetApp().frame->SetStatusText(e.what(), 0);
+    }
 
     if(wxGetApp().argc < 2) return true;
 
@@ -58,6 +64,8 @@ Json::Value load_config()
             config["pif_rom"] = "pifdata.bin";
         }
         else config["pif_rom"] = "";
+
+        config["rom_path"] = home_dir;
 
         Json::StreamWriterBuilder builder;
         builder["indentation"] = " ";
@@ -97,8 +105,7 @@ void load_pif_rom(ultra64::N64 *n64)
     std::string pif_rom_file = config["pif_rom"].asString();
     if(!pif_rom_path.size() || !pif_rom_file.size())
     {
-        throw std::runtime_error("Can't find PIF ROM. Load by clicking File -> Open PIF ROM.");
-        return;
+        throw std::runtime_error("Can't find PIF ROM. Load by clicking File -> Select PIF ROM.");
     }
 
     ultra64::PIFrom pifrom(pif_rom_path + "/" + pif_rom_file);
@@ -169,12 +176,11 @@ void start(std::string filename)
 
     std::stringstream ss;
 
-//    ultra64::ROM_header header = rom->get_header();
     ss << "Ultra 64 - " << n64->rom->header->name;
 
     wxGetApp().frame->SetTitle(ss.str());
 
-    wxGetApp().n64->mmu->write_word(SP_DMA_BUSY_REG, 0x0);
+    wxGetApp().n64->mmu->write_word_raw(SP_DMA_BUSY_REG, 0x0);
 
 return;
     while(1)

@@ -37,3 +37,4 @@ enum
 std::vector<std::string> render_debugger_registers(ultra64::N64 *n64);
 Json::Value load_config();
 void save_config(Json::Value config);
+void start(std::string filename);
