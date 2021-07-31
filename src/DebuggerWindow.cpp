@@ -20,7 +20,7 @@ DebuggerWindow::DebuggerWindow(wxWindow *parent, const wxString& title, const wx
     label_memory_address->SetFont(font);
 
     wxFont mem_font(wxFontInfo(12).FaceName("Courier"));
-    this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(600, 380));
+    this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(750, 380));
     this->memory_listbox->SetFont(mem_font);
 
     this->label_pc = new wxStaticText(this, wxID_ANY, wxT("PC"), wxPoint(850, 30), wxSize(100, 50));
@@ -47,10 +47,8 @@ void DebuggerWindow::OnResize(wxSizeEvent &event)
     const int margin = 30;
     const int control_width = 120;
 
-    int width = event.GetSize().GetWidth();
-    int height = event.GetSize().GetHeight();
-
-    std::cout << "DebuggerWindow::OnResize(): width - " << std::dec << width << ", height - " << height << std::endl;
+    int width;
+    width = event.GetSize().GetWidth();
 
     int x, y;
 
@@ -114,6 +112,7 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
     this->debugger_pc->Clear();
     this->debugger_pc->AppendText(message);
 
+    auto const max_length = 60;
     while(addr < end_addr)
     {
         try
@@ -123,6 +122,21 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
                    value >> 24, (value >> 16) & 0xFF, (value >> 8) & 0xFF, value & 0xFF);
             ultra64::instruction i(value);
             msg = message + i.to_string();
+
+            // Pad with whitespace
+            while(msg.size() <= max_length) msg += " ";
+
+            // Show raw bytes in memory
+            for(int i = 3; i >= 0; i--)
+            {
+              char temp = (value >> (i * 8)) & 0xFF;
+
+              // Don't try to print not-printable characters
+              if(temp < 32) temp = '.';
+
+              sprintf(message, "%c ", temp);
+              msg += message;
+            }
             memory_listbox->Append(msg.c_str());
         }
         catch(std::string e)
