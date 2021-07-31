@@ -4,6 +4,7 @@
 
 wxBEGIN_EVENT_TABLE(DebuggerWindow, wxFrame)
     EVT_BUTTON(BUTTON_cpu_step, DebuggerWindow::OnCPUStep)
+    EVT_SIZE(DebuggerWindow::OnResize)
 wxEND_EVENT_TABLE()
 
 DECLARE_APP(wxUltra64)
@@ -22,19 +23,51 @@ DebuggerWindow::DebuggerWindow(wxWindow *parent, const wxString& title, const wx
     this->memory_listbox = new wxListBox(this, ID_MEMORY_LISTBOX, wxPoint(20, 30), wxSize(600, 380));
     this->memory_listbox->SetFont(mem_font);
 
-    wxStaticText *label_pc = new wxStaticText(this, wxID_ANY, wxT("PC"), wxPoint(850, 30), wxSize(100, 50));
-    label_pc->SetFont(font);
+    this->label_pc = new wxStaticText(this, wxID_ANY, wxT("PC"), wxPoint(850, 30), wxSize(100, 50));
+    this->label_pc->SetFont(font);
     this->debugger_pc = new wxTextCtrl(this, ID_DEBUGGER_PC, "0x0000 0000", wxPoint(850, 60), wxSize(120, 25), 0);
 
-    wxStaticText *label_steps = new wxStaticText(this, wxID_ANY, wxT("Step count"), wxPoint(850, 100), wxSize(150, 50));
-    label_steps->SetFont(font);
+    this->label_steps = new wxStaticText(this, wxID_ANY, wxT("Step count"), wxPoint(850, 100), wxSize(150, 50));
+    this->label_steps->SetFont(font);
     this->cpu_steps_count = new wxTextCtrl(this, ID_CPU_STEP_COUNT, "1", wxPoint(850, 130), wxSize(120, 25), 0);
     this->cpu_step = new wxButton(this, BUTTON_cpu_step, _T("Step"), wxPoint(850, 170), wxDefaultSize, 0);
+
+    this->SendSizeEvent();
 }
 
 DebuggerWindow::~DebuggerWindow()
 {
     wxGetApp().debugger = NULL;
+}
+
+void DebuggerWindow::OnResize(wxSizeEvent &event)
+{
+    if(!this->label_pc) return;
+
+    const int margin = 30;
+    const int control_width = 120;
+
+    int width = event.GetSize().GetWidth();
+    int height = event.GetSize().GetHeight();
+
+    std::cout << "DebuggerWindow::OnResize(): width - " << std::dec << width << ", height - " << height << std::endl;
+
+    int x, y;
+
+    this->label_pc->GetPosition(&x, &y);
+    this->label_pc->Move(width - control_width - margin, y);
+
+    this->debugger_pc->GetPosition(&x, &y);
+    this->debugger_pc->Move(width - control_width - margin, y);
+
+    this->label_steps->GetPosition(&x, &y);
+    this->label_steps->Move(width - control_width - margin, y);
+
+    this->cpu_steps_count->GetPosition(&x, &y);
+    this->cpu_steps_count->Move(width - control_width - margin, y);
+
+    this->cpu_step->GetPosition(&x, &y);
+    this->cpu_step->Move(width - control_width - margin, y);
 }
 
 void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
