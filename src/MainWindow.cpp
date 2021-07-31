@@ -51,9 +51,7 @@ void MainWindow::OnExit(wxCommandEvent& event)
 
 void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
 {
-    Json::Value config = load_config();
-
-    std::string pif_path = config["pif_rom_path"].asString();
+    std::string pif_path = wxGetApp().config["pif_rom_path"].asString();
 
     wxFileDialog rom_dialog(this, _("Open PIF ROM file"), pif_path, "",
                                 "ROM files (*.bin)|*.bin|All files (*.*)|*.*",
@@ -63,15 +61,13 @@ void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
 
     std::string filename = rom_dialog.GetFilename().ToStdString();
     if(!filename.size()) return;
-    config["pif_rom"] = filename;
-    save_config(config);
+    wxGetApp().config["pif_rom"] = filename;
+    wxGetApp().save_config();
 }
 
 void MainWindow::OnOpenROM(wxCommandEvent& event)
 {
-    Json::Value config = load_config();
-
-    std::string rom_path = config["rom_path"].asString();
+    std::string rom_path = wxGetApp().config["rom_path"].asString();
 
     wxFileDialog rom_dialog(this, _("Open N64 ROM file"), rom_path, "",
                                 "N64 ROM files (*.n64;*.v64;*.z64;*.bin)|*.n64;*.v64;*.bin|All files (*.*)|*.*",
@@ -80,8 +76,8 @@ void MainWindow::OnOpenROM(wxCommandEvent& event)
     if(wxID_CANCEL == rom_dialog.ShowModal()) return;
 
     std::string directory = rom_dialog.GetDirectory().ToStdString();
-    config["rom_path"] = directory;
-    save_config(config);
+    wxGetApp().config["rom_path"] = directory;
+    wxGetApp().save_config();
 
     std::string rom = rom_dialog.GetPath().ToStdString();
     std::cout << "Opening " << rom << std::endl;

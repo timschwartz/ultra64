@@ -20,6 +20,10 @@ class wxUltra64 : public wxApp
     RegistersWindow *registers = nullptr;
     DebuggerWindow *debugger = nullptr;
     ultra64::N64 *n64 = nullptr;
+    Json::Value config;
+    std::string config_path = ".config/ultra64";
+    Json::Value load_config();
+    void save_config();
 };
 
 enum
