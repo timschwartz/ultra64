@@ -6,6 +6,8 @@
 
 using namespace ultra64;
 
+auto const upper = std::uppercase;
+
 instruction::instruction(uint32_t i)
 {
     this->i =  i;
@@ -28,28 +30,34 @@ std::string instruction::to_string()
             break;
         case JAL:
             target = this->i & 0x3FFFFFF;
-            ss << "JAL 0x" << std::hex << target;;
+            ss << "JAL 0x" << std::hex << upper << target;
             break;
         case BEQ:
-            ss << "BEQ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "BEQ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " 
+               << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case BNE:
-            ss << "BNE " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "BNE " << std::dec << static_cast<unsigned>(opcode.rs) << ", "
+               << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case ADDI:
-            ss << "ADDI " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
+            ss << "ADDI " << std::dec << static_cast<unsigned>(opcode.rt) << ", "
+               << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case ADDIU:
-            ss << "ADDIU " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
+            ss << "ADDIU " << std::dec << static_cast<unsigned>(opcode.rt) << ", "
+               << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case ANDI:
-            ss << "ANDI " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
+            ss << "ANDI " << std::dec << static_cast<unsigned>(opcode.rt) << ", "
+               << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case ORI:
-            ss << "ORI " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << opcode.immediate;
+            ss << "ORI " << std::dec << static_cast<unsigned>(opcode.rt) << ", "
+               << static_cast<unsigned>(opcode.rs) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case LUI:
-            ss << "LUI " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "LUI " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case _CP0:
             return this->cp0_to_string();
@@ -58,25 +66,28 @@ std::string instruction::to_string()
             return this->cp1_to_string();
             break;
         case BEQL:
-            ss << "BEQL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "BEQL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " 
+               << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case BNEL:
-            ss << "BNEL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "BNEL " << std::dec << static_cast<unsigned>(opcode.rs) << ", "
+               << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case DADDI:
-            ss << "DADDI " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate;
+            ss << "DADDI " << std::dec << static_cast<unsigned>(opcode.rs) << ", "
+               << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate;
             break;
         case LW:
-            ss << "LW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
+            ss << "LW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
             break;
         case SW:
-            ss << "SW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
+            ss << "SW " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
             break;
         case SD:
-            ss << "SD " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
+            ss << "SD " << std::dec << static_cast<unsigned>(opcode.rt) << ", 0x" << std::hex << upper << opcode.immediate << "(" << std::dec << static_cast<unsigned>(opcode.rs) << ")";
             break;
         default:
-            ss << "Unknown opcode 0x" << std::hex << static_cast<unsigned>(opcode.op);
+            ss << "Unknown opcode 0x" << std::hex << upper << static_cast<unsigned>(opcode.op);
             break;
     }
 
@@ -98,7 +109,7 @@ std::string instruction::cp0_to_string()
             ss << "MTC0 " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rd);
             break;
         default:
-            ss << "Unknown CP0 sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.sub);
+            ss << "Unknown CP0 sub-opcode 0x" << std::hex << upper << static_cast<unsigned>(opcode.sub);
             break;
     }
     return ss.str();
@@ -116,7 +127,7 @@ std::string instruction::cp1_to_string()
             ss << "MFC1 " << std::dec << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.rd);
             break;
         default:
-            ss << "Unknown CP1 sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.sub);
+            ss << "Unknown CP1 sub-opcode 0x" << std::hex << upper << static_cast<unsigned>(opcode.sub);
             break;
     }
     return ss.str();
@@ -179,7 +190,7 @@ std::string instruction::special_to_string()
             ss << "DSLL32 " << std::dec << static_cast<unsigned>(opcode.rd) << ", " << static_cast<unsigned>(opcode.rt) << ", " << static_cast<unsigned>(opcode.sa);
             break;
         default:
-            ss << "Unknown SPECIAL sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.function);
+            ss << "Unknown SPECIAL sub-opcode 0x" << std::hex << upper << static_cast<unsigned>(opcode.function);
             break;
     }
     return ss.str();
@@ -194,13 +205,13 @@ std::string instruction::regimm_to_string()
     switch(opcode.rt)
     {
         case BLTZ:
-            ss << "BLTZ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << static_cast<unsigned>(opcode.offset);
+            ss << "BLTZ " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << upper << static_cast<unsigned>(opcode.offset);
             break;
         case BGEZAL:
-            ss << "BGEZAL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << static_cast<unsigned>(opcode.offset);
+            ss << "BGEZAL " << std::dec << static_cast<unsigned>(opcode.rs) << ", " << std::hex << upper << static_cast<unsigned>(opcode.offset);
             break;
         default:
-            ss << "Unknown REGIMM sub-opcode 0x" << std::hex << static_cast<unsigned>(opcode.rt);
+            ss << "Unknown REGIMM sub-opcode 0x" << std::hex << upper << static_cast<unsigned>(opcode.rt);
             break;
     }
     return ss.str();
