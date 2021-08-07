@@ -60,9 +60,69 @@ void vr4300::set_n64(void *n64)
     this->n64 = (ultra64::N64 *)n64;
 }
 
-uint32_t vr4300::get_PC()
+void vr4300::load_state(Json::Value state)
 {
-    return this->PC;
+    std::vector<std::string> indices;
+
+    indices = state["CP0"].getMemberNames();
+    for(auto &index : indices)
+    {
+        uint8_t i = std::strtol(index.c_str(), nullptr, 10);
+        uint64_t value = std::strtol(state["CP0"][index].asString().c_str(), nullptr, 16);
+        this->CP0[i] = value;
+    }
+
+    indices = state["GPR"].getMemberNames();
+    for(auto &index : indices)
+    {
+        uint8_t i = std::strtol(index.c_str(), nullptr, 10);
+        uint64_t value = std::strtol(state["GPR"][index].asString().c_str(), nullptr, 16);
+        this->GPR[i] = value;
+    }
+
+    this->PC = std::strtol(state["PC"].asString().c_str(), nullptr, 16);
+    this->HI = std::strtol(state["HI"].asString().c_str(), nullptr, 16);
+    this->LO = std::strtol(state["LO"].asString().c_str(), nullptr, 16);
+}
+
+Json::Value vr4300::save_state()
+{
+    Json::Value state;
+    std::string index;
+    std::stringstream value;
+
+    value << std::hex << this->PC;
+    state["PC"] = value.str();
+    value.clear();
+    value.str("");
+
+    value << std::hex << this->HI;
+    state["HI"] = value.str();
+    value.clear();
+    value.str("");
+
+    value << std::hex << this->LO;
+    state["LO"] = value.str();
+    value.clear();
+    value.str("");
+
+    for(uint8_t i = 0; i < 32; i++)
+    {
+        index = std::to_string(i);
+        if(index.size() == 1) index = "0" + index;
+
+        value << std::hex << this->GPR[i];
+        state["GPR"][index] = value.str();
+        value.clear();
+        value.str("");
+
+        value << std::hex << this->CP0[i];
+        state["CP0"][index] = value.str();
+        value.clear();
+        value.str("");
+    }
+
+    return state;
 }
 
 void vr4300::step()
@@ -80,7 +140,7 @@ void vr4300::not_implemented(vr4300 *cpu)
     instruction i(cpu->current_instruction);
 
     std::stringstream ss;
-    ss << "0x" << std::hex << cpu->get_PC() << ": NOT IMPLEMENTED " << i.to_string();
+    ss << "0x" << std::hex << cpu->PC << ": NOT IMPLEMENTED " << i.to_string();
     throw std::runtime_error(ss.str());
 }
 
@@ -138,7 +198,7 @@ void vr4300::addi(vr4300 *cpu)
     opcode_i_type op(cpu->current_instruction);
     cpu->GPR[op.rt] = cpu->GPR[op.rs] + (int16_t)(op.immediate);
     cpu->PC += 4;
-    std::cerr << "ADDI: overflow trap not implemented" << std::endl;
+//    std::cerr << "ADDI: overflow trap not implemented" << std::endl;
     // Make an exception for this
 }
 

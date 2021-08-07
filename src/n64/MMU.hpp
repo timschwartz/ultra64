@@ -41,3 +41,5 @@ namespace ultra64
                 void (*write_handler)(MMU *mmu, memory_section s, uint64_t value),
                 void (*read_handler)(MMU *mmu, memory_section s, uint64_t value));
 }
+
+auto const SI_STATUS_REG = 0x04800018;

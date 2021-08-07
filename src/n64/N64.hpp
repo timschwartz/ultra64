@@ -21,5 +21,6 @@ namespace ultra64
           vr4300 cpu;
           RSP rsp;
           ROM *rom;
+          void load_pif_rom(std::string filepath);
     };
 }

@@ -1,4 +1,5 @@
 #include "MMU.hpp"
+#include "rcp/RSP.hpp"
 #include <iostream>
 #include <sstream>
 #include <cstring>
@@ -7,12 +8,40 @@ using namespace ultra64;
 
 void sp_register_write(MMU *mmu, memory_section s, uint64_t value)
 {
-    std::cout << "    sp_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
+    switch(s.addr)
+    {
+        case SP_STATUS_REG:
+            std::cout << "  Writing to SP_STATUS_REG:" << std::endl;
+            if(value & 0x01) std::cout << "    - Clear halt" << std::endl;
+            if(value & 0x02) std::cout << "    - Set halt" << std::endl;
+            if(value & 0x04) std::cout << "    - Clear broke" << std::endl;
+            if(value & 0x08) std::cout << "    - Clear interrupt" << std::endl;
+            break;
+        default:
+            std::cout << "    sp_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
+            break;
+    }
 }
 
 void sp_register_read(MMU *mmu, memory_section s, uint64_t value)
 {
-    std::cout << "    sp_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+    switch(s.addr)
+    {
+        case SP_STATUS_REG:
+            std::cout << "  Reading from SP_STATUS_REG:" << std::endl;
+            if(value & 0x01) std::cout << "    - Halt" << std::endl;
+            if(value & 0x02) std::cout << "    - Broke" << std::endl;
+            if(value & 0x04) std::cout << "    - DMA busy" << std::endl;
+            if(value & 0x08) std::cout << "    - DMA full" << std::endl;
+            break;
+        case SP_DMA_BUSY_REG:
+            std::cout << "  Reading from SP_DMA_BUSY_REG:" << std::endl;
+            if(value & 0x01) std::cout << "    - Busy" << std::endl;
+            break;
+        default:
+            std::cout << "    sp_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+            break;
+    }
 }
 
 void pi_register_write(MMU *mmu, memory_section s, uint64_t value)
@@ -20,14 +49,60 @@ void pi_register_write(MMU *mmu, memory_section s, uint64_t value)
     std::cout << "    pi_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
 }
 
+void si_register_write(MMU *mmu, memory_section s, uint64_t value)
+{
+    switch(s.addr)
+    {
+        case SI_STATUS_REG:
+            std::cout << "  Writing to SI_STATUS_REG:" << std::endl;
+            if(value & 0x01) std::cout << "    - DMA busy" << std::endl;
+            if(value & 0x02) std::cout << "    - IO read busy" << std::endl;
+            if(value & 0x04) std::cout << "    - Reserved" << std::endl;
+            if(value & 0x08) std::cout << "    - DMA error" << std::endl;
+            if(value & 0x0800) std::cout << "    - Interrupt" << std::endl;
+            break;
+        default:
+            std::cout << "    si_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
+            break;
+    }
+}
+
 void si_register_read(MMU *mmu, memory_section s, uint64_t value)
 {
-    std::cout << "    si_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+    switch(s.addr)
+    {
+        case SI_STATUS_REG:
+            std::cout << "  Reading from SI_STATUS_REG:" << std::endl;
+            if(value & 0x01) std::cout << "    - DMA busy" << std::endl;
+            if(value & 0x02) std::cout << "    - IO read busy" << std::endl;
+            if(value & 0x04) std::cout << "    - Reserved" << std::endl;
+            if(value & 0x08) std::cout << "    - DMA error" << std::endl;
+            if(value & 0x0800) std::cout << "    - Interrupt" << std::endl;
+            break;
+        default:
+            std::cout << "    si_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+            break;
+    }
 }
 
 void pif_ram_write(MMU *mmu, memory_section s, uint64_t value)
 {
     std::cout << "    pif_ram_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
+}
+
+void dp_register_write(MMU *mmu, memory_section s, uint64_t value)
+{
+    std::cout << "    dp_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
+}
+
+void dp_register_read(MMU *mmu, memory_section s, uint64_t value)
+{
+    std::cout << "    dp_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
+}
+
+void sp_dmem_write(MMU *mmu, memory_section s, uint64_t value)
+{
+    std::cout << "    sp_dmem_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
 }
 
 void ultra64::map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr, 
@@ -50,10 +125,10 @@ void ultra64::map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t siz
 MMU::MMU()
 {
     map_memory(this, "pif_ram", 0x1FC007C0, 0x40, 0x40, new std::byte[0x40], &pif_ram_write, nullptr);
-    map_memory(this, "sp_dmem", 0x04000000, 0x1000, 0x1000, new std::byte[0x1000], nullptr, nullptr);
+    map_memory(this, "sp_dmem", 0x04000000, 0x1000, 0x1000, new std::byte[0x1000], &sp_dmem_write, nullptr);
     map_memory(this, "sp_imem", 0x04001000, 0x1000, 0x1000, new std::byte[0x1000], nullptr, nullptr);
     map_memory(this, "sp_registers", 0x04040000, 0x20, 0x20, new std::byte[0x20], &sp_register_write, &sp_register_read);
-    map_memory(this, "dp_registers", 0x04100000, 0x20, 0x20, new std::byte[0x20], nullptr, nullptr);
+    map_memory(this, "dp_registers", 0x04100000, 0x20, 0x20, new std::byte[0x20], &dp_register_write, &dp_register_read);
     map_memory(this, "vi_registers", 0x04400000, 0x38, 0x38, new std::byte[0x38], nullptr, nullptr);
     map_memory(this, "ai_registers", 0x04500000, 0x18, 0x18, new std::byte[0x18], nullptr, nullptr);
     map_memory(this, "pi_registers", 0x04600000, 0x34, 0x34, new std::byte[0x34], &pi_register_write, nullptr);

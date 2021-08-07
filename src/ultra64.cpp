@@ -102,23 +102,10 @@ void load_pif_rom(ultra64::N64 *n64)
         throw std::runtime_error("Can't find PIF ROM. Load by clicking File -> Select PIF ROM.");
     }
 
-    ultra64::PIFrom pifrom(pif_rom_path + "/" + pif_rom_file);
-
-    uint32_t count = 0;
-    uint32_t *p = (uint32_t *)pifrom.get_pointer();
-
-    ultra64::map_memory(n64->mmu, "pif_rom", 0x1FC00000, 0x7C0, 0x7C0, new std::byte[0x7C0], nullptr, nullptr);
-
-    while(count < 0x7C0)
-    {
-        n64->mmu->write_word(0x1FC00000 + count, *p++);
-        count += 4;
-    }
-
-    std::cout << "Loaded " << pif_rom_path << "/" << pif_rom_file << std::endl;
+    n64->load_pif_rom(pif_rom_path + "/" + pif_rom_file);
 }
 
-std::vector<std::string> render_debugger_registers(ultra64::N64 *n64)
+std::vector<std::string> render_registers(ultra64::N64 *n64)
 {
     std::vector<std::string> data;
     char temp[1024];
@@ -126,7 +113,7 @@ std::vector<std::string> render_debugger_registers(ultra64::N64 *n64)
     uint32_t count = 0;
     while(count < 32)
     {
-        sprintf(temp, "GPR[%.2d]=0x%.8lx  GPR[%.2d]=0x%.8lx  CP0[%.2d]=0x%.8lx  CP0[%.2d]=0x%.8lx",
+        sprintf(temp, "GPR[%.2d]=0x%.16lX  GPR[%.2d]=0x%.16lX  CP0[%.2d]=0x%.16lX  CP0[%.2d]=0x%.16lX",
                 count, n64->cpu.GPR[count], count + 1, n64->cpu.GPR[count + 1],
                 count, n64->cpu.CP0[count], count + 1, n64->cpu.CP0[count + 1]);
         data.push_back(temp);
@@ -136,7 +123,7 @@ std::vector<std::string> render_debugger_registers(ultra64::N64 *n64)
     sprintf(temp, "HI=0x%.4x  LO=0x%.4x", n64->cpu.HI, n64->cpu.LO);
     data.push_back(temp);
 
-    sprintf(temp, "PC = 0x%.8X", n64->cpu.get_PC());
+    sprintf(temp, "PC = 0x%.8X", n64->cpu.PC);
     data.push_back(temp);
 
     return data;
@@ -199,6 +186,6 @@ return;
             return;
         }
 
-        if(wxGetApp().registers) wxGetApp().registers->UpdateRegisters(render_debugger_registers(wxGetApp().n64));
+        if(wxGetApp().registers) wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
     }
 }

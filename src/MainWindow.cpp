@@ -10,6 +10,8 @@ wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
     EVT_MENU(wxID_EXIT,  MainWindow::OnExit)
     EVT_MENU(ID_select_pif_rom, MainWindow::OnSelectPIFROM)
     EVT_MENU(ID_open_rom, MainWindow::OnOpenROM)
+    EVT_MENU(ID_save_state, MainWindow::OnSaveState)
+    EVT_MENU(ID_load_state, MainWindow::OnLoadState)
     EVT_MENU(ID_debug_pif_rom, MainWindow::OnDebugPIFROM)
     EVT_MENU(ID_debug_rom, MainWindow::OnDebugROM)
     EVT_MENU(ID_debug_registers, MainWindow::OnDebugRegisters)
@@ -22,9 +24,13 @@ MainWindow::MainWindow(const wxString& title, const wxPoint& pos, const wxSize& 
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_select_pif_rom, "Select &PIF ROM", "");
     menuFile->Append(ID_open_rom, "&Open ROM", "");
+    menuFile->Append(ID_select_pif_rom, "Select &PIF ROM", "");
     menuFile->Append(wxID_EXIT);
+
+    wxMenu *menuState = new wxMenu;
+    menuState->Append(ID_save_state, "&Save state", "");
+    menuState->Append(ID_load_state, "&Load state", "");
 
     wxMenu *menuDebug = new wxMenu;
     menuDebug->Append(ID_debug_pif_rom, "View &PIF ROM", "");
@@ -33,6 +39,7 @@ MainWindow::MainWindow(const wxString& title, const wxPoint& pos, const wxSize& 
 
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
+    menuBar->Append(menuState, "&State");
     menuBar->Append(menuDebug, "&Debug");
     SetMenuBar(menuBar);
 
@@ -118,5 +125,21 @@ void MainWindow::OnDebugRegisters(wxCommandEvent &event)
     wxGetApp().registers->SetBackgroundColour(wxColour(*wxWHITE));
     wxGetApp().registers->Show(true);
 
-    wxGetApp().registers->UpdateRegisters(render_debugger_registers(wxGetApp().n64));
+    wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
+}
+
+void MainWindow::OnSaveState(wxCommandEvent &event)
+{
+    Json::Value state = wxGetApp().n64->cpu.save_state();
+    std::cout << state << std::endl;
+}
+
+void MainWindow::OnLoadState(wxCommandEvent &event)
+{
+    Json::Value state;
+
+    std::ifstream state_file("./mario64.save");
+    state_file >> state;
+
+    wxGetApp().n64->cpu.load_state(state);
 }

@@ -12,6 +12,10 @@ class MainWindow: public wxFrame
 
     void OnSelectPIFROM(wxCommandEvent &event);
     void OnOpenROM(wxCommandEvent &event);
+
+    void OnSaveState(wxCommandEvent &event);
+    void OnLoadState(wxCommandEvent &event);
+
     void OnDebugPIFROM(wxCommandEvent &event);
     void OnDebugROM(wxCommandEvent &event);
     void OnDebugRegisters(wxCommandEvent &event);

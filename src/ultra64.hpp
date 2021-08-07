@@ -31,6 +31,9 @@ enum
     ID_select_pif_rom = 1,
     ID_open_rom = 2,
 
+    ID_save_state = 3,
+    ID_load_state = 4,
+
     ID_debug_pif_rom = 10,
     ID_debug_rom = 11,
     ID_debug_registers = 12,
@@ -38,7 +41,5 @@ enum
     BUTTON_cpu_step = 20,
 };
 
-std::vector<std::string> render_debugger_registers(ultra64::N64 *n64);
-Json::Value load_config();
-void save_config(Json::Value config);
+std::vector<std::string> render_registers(ultra64::N64 *n64);
 void start(std::string filename);

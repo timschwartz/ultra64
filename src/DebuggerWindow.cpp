@@ -93,11 +93,11 @@ void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
         count++;
     }
 
-    sprintf(message, "0x%.4X %.4X", n64->cpu.get_PC() >> 16, n64->cpu.get_PC() & 0xFFFF);
+    sprintf(message, "0x%.4X %.4X", n64->cpu.PC >> 16, n64->cpu.PC & 0xFFFF);
     debugger_pc->Clear();
     debugger_pc->AppendText(message);
 
-    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(render_debugger_registers(wxGetApp().n64));
+    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
 }
 
 void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
@@ -108,7 +108,7 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
     std::string msg;
     uint32_t value, addr = start_addr;
 
-    sprintf(message, "0x%.4X %.4X", n64->cpu.get_PC() >> 16, n64->cpu.get_PC() & 0xFFFF);
+    sprintf(message, "0x%.4X %.4X", n64->cpu.PC >> 16, n64->cpu.PC & 0xFFFF);
     this->debugger_pc->Clear();
     this->debugger_pc->AppendText(message);
 

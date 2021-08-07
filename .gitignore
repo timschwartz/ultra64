@@ -66,3 +66,4 @@ src/ultra64
 *.bin
 *.BIN
 *.n64
+*.save

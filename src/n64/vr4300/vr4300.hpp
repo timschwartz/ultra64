@@ -3,6 +3,7 @@
 #include "../MMU.hpp"
 #include "../opcodes.hpp"
 #include <cstdint>
+#include <json/json.h>
 
 #define IMPL_OP(x) static void x(vr4300 *);
 
@@ -14,7 +15,8 @@ namespace ultra64
       public:
         vr4300();
         void set_n64(void *n64);
-        uint32_t get_PC();
+        void load_state(Json::Value state);
+        Json::Value save_state();
         IMPL_OP(not_implemented);
         IMPL_OP(special);
         IMPL_OP(regimm);
