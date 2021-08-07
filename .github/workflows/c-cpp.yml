@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: wxwidgets
-      run: sudo apt-cache search libwxgtk
+      run: sudo apt-get install libwxgtk3.0-gtk3-dev libwxgtk-media3.0-gtk3-dev
     - name: autogen
       run: ./autogen.sh
     - name: configure
