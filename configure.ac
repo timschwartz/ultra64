@@ -3,6 +3,8 @@ AC_INIT([ultra64], [0.2], [tim@metaverse.systems])
 AC_CONFIG_SRCDIR([src/ultra64.cpp])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CONFIG_MACRO_DIR([m4])
+
 AM_INIT_AUTOMAKE([subdir-objects])
 
 # Checks for programs.
