@@ -22,7 +22,7 @@ AM_CONDITIONAL([HAVE_DOXYGEN],
 
 # Checks for libraries.
 AM_OPTIONS_WXCONFIG
-reqwx=3.0.5
+reqwx=3.0.4
 AM_PATH_WXCONFIG($reqwx, wxWin=1,,[all])
 if test "$wxWin" != 1; then
         AC_MSG_ERROR([
