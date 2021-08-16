@@ -82,6 +82,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a85176d329cca40867ecaa5e9945c8904"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1_n64.html#a85176d329cca40867ecaa5e9945c8904">N64</a> ()</td></tr>
 <tr class="separator:a85176d329cca40867ecaa5e9945c8904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace57e9a79206ca443cc337bf39630cf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1_n64.html#ace57e9a79206ca443cc337bf39630cf5">load_pif_rom</a> (std::string filepath)</td></tr>
+<tr class="separator:ace57e9a79206ca443cc337bf39630cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -137,6 +139,50 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ace57e9a79206ca443cc337bf39630cf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace57e9a79206ca443cc337bf39630cf5">&#9670;&nbsp;</a></span>load_pif_rom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void N64::load_pif_rom </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>filepath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_n64_8cpp_source.html#l00006">6</a> of file <a class="el" href="_n64_8cpp_source.html">N64.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classultra64_1_1_p_i_from.html">ultra64::PIFrom</a> pifrom(filepath);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    uint32_t count = 0;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    uint32_t *p = (uint32_t *)pifrom.get_pointer();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="namespaceultra64.html#a649b531c048b556ef18e7dba4e51fa82">ultra64::map_memory</a>(this-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>, <span class="stringliteral">&quot;pif_rom&quot;</span>, 0x1FC00000, 0x7C0, 0x7C0, <span class="keyword">new</span> std::byte[0x7C0], <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">while</span>(count &lt; 0x7C0)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        this-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>-&gt;<a class="code" href="classultra64_1_1_m_m_u.html#afd7a31259bc5386ad9a4cb961149b620">write_word_raw</a>(0x1FC00000 + count, *p++);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        count += 4;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Loaded &quot;</span> &lt;&lt; filepath &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<div class="ttc" id="aclassultra64_1_1_m_m_u_html_afd7a31259bc5386ad9a4cb961149b620"><div class="ttname"><a href="classultra64_1_1_m_m_u.html#afd7a31259bc5386ad9a4cb961149b620">ultra64::MMU::write_word_raw</a></div><div class="ttdeci">void write_word_raw(uint32_t addr, uint32_t value)</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00194">MMU.cpp:194</a></div></div>
+<div class="ttc" id="aclassultra64_1_1_p_i_from_html"><div class="ttname"><a href="classultra64_1_1_p_i_from.html">ultra64::PIFrom</a></div><div class="ttdef"><b>Definition:</b> <a href="_p_i_from_8hpp_source.html#l00007">PIFrom.hpp:8</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a649b531c048b556ef18e7dba4e51fa82"><div class="ttname"><a href="namespaceultra64.html#a649b531c048b556ef18e7dba4e51fa82">ultra64::map_memory</a></div><div class="ttdeci">void map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr, void(*write_handler)(MMU *mmu, memory_section s, uint64_t value), void(*read_handler)(MMU *mmu, memory_section s, uint64_t value))</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00108">MMU.cpp:108</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_p_i_from_8cpp_source.html#l00037">ultra64::PIFrom::get_pointer()</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00108">ultra64::map_memory()</a>, <a class="el" href="_n64_8hpp_source.html#l00019">mmu</a>, and <a class="el" href="_m_m_u_8cpp_source.html#l00194">ultra64::MMU::write_word_raw()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00096">load_pif_rom()</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a284bc903abd7e9e9be1b78314fb8aaaf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a284bc903abd7e9e9be1b78314fb8aaaf">&#9670;&nbsp;</a></span>cpu</h2>
@@ -152,7 +198,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_n64_8hpp_source.html#l00021">21</a> of file <a class="el" href="_n64_8hpp_source.html">N64.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_n64_8hpp_source.html#l00014">N64()</a>, <a class="el" href="_debugger_window_8cpp_source.html#l00040">DebuggerWindow::OnCPUStep()</a>, <a class="el" href="_debugger_window_8cpp_source.html#l00061">DebuggerWindow::OnCPUSteps()</a>, <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00093">DebuggerWindow::view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_n64_8hpp_source.html#l00014">N64()</a>, <a class="el" href="_debugger_window_8cpp_source.html#l00071">DebuggerWindow::OnCPUStep()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00103">DebuggerWindow::view()</a>.</p>
 
 </div>
 </div>
@@ -170,7 +216,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_n64_8hpp_source.html#l00020">20</a> of file <a class="el" href="_n64_8hpp_source.html">N64.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_n64_8hpp_source.html#l00014">N64()</a>, <a class="el" href="ultra64_8cpp_source.html#l00166">load_pif_rom()</a>, <a class="el" href="_r_o_m_8cpp_source.html#l00022">ultra64::ROM::Open()</a>, <a class="el" href="_r_s_p_8cpp_source.html#l00010">ultra64::RSP::set_n64()</a>, <a class="el" href="vr4300_8cpp_source.html#l00068">ultra64::vr4300::step()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00093">DebuggerWindow::view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_n64_8hpp_source.html#l00014">N64()</a>, <a class="el" href="_n64_8cpp_source.html#l00006">load_pif_rom()</a>, <a class="el" href="_r_o_m_8cpp_source.html#l00022">ultra64::ROM::Open()</a>, <a class="el" href="_r_s_p_8cpp_source.html#l00010">ultra64::RSP::set_n64()</a>, <a class="el" href="vr4300_8cpp_source.html#l00128">ultra64::vr4300::step()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00103">DebuggerWindow::view()</a>.</p>
 
 </div>
 </div>
@@ -188,7 +234,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_n64_8hpp_source.html#l00023">23</a> of file <a class="el" href="_n64_8hpp_source.html">N64.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00218">start()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00132">start()</a>.</p>
 
 </div>
 </div>
@@ -210,8 +256,9 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/n64/<a class="el" href="_n64_8hpp_source.html">N64.hpp</a></li>
+<li>src/n64/<a class="el" href="_n64_8cpp_source.html">N64.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -77,7 +77,7 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="_debugger_window_8cpp.html#a17ab61bc09a64d12f8e98e7810dc0232">    5</a></span>&#160;<a class="code" href="_debugger_window_8cpp.html#a17ab61bc09a64d12f8e98e7810dc0232">wxBEGIN_EVENT_TABLE</a>(<a class="code" href="class_debugger_window.html">DebuggerWindow</a>, wxFrame)</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    EVT_BUTTON(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f">BUTTON_cpu_step</a>, <a class="code" href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">DebuggerWindow::OnCPUStep</a>)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    EVT_BUTTON(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba8ccf494208db44e5ea74be49d579841a">BUTTON_cpu_steps</a>, <a class="code" href="class_debugger_window.html#aa55764ee2525bfbefc0b4e59f3a5d3b6">DebuggerWindow::OnCPUSteps</a>)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    EVT_SIZE(<a class="code" href="class_debugger_window.html#a2468358dba34b35d10caecfea29f7e34">DebuggerWindow::OnResize</a>)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;wxEND_EVENT_TABLE()</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;DECLARE_APP(<a class="code" href="classwx_ultra64.html">wxUltra64</a>)</div>
@@ -93,134 +93,162 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    label_memory_address-&gt;SetFont(font);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    wxFont mem_font(wxFontInfo(12).FaceName(<span class="stringliteral">&quot;Courier&quot;</span>));</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    this-&gt;memory_listbox = <span class="keyword">new</span> wxListBox(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a4807be450e4c28955ba3434eeca35e1d">ID_MEMORY_LISTBOX</a>, wxPoint(20, 30), wxSize(550, 380));</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    this-&gt;memory_listbox = <span class="keyword">new</span> wxListBox(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a4807be450e4c28955ba3434eeca35e1d">ID_MEMORY_LISTBOX</a>, wxPoint(20, 30), wxSize(750, 380));</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    this-&gt;memory_listbox-&gt;SetFont(mem_font);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    this-&gt;debugger_pc = <span class="keyword">new</span> wxTextCtrl(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#af9fe8174820895f5c9ce66448f8b90ee">ID_DEBUGGER_PC</a>, <span class="stringliteral">&quot;0x0000 0000&quot;</span>, wxPoint(580, 30), wxSize(90, 25), 0);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    this-&gt;cpu_step = <span class="keyword">new</span> wxButton(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f">BUTTON_cpu_step</a>, _T(<span class="stringliteral">&quot;Step&quot;</span>), wxPoint(580, 60), wxDefaultSize, 0);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    this-&gt;label_pc = <span class="keyword">new</span> wxStaticText(<span class="keyword">this</span>, wxID_ANY, wxT(<span class="stringliteral">&quot;PC&quot;</span>), wxPoint(850, 30), wxSize(100, 50));</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    this-&gt;label_pc-&gt;SetFont(font);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    this-&gt;debugger_pc = <span class="keyword">new</span> wxTextCtrl(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#af9fe8174820895f5c9ce66448f8b90ee">ID_DEBUGGER_PC</a>, <span class="stringliteral">&quot;0x0000 0000&quot;</span>, wxPoint(850, 60), wxSize(120, 25), 0);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    this-&gt;cpu_steps_count = <span class="keyword">new</span> wxTextCtrl(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a648ea8ec50c2bf49f313c249f9734662">ID_CPU_STEP_COUNT</a>, <span class="stringliteral">&quot;2&quot;</span>, wxPoint(580, 110), wxSize(90, 25), 0);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    this-&gt;cpu_steps = <span class="keyword">new</span> wxButton(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba8ccf494208db44e5ea74be49d579841a">BUTTON_cpu_steps</a>, _T(<span class="stringliteral">&quot;Multi-step&quot;</span>), wxPoint(580, 140), wxDefaultSize, 0);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    this-&gt;label_steps = <span class="keyword">new</span> wxStaticText(<span class="keyword">this</span>, wxID_ANY, wxT(<span class="stringliteral">&quot;Step count&quot;</span>), wxPoint(850, 100), wxSize(150, 50));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    this-&gt;label_steps-&gt;SetFont(font);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    this-&gt;cpu_steps_count = <span class="keyword">new</span> wxTextCtrl(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a648ea8ec50c2bf49f313c249f9734662">ID_CPU_STEP_COUNT</a>, <span class="stringliteral">&quot;1&quot;</span>, wxPoint(850, 130), wxSize(120, 25), 0);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    this-&gt;cpu_step = <span class="keyword">new</span> wxButton(<span class="keyword">this</span>, <a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f">BUTTON_cpu_step</a>, _T(<span class="stringliteral">&quot;Step&quot;</span>), wxPoint(850, 170), wxDefaultSize, 0);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">   35</a></span>&#160;<a class="code" href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">DebuggerWindow::~DebuggerWindow</a>()</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    wxGetApp().debugger = NULL;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">   40</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">DebuggerWindow::OnCPUStep</a>(wxCommandEvent&amp; event)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *n64 = wxGetApp().n64;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">catch</span>(std::string e)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        wxGetApp().frame-&gt;SetStatusText(e, 0);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    this-&gt;SendSizeEvent();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">   38</a></span>&#160;<a class="code" href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">DebuggerWindow::~DebuggerWindow</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    wxGetApp().debugger = NULL;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a2468358dba34b35d10caecfea29f7e34">   43</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#a2468358dba34b35d10caecfea29f7e34">DebuggerWindow::OnResize</a>(wxSizeEvent &amp;event)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span>(!this-&gt;<a class="code" href="class_debugger_window.html#ab224ecfb18f61a1ba028c2dc32e1bbc2">label_pc</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> margin = 30;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> control_width = 120;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> width;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    width = <span class="keyword">event</span>.GetSize().GetWidth();</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">char</span> message[1024];</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    sprintf(message, <span class="stringliteral">&quot;0x%.4X %.4X&quot;</span>, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &gt;&gt; 16, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &amp; 0xFFFF);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Clear();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;AppendText(message);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">int</span> x, y;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ab224ecfb18f61a1ba028c2dc32e1bbc2">label_pc</a>-&gt;GetPosition(&amp;x, &amp;y);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ab224ecfb18f61a1ba028c2dc32e1bbc2">label_pc</a>-&gt;Move(width - control_width - margin, y);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().registers != <span class="keyword">nullptr</span>) wxGetApp().registers-&gt;UpdateRegisters(<a class="code" href="ultra64_8cpp.html#a23e2d287d9b60dfd6f30dd3506f1dd02">render_debugger_registers</a>(wxGetApp().n64));</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;GetPosition(&amp;x, &amp;y);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Move(width - control_width - margin, y);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_debugger_window.html#aa55764ee2525bfbefc0b4e59f3a5d3b6">   61</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#aa55764ee2525bfbefc0b4e59f3a5d3b6">DebuggerWindow::OnCPUSteps</a>(wxCommandEvent&amp; event)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *n64 = wxGetApp().n64;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    wxString contents = this-&gt;<a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;GetValue();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    uint32_t steps = wxAtoi(contents), count = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">char</span> message[1024];</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    sprintf(message, <span class="stringliteral">&quot;%d&quot;</span>, steps);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;Clear();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;AppendText(message);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">while</span>(count &lt; steps)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a>();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">catch</span>(std::string e)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            wxGetApp().frame-&gt;SetStatusText(e, 0);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        count++;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    sprintf(message, <span class="stringliteral">&quot;0x%.4X %.4X&quot;</span>, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &gt;&gt; 16, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &amp; 0xFFFF);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Clear();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;AppendText(message);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().registers != NULL) wxGetApp().registers-&gt;UpdateRegisters(<a class="code" href="ultra64_8cpp.html#a23e2d287d9b60dfd6f30dd3506f1dd02">render_debugger_registers</a>(wxGetApp().n64));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">   93</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">DebuggerWindow::view</a>(uint32_t start_addr, uint32_t end_addr)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *n64 = wxGetApp().n64;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">char</span> message[1024];</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    std::string msg;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    uint32_t value, addr = start_addr;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    sprintf(message, <span class="stringliteral">&quot;0x%.4X %.4X&quot;</span>, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &gt;&gt; 16, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a>() &amp; 0xFFFF);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Clear();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;AppendText(message);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">while</span>(addr &lt; end_addr)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            value = n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>-&gt;<a class="code" href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">read_word</a>(addr);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            sprintf(message, <span class="stringliteral">&quot;%.4X %.4X   %.2X %.2X %.2X %.2X   &quot;</span>, (addr &gt;&gt; 16), (addr &amp; 0xFFFF), </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                   value &gt;&gt; 24, (value &gt;&gt; 16) &amp; 0xFF, (value &gt;&gt; 8) &amp; 0xFF, value &amp; 0xFF);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="classultra64_1_1instruction.html">ultra64::instruction</a> i(value);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            msg = message + i.<a class="code" href="classultra64_1_1instruction.html#af0448111056cdd5e0601dcf9c71f9d8b">to_string</a>();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <a class="code" href="class_debugger_window.html#a5907a83225613994ce1bf78e170f3e69">memory_listbox</a>-&gt;Append(msg.c_str());</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">catch</span>(std::string e)</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <a class="code" href="class_debugger_window.html#a5907a83225613994ce1bf78e170f3e69">memory_listbox</a>-&gt;Append(e.c_str());</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        addr += 4;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a69974a06dcec62fb648e598acc3e9cb0">label_steps</a>-&gt;GetPosition(&amp;x, &amp;y);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a69974a06dcec62fb648e598acc3e9cb0">label_steps</a>-&gt;Move(width - control_width - margin, y);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;GetPosition(&amp;x, &amp;y);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;Move(width - control_width - margin, y);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a8cbfc7ff4b60b4ce45f94af2771e222a">cpu_step</a>-&gt;GetPosition(&amp;x, &amp;y);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#a8cbfc7ff4b60b4ce45f94af2771e222a">cpu_step</a>-&gt;Move(width - control_width - margin, y);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">   71</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">DebuggerWindow::OnCPUStep</a>(wxCommandEvent&amp; event)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *n64 = wxGetApp().n64;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    wxString contents = this-&gt;<a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;GetValue();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    uint32_t steps = wxAtoi(contents), count = 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">char</span> message[1024];</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    sprintf(message, <span class="stringliteral">&quot;%d&quot;</span>, steps);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;Clear();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">cpu_steps_count</a>-&gt;AppendText(message);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">while</span>(count &lt; steps)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">catch</span>(std::string e)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            wxGetApp().frame-&gt;SetStatusText(e, 0);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        count++;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    sprintf(message, <span class="stringliteral">&quot;0x%.4X %.4X&quot;</span>, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &gt;&gt; 16, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &amp; 0xFFFF);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Clear();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;AppendText(message);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().registers != NULL) wxGetApp().registers-&gt;UpdateRegisters(<a class="code" href="ultra64_8cpp.html#adf9f80ca370d6da6df16320c8d99c4e2">render_registers</a>(wxGetApp().n64));</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">  103</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">DebuggerWindow::view</a>(uint32_t start_addr, uint32_t end_addr)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *n64 = wxGetApp().n64;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">char</span> message[1024];</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    std::string msg;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    uint32_t value, addr = start_addr;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    sprintf(message, <span class="stringliteral">&quot;0x%.4X %.4X&quot;</span>, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &gt;&gt; 16, n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">cpu</a>.<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &amp; 0xFFFF);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;Clear();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    this-&gt;<a class="code" href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">debugger_pc</a>-&gt;AppendText(message);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> max_length = 60;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">while</span>(addr &lt; end_addr)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            value = n64-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>-&gt;<a class="code" href="classultra64_1_1_m_m_u.html#a1519e612878245018a012afe53443046">read_word_raw</a>(addr);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            sprintf(message, <span class="stringliteral">&quot;%.4X %.4X   %.2X %.2X %.2X %.2X   &quot;</span>, (addr &gt;&gt; 16), (addr &amp; 0xFFFF), </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                   value &gt;&gt; 24, (value &gt;&gt; 16) &amp; 0xFF, (value &gt;&gt; 8) &amp; 0xFF, value &amp; 0xFF);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <a class="code" href="classultra64_1_1instruction.html">ultra64::instruction</a> i(value);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            msg = message + i.<a class="code" href="classultra64_1_1instruction.html#af0448111056cdd5e0601dcf9c71f9d8b">to_string</a>();</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="comment">// Pad with whitespace</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">while</span>(msg.size() &lt;= max_length) msg += <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="comment">// Show raw bytes in memory</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 3; i &gt;= 0; i--)</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;              <span class="keywordtype">char</span> temp = (value &gt;&gt; (i * 8)) &amp; 0xFF;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;              <span class="comment">// Don&#39;t try to print not-printable characters</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;              <span class="keywordflow">if</span>(temp &lt; 32) temp = <span class="charliteral">&#39;.&#39;</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;              sprintf(message, <span class="stringliteral">&quot;%c &quot;</span>, temp);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;              msg += message;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <a class="code" href="class_debugger_window.html#a5907a83225613994ce1bf78e170f3e69">memory_listbox</a>-&gt;Append(msg.c_str());</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">catch</span>(std::string e)</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <a class="code" href="class_debugger_window.html#a5907a83225613994ce1bf78e170f3e69">memory_listbox</a>-&gt;Append(e.c_str());</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        addr += 4;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
 <div class="ttc" id="a_debugger_window_8cpp_html_a17ab61bc09a64d12f8e98e7810dc0232"><div class="ttname"><a href="_debugger_window_8cpp.html#a17ab61bc09a64d12f8e98e7810dc0232">wxBEGIN_EVENT_TABLE</a></div><div class="ttdeci">wxBEGIN_EVENT_TABLE(DebuggerWindow, wxFrame) wxEND_EVENT_TABLE() DebuggerWindow</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00005">DebuggerWindow.cpp:5</a></div></div>
 <div class="ttc" id="a_debugger_window_8hpp_html"><div class="ttname"><a href="_debugger_window_8hpp.html">DebuggerWindow.hpp</a></div></div>
 <div class="ttc" id="aclass_debugger_window_html"><div class="ttname"><a href="class_debugger_window.html">DebuggerWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00004">DebuggerWindow.hpp:5</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_a00a164c597b3faa9c69360e60cb55cf6"><div class="ttname"><a href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">DebuggerWindow::OnCPUStep</a></div><div class="ttdeci">void OnCPUStep(wxCommandEvent &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00040">DebuggerWindow.cpp:40</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_a58b244eaf8947c48629eca294a4aa37b"><div class="ttname"><a href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">DebuggerWindow::view</a></div><div class="ttdeci">void view(uint32_t start_addr, uint32_t end_addr)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00093">DebuggerWindow.cpp:93</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a00a164c597b3faa9c69360e60cb55cf6"><div class="ttname"><a href="class_debugger_window.html#a00a164c597b3faa9c69360e60cb55cf6">DebuggerWindow::OnCPUStep</a></div><div class="ttdeci">void OnCPUStep(wxCommandEvent &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00071">DebuggerWindow.cpp:71</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a2468358dba34b35d10caecfea29f7e34"><div class="ttname"><a href="class_debugger_window.html#a2468358dba34b35d10caecfea29f7e34">DebuggerWindow::OnResize</a></div><div class="ttdeci">void OnResize(wxSizeEvent &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00043">DebuggerWindow.cpp:43</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a58b244eaf8947c48629eca294a4aa37b"><div class="ttname"><a href="class_debugger_window.html#a58b244eaf8947c48629eca294a4aa37b">DebuggerWindow::view</a></div><div class="ttdeci">void view(uint32_t start_addr, uint32_t end_addr)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00103">DebuggerWindow.cpp:103</a></div></div>
 <div class="ttc" id="aclass_debugger_window_html_a5907a83225613994ce1bf78e170f3e69"><div class="ttname"><a href="class_debugger_window.html#a5907a83225613994ce1bf78e170f3e69">DebuggerWindow::memory_listbox</a></div><div class="ttdeci">wxListBox * memory_listbox</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00009">DebuggerWindow.hpp:9</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_a59bb9cc5a75d6d953d940c112c5a38a3"><div class="ttname"><a href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">DebuggerWindow::~DebuggerWindow</a></div><div class="ttdeci">~DebuggerWindow()</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00035">DebuggerWindow.cpp:35</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_a881e308bfd9d8e37be5848aa01e63647"><div class="ttname"><a href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">DebuggerWindow::cpu_steps_count</a></div><div class="ttdeci">wxTextCtrl * cpu_steps_count</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00014">DebuggerWindow.hpp:14</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_aa55764ee2525bfbefc0b4e59f3a5d3b6"><div class="ttname"><a href="class_debugger_window.html#aa55764ee2525bfbefc0b4e59f3a5d3b6">DebuggerWindow::OnCPUSteps</a></div><div class="ttdeci">void OnCPUSteps(wxCommandEvent &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00061">DebuggerWindow.cpp:61</a></div></div>
-<div class="ttc" id="aclass_debugger_window_html_ac1bd6433a5ba4b0888ea17baa8adb1da"><div class="ttname"><a href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">DebuggerWindow::debugger_pc</a></div><div class="ttdeci">wxTextCtrl * debugger_pc</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00011">DebuggerWindow.hpp:11</a></div></div>
-<div class="ttc" id="aclassultra64_1_1_m_m_u_html_a978969e2667642d04edc84e79ffc97d5"><div class="ttname"><a href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">ultra64::MMU::read_word</a></div><div class="ttdeci">uint32_t read_word(uint32_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00154">MMU.cpp:154</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a59bb9cc5a75d6d953d940c112c5a38a3"><div class="ttname"><a href="class_debugger_window.html#a59bb9cc5a75d6d953d940c112c5a38a3">DebuggerWindow::~DebuggerWindow</a></div><div class="ttdeci">~DebuggerWindow()</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8cpp_source.html#l00038">DebuggerWindow.cpp:38</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a69974a06dcec62fb648e598acc3e9cb0"><div class="ttname"><a href="class_debugger_window.html#a69974a06dcec62fb648e598acc3e9cb0">DebuggerWindow::label_steps</a></div><div class="ttdeci">wxStaticText * label_steps</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00013">DebuggerWindow.hpp:13</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a881e308bfd9d8e37be5848aa01e63647"><div class="ttname"><a href="class_debugger_window.html#a881e308bfd9d8e37be5848aa01e63647">DebuggerWindow::cpu_steps_count</a></div><div class="ttdeci">wxTextCtrl * cpu_steps_count</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00017">DebuggerWindow.hpp:17</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_a8cbfc7ff4b60b4ce45f94af2771e222a"><div class="ttname"><a href="class_debugger_window.html#a8cbfc7ff4b60b4ce45f94af2771e222a">DebuggerWindow::cpu_step</a></div><div class="ttdeci">wxButton * cpu_step</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00014">DebuggerWindow.hpp:14</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_ab224ecfb18f61a1ba028c2dc32e1bbc2"><div class="ttname"><a href="class_debugger_window.html#ab224ecfb18f61a1ba028c2dc32e1bbc2">DebuggerWindow::label_pc</a></div><div class="ttdeci">wxStaticText * label_pc</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00011">DebuggerWindow.hpp:11</a></div></div>
+<div class="ttc" id="aclass_debugger_window_html_ac1bd6433a5ba4b0888ea17baa8adb1da"><div class="ttname"><a href="class_debugger_window.html#ac1bd6433a5ba4b0888ea17baa8adb1da">DebuggerWindow::debugger_pc</a></div><div class="ttdeci">wxTextCtrl * debugger_pc</div><div class="ttdef"><b>Definition:</b> <a href="_debugger_window_8hpp_source.html#l00012">DebuggerWindow.hpp:12</a></div></div>
+<div class="ttc" id="aclassultra64_1_1_m_m_u_html_a1519e612878245018a012afe53443046"><div class="ttname"><a href="classultra64_1_1_m_m_u.html#a1519e612878245018a012afe53443046">ultra64::MMU::read_word_raw</a></div><div class="ttdeci">uint32_t read_word_raw(uint32_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00224">MMU.cpp:224</a></div></div>
 <div class="ttc" id="aclassultra64_1_1_n64_html"><div class="ttname"><a href="classultra64_1_1_n64.html">ultra64::N64</a></div><div class="ttdef"><b>Definition:</b> <a href="_n64_8hpp_source.html#l00011">N64.hpp:12</a></div></div>
 <div class="ttc" id="aclassultra64_1_1_n64_html_a284bc903abd7e9e9be1b78314fb8aaaf"><div class="ttname"><a href="classultra64_1_1_n64.html#a284bc903abd7e9e9be1b78314fb8aaaf">ultra64::N64::cpu</a></div><div class="ttdeci">vr4300 cpu</div><div class="ttdef"><b>Definition:</b> <a href="_n64_8hpp_source.html#l00021">N64.hpp:21</a></div></div>
 <div class="ttc" id="aclassultra64_1_1_n64_html_a766b2e95c8d1c6320c4e94fd3be95821"><div class="ttname"><a href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">ultra64::N64::mmu</a></div><div class="ttdeci">MMU * mmu</div><div class="ttdef"><b>Definition:</b> <a href="_n64_8hpp_source.html#l00020">N64.hpp:19</a></div></div>
 <div class="ttc" id="aclassultra64_1_1instruction_html"><div class="ttname"><a href="classultra64_1_1instruction.html">ultra64::instruction</a></div><div class="ttdef"><b>Definition:</b> <a href="instruction_8hpp_source.html#l00007">instruction.hpp:8</a></div></div>
-<div class="ttc" id="aclassultra64_1_1instruction_html_af0448111056cdd5e0601dcf9c71f9d8b"><div class="ttname"><a href="classultra64_1_1instruction.html#af0448111056cdd5e0601dcf9c71f9d8b">ultra64::instruction::to_string</a></div><div class="ttdeci">std::string to_string()</div><div class="ttdef"><b>Definition:</b> <a href="instruction_8cpp_source.html#l00014">instruction.cpp:14</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a3e92b6bb2f2a332f13ebe4d3b411d802"><div class="ttname"><a href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">ultra64::vr4300::step</a></div><div class="ttdeci">void step()</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8cpp_source.html#l00068">vr4300.cpp:68</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a7a8a45f1b1344f7f6dc2ebb2074a5db2"><div class="ttname"><a href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">ultra64::vr4300::get_PC</a></div><div class="ttdeci">uint32_t get_PC()</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8cpp_source.html#l00063">vr4300.cpp:63</a></div></div>
-<div class="ttc" id="aclasswx_ultra64_html"><div class="ttname"><a href="classwx_ultra64.html">wxUltra64</a></div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00030">ultra64.hpp:31</a></div></div>
+<div class="ttc" id="aclassultra64_1_1instruction_html_af0448111056cdd5e0601dcf9c71f9d8b"><div class="ttname"><a href="classultra64_1_1instruction.html#af0448111056cdd5e0601dcf9c71f9d8b">ultra64::instruction::to_string</a></div><div class="ttdeci">std::string to_string()</div><div class="ttdef"><b>Definition:</b> <a href="instruction_8cpp_source.html#l00016">instruction.cpp:16</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a3e92b6bb2f2a332f13ebe4d3b411d802"><div class="ttname"><a href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">ultra64::vr4300::step</a></div><div class="ttdeci">void step()</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8cpp_source.html#l00128">vr4300.cpp:128</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_af9c5aeef3f3865634a6fab6020040c72"><div class="ttname"><a href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">ultra64::vr4300::PC</a></div><div class="ttdeci">uint32_t PC</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00058">vr4300.hpp:58</a></div></div>
+<div class="ttc" id="aclasswx_ultra64_html"><div class="ttname"><a href="classwx_ultra64.html">wxUltra64</a></div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00015">ultra64.hpp:16</a></div></div>
 <div class="ttc" id="ainstruction_8hpp_html"><div class="ttname"><a href="instruction_8hpp.html">instruction.hpp</a></div></div>
-<div class="ttc" id="aultra64_8cpp_html_a23e2d287d9b60dfd6f30dd3506f1dd02"><div class="ttname"><a href="ultra64_8cpp.html#a23e2d287d9b60dfd6f30dd3506f1dd02">render_debugger_registers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; render_debugger_registers(ultra64::N64 *n64)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00194">ultra64.cpp:194</a></div></div>
+<div class="ttc" id="aultra64_8cpp_html_adf9f80ca370d6da6df16320c8d99c4e2"><div class="ttname"><a href="ultra64_8cpp.html#adf9f80ca370d6da6df16320c8d99c4e2">render_registers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; render_registers(ultra64::N64 *n64)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00108">ultra64.cpp:108</a></div></div>
 <div class="ttc" id="aultra64_8hpp_html"><div class="ttname"><a href="ultra64_8hpp.html">ultra64.hpp</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba8ccf494208db44e5ea74be49d579841a"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba8ccf494208db44e5ea74be49d579841a">BUTTON_cpu_steps</a></div><div class="ttdeci">@ BUTTON_cpu_steps</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00051">ultra64.hpp:50</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f">BUTTON_cpu_step</a></div><div class="ttdeci">@ BUTTON_cpu_step</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00049">ultra64.hpp:49</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a4807be450e4c28955ba3434eeca35e1d"><div class="ttname"><a href="ultra64_8hpp.html#a4807be450e4c28955ba3434eeca35e1d">ID_MEMORY_LISTBOX</a></div><div class="ttdeci">const int ID_MEMORY_LISTBOX</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00008">ultra64.hpp:8</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a648ea8ec50c2bf49f313c249f9734662"><div class="ttname"><a href="ultra64_8hpp.html#a648ea8ec50c2bf49f313c249f9734662">ID_CPU_STEP_COUNT</a></div><div class="ttdeci">const int ID_CPU_STEP_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00010">ultra64.hpp:10</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_af9fe8174820895f5c9ce66448f8b90ee"><div class="ttname"><a href="ultra64_8hpp.html#af9fe8174820895f5c9ce66448f8b90ee">ID_DEBUGGER_PC</a></div><div class="ttdeci">const int ID_DEBUGGER_PC</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00011">ultra64.hpp:11</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baf12be5a8e07b1d1f750c6716d2ee2c4f">BUTTON_cpu_step</a></div><div class="ttdeci">@ BUTTON_cpu_step</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00041">ultra64.hpp:41</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a4807be450e4c28955ba3434eeca35e1d"><div class="ttname"><a href="ultra64_8hpp.html#a4807be450e4c28955ba3434eeca35e1d">ID_MEMORY_LISTBOX</a></div><div class="ttdeci">const int ID_MEMORY_LISTBOX</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00010">ultra64.hpp:10</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a648ea8ec50c2bf49f313c249f9734662"><div class="ttname"><a href="ultra64_8hpp.html#a648ea8ec50c2bf49f313c249f9734662">ID_CPU_STEP_COUNT</a></div><div class="ttdeci">const int ID_CPU_STEP_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00012">ultra64.hpp:12</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_af9fe8174820895f5c9ce66448f8b90ee"><div class="ttname"><a href="ultra64_8hpp.html#af9fe8174820895f5c9ce66448f8b90ee">ID_DEBUGGER_PC</a></div><div class="ttdeci">const int ID_DEBUGGER_PC</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00013">ultra64.hpp:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

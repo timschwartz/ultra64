@@ -74,6 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_m_m_u_8hpp_source.html">MMU.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_r_s_p_8hpp_source.html">rcp/RSP.hpp</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
@@ -82,18 +83,113 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a8793742a984d72d04b46cd5061f182cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a8793742a984d72d04b46cd5061f182cd">dp_register_read</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
+<tr class="separator:a8793742a984d72d04b46cd5061f182cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2e870085064bdeb52b5ec45038ca4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a2b2e870085064bdeb52b5ec45038ca4b">dp_register_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
+<tr class="separator:a2b2e870085064bdeb52b5ec45038ca4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fb30f65642b3ae0b699521f700ce332"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a0fb30f65642b3ae0b699521f700ce332">pi_register_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
 <tr class="separator:a0fb30f65642b3ae0b699521f700ce332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04f7d3d664fdba83210c9a85a232d033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a04f7d3d664fdba83210c9a85a232d033">pif_ram_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
 <tr class="separator:a04f7d3d664fdba83210c9a85a232d033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05c71fab8e1e01447fe9d3a03ad09181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a05c71fab8e1e01447fe9d3a03ad09181">si_register_read</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
 <tr class="separator:a05c71fab8e1e01447fe9d3a03ad09181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a548bcb0f0687f35f37406b3e7b48d4ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a548bcb0f0687f35f37406b3e7b48d4ca">si_register_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
+<tr class="separator:a548bcb0f0687f35f37406b3e7b48d4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a980a499493b6f3dd7b8e91b7731158f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a980a499493b6f3dd7b8e91b7731158f9">sp_dmem_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
+<tr class="separator:a980a499493b6f3dd7b8e91b7731158f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab11d8b7263836794bb45a511f56498"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#afab11d8b7263836794bb45a511f56498">sp_register_read</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
 <tr class="separator:afab11d8b7263836794bb45a511f56498"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58e9d44f9cab59f92748efc4b038affc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_m_m_u_8cpp.html#a58e9d44f9cab59f92748efc4b038affc">sp_register_write</a> (<a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *mmu, <a class="el" href="structultra64_1_1memory__section.html">memory_section</a> s, uint64_t value)</td></tr>
 <tr class="separator:a58e9d44f9cab59f92748efc4b038affc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a8793742a984d72d04b46cd5061f182cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8793742a984d72d04b46cd5061f182cd">&#9670;&nbsp;</a></span>dp_register_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dp_register_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *&#160;</td>
+          <td class="paramname"><em>mmu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structultra64_1_1memory__section.html">memory_section</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00098">98</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    dp_register_read(): Read &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; from &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="ttc" id="astructultra64_1_1memory__section_html_a8ff83607f62109dad896f84dda35b296"><div class="ttname"><a href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">ultra64::memory_section::addr</a></div><div class="ttdeci">uint32_t addr</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8hpp_source.html#l00014">MMU.hpp:14</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
+
+</div>
+</div>
+<a id="a2b2e870085064bdeb52b5ec45038ca4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2e870085064bdeb52b5ec45038ca4b">&#9670;&nbsp;</a></span>dp_register_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dp_register_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *&#160;</td>
+          <td class="paramname"><em>mmu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structultra64_1_1memory__section.html">memory_section</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00093">93</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    dp_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
+
+</div>
+</div>
 <a id="a0fb30f65642b3ae0b699521f700ce332"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0fb30f65642b3ae0b699521f700ce332">&#9670;&nbsp;</a></span>pi_register_write()</h2>
 
@@ -126,15 +222,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00018">18</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    pi_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
-<div class="ttc" id="astructultra64_1_1memory__section_html_a8ff83607f62109dad896f84dda35b296"><div class="ttname"><a href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">ultra64::memory_section::addr</a></div><div class="ttdeci">uint32_t addr</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8hpp_source.html#l00014">MMU.hpp:14</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00047">47</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    pi_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00063">ultra64::MMU::MMU()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
 
 </div>
 </div>
@@ -170,29 +265,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00028">28</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    pif_ram_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    uint32_t pointer = s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> - s.<a class="code" href="structultra64_1_1memory__section.html#a0b3b346659febefd75c3b57ad4362179">offset</a>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span>(pointer) pointer /= 4;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    uint32_t *p = (uint32_t *)s.<a class="code" href="structultra64_1_1memory__section.html#a0d554dbd8654ad211976bb65d49fac72">ptr</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    asm (<span class="stringliteral">&quot;movl %1, %%eax;&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;          <span class="stringliteral">&quot;bswap %%eax;&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;          <span class="stringliteral">&quot;movl %%eax, %0;&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;         :<span class="stringliteral">&quot;=r&quot;</span>(p[pointer])        <span class="comment">/* output */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;         :<span class="stringliteral">&quot;r&quot;</span>(0)         <span class="comment">/* input */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;         :<span class="stringliteral">&quot;%eax&quot;</span>         <span class="comment">/* clobbered register */</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;     );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="ttc" id="astructultra64_1_1memory__section_html_a0b3b346659febefd75c3b57ad4362179"><div class="ttname"><a href="structultra64_1_1memory__section.html#a0b3b346659febefd75c3b57ad4362179">ultra64::memory_section::offset</a></div><div class="ttdeci">uint32_t offset</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8hpp_source.html#l00015">MMU.hpp:15</a></div></div>
-<div class="ttc" id="astructultra64_1_1memory__section_html_a0d554dbd8654ad211976bb65d49fac72"><div class="ttname"><a href="structultra64_1_1memory__section.html#a0d554dbd8654ad211976bb65d49fac72">ultra64::memory_section::ptr</a></div><div class="ttdeci">std::byte * ptr</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8hpp_source.html#l00018">MMU.hpp:18</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00088">88</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    pif_ram_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>, <a class="el" href="_m_m_u_8hpp_source.html#l00015">ultra64::memory_section::offset</a>, and <a class="el" href="_m_m_u_8hpp_source.html#l00018">ultra64::memory_section::ptr</a>.</p>
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00063">ultra64::MMU::MMU()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
 
 </div>
 </div>
@@ -228,14 +308,125 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00023">23</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    si_register_read(): Read &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; from &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00070">70</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">switch</span>(s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a>)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_m_m_u_8hpp.html#a0c401d818dfc46547f25e18b74eea3cc">SI_STATUS_REG</a>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Reading from SI_STATUS_REG:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x01) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x02) std::cout &lt;&lt; <span class="stringliteral">&quot;    - IO read busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x04) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Reserved&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x08) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA error&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x0800) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Interrupt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;    si_register_read(): Read &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; from &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="ttc" id="a_m_m_u_8hpp_html_a0c401d818dfc46547f25e18b74eea3cc"><div class="ttname"><a href="_m_m_u_8hpp.html#a0c401d818dfc46547f25e18b74eea3cc">SI_STATUS_REG</a></div><div class="ttdeci">auto const SI_STATUS_REG</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8hpp_source.html#l00045">MMU.hpp:45</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>, and <a class="el" href="_m_m_u_8hpp_source.html#l00045">SI_STATUS_REG</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
+
+</div>
+</div>
+<a id="a548bcb0f0687f35f37406b3e7b48d4ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a548bcb0f0687f35f37406b3e7b48d4ca">&#9670;&nbsp;</a></span>si_register_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void si_register_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *&#160;</td>
+          <td class="paramname"><em>mmu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structultra64_1_1memory__section.html">memory_section</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00052">52</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">switch</span>(s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a>)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_m_m_u_8hpp.html#a0c401d818dfc46547f25e18b74eea3cc">SI_STATUS_REG</a>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Writing to SI_STATUS_REG:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x01) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x02) std::cout &lt;&lt; <span class="stringliteral">&quot;    - IO read busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x04) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Reserved&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x08) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA error&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x0800) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Interrupt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;    si_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>, and <a class="el" href="_m_m_u_8hpp_source.html#l00045">SI_STATUS_REG</a>.</p>
+
+</div>
+</div>
+<a id="a980a499493b6f3dd7b8e91b7731158f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a980a499493b6f3dd7b8e91b7731158f9">&#9670;&nbsp;</a></span>sp_dmem_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sp_dmem_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classultra64_1_1_m_m_u.html">MMU</a> *&#160;</td>
+          <td class="paramname"><em>mmu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structultra64_1_1memory__section.html">memory_section</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00103">103</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    sp_dmem_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00063">ultra64::MMU::MMU()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
 
 </div>
 </div>
@@ -271,14 +462,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00013">13</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    sp_register_read(): Read &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; from &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00026">26</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">switch</span>(s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_r_s_p_8hpp.html#af61ccc006bd44cf718c94e5f36893476">SP_STATUS_REG</a>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Reading from SP_STATUS_REG:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x01) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Halt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x02) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Broke&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x04) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x08) std::cout &lt;&lt; <span class="stringliteral">&quot;    - DMA full&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_r_s_p_8hpp.html#a7979e88d790a6f8939901871ae9737a5">SP_DMA_BUSY_REG</a>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Reading from SP_DMA_BUSY_REG:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x01) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Busy&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;    sp_register_read(): Read &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; from &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="ttc" id="a_r_s_p_8hpp_html_a7979e88d790a6f8939901871ae9737a5"><div class="ttname"><a href="_r_s_p_8hpp.html#a7979e88d790a6f8939901871ae9737a5">SP_DMA_BUSY_REG</a></div><div class="ttdeci">const uint32_t SP_DMA_BUSY_REG</div><div class="ttdef"><b>Definition:</b> <a href="_r_s_p_8hpp_source.html#l00006">RSP.hpp:6</a></div></div>
+<div class="ttc" id="a_r_s_p_8hpp_html_af61ccc006bd44cf718c94e5f36893476"><div class="ttname"><a href="_r_s_p_8hpp.html#af61ccc006bd44cf718c94e5f36893476">SP_STATUS_REG</a></div><div class="ttdeci">const uint32_t SP_STATUS_REG</div><div class="ttdef"><b>Definition:</b> <a href="_r_s_p_8hpp_source.html#l00004">RSP.hpp:4</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>, <a class="el" href="_r_s_p_8hpp_source.html#l00006">SP_DMA_BUSY_REG</a>, and <a class="el" href="_r_s_p_8hpp_source.html#l00004">SP_STATUS_REG</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00063">ultra64::MMU::MMU()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
 
 </div>
 </div>
@@ -314,14 +523,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00008">8</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    sp_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_m_m_u_8cpp_source.html#l00009">9</a> of file <a class="el" href="_m_m_u_8cpp_source.html">MMU.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">switch</span>(s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="_r_s_p_8hpp.html#af61ccc006bd44cf718c94e5f36893476">SP_STATUS_REG</a>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;  Writing to SP_STATUS_REG:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x01) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Clear halt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x02) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Set halt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x04) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Clear broke&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">if</span>(value &amp; 0x08) std::cout &lt;&lt; <span class="stringliteral">&quot;    - Clear interrupt&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;    sp_register_write(): Wrote &quot;</span> &lt;&lt; std::hex &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot; to &quot;</span> &lt;&lt; s.<a class="code" href="structultra64_1_1memory__section.html#a8ff83607f62109dad896f84dda35b296">addr</a> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>.</p>
+<p class="reference">References <a class="el" href="_m_m_u_8hpp_source.html#l00014">ultra64::memory_section::addr</a>, and <a class="el" href="_r_s_p_8hpp_source.html#l00004">SP_STATUS_REG</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00063">ultra64::MMU::MMU()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_m_m_u_8cpp_source.html#l00125">ultra64::MMU::MMU()</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xor_504',['XOR',['../namespaceultra64.html#a240a3b863b38370a2a32143ba7aba99e',1,'ultra64']]]
+  ['write_5fhandler_560',['write_handler',['../structultra64_1_1memory__section.html#ac2522e9dbc9f57f8678c9c51ea432c8f',1,'ultra64::memory_section']]]
 ];

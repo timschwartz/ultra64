@@ -83,8 +83,6 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad487c2accfc9178d61a2b0e4c0663893"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#ad487c2accfc9178d61a2b0e4c0663893">vr4300</a> ()</td></tr>
 <tr class="separator:ad487c2accfc9178d61a2b0e4c0663893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a8a45f1b1344f7f6dc2ebb2074a5db2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#a7a8a45f1b1344f7f6dc2ebb2074a5db2">get_PC</a> ()</td></tr>
-<tr class="separator:a7a8a45f1b1344f7f6dc2ebb2074a5db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab21c460db0a45d7c32e85e22aac09fdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#ab21c460db0a45d7c32e85e22aac09fdc">IMPL_OP</a> (_and)</td></tr>
 <tr class="separator:ab21c460db0a45d7c32e85e22aac09fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45a2b71eb7653bf53e14ec39ccdd7062"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#a45a2b71eb7653bf53e14ec39ccdd7062">IMPL_OP</a> (_or)</td></tr>
@@ -153,6 +151,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a71fde118ef4a0c34b11abfa93b215e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950fd36337b2f938fcb65795a22d217d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#a950fd36337b2f938fcb65795a22d217d">IMPL_OP</a> (sw)</td></tr>
 <tr class="separator:a950fd36337b2f938fcb65795a22d217d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73eee1afd18ff031c13443f8b911e829"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#a73eee1afd18ff031c13443f8b911e829">load_state</a> (Json::Value state)</td></tr>
+<tr class="separator:a73eee1afd18ff031c13443f8b911e829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0677f6a7902f649fdd890861210d41a"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#ac0677f6a7902f649fdd890861210d41a">save_state</a> ()</td></tr>
+<tr class="separator:ac0677f6a7902f649fdd890861210d41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0654a81dd48d84eccc03c57b289db68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#ad0654a81dd48d84eccc03c57b289db68">set_n64</a> (void *<a class="el" href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">n64</a>)</td></tr>
 <tr class="separator:ad0654a81dd48d84eccc03c57b289db68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e92b6bb2f2a332f13ebe4d3b411d802"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classultra64_1_1vr4300.html#a3e92b6bb2f2a332f13ebe4d3b411d802">step</a> ()</td></tr>
@@ -188,7 +190,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00012">12</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00013">13</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad487c2accfc9178d61a2b0e4c0663893"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad487c2accfc9178d61a2b0e4c0663893">&#9670;&nbsp;</a></span>vr4300()</h2>
@@ -251,76 +253,50 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> = 0x1FC00000;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a5639eeb2b1e683591a861d840cc47d94"><div class="ttname"><a href="classultra64_1_1vr4300.html#a5639eeb2b1e683591a861d840cc47d94">ultra64::vr4300::opcode_regimm</a></div><div class="ttdeci">void(* opcode_regimm[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00063">vr4300.hpp:63</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a83eecb79ebe25004016ebf286ff3528b"><div class="ttname"><a href="classultra64_1_1vr4300.html#a83eecb79ebe25004016ebf286ff3528b">ultra64::vr4300::opcode</a></div><div class="ttdeci">void(* opcode[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00060">vr4300.hpp:60</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_ad1498e1dab861ceee008b891431871de"><div class="ttname"><a href="classultra64_1_1vr4300.html#ad1498e1dab861ceee008b891431871de">ultra64::vr4300::opcode_special</a></div><div class="ttdeci">void(* opcode_special[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00062">vr4300.hpp:62</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_aed1d83465ac39bf99d4bee826581c9cd"><div class="ttname"><a href="classultra64_1_1vr4300.html#aed1d83465ac39bf99d4bee826581c9cd">ultra64::vr4300::opcode_cp0</a></div><div class="ttdeci">void(* opcode_cp0[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00061">vr4300.hpp:61</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_af9c5aeef3f3865634a6fab6020040c72"><div class="ttname"><a href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">ultra64::vr4300::PC</a></div><div class="ttdeci">uint32_t PC</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00056">vr4300.hpp:56</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a5639eeb2b1e683591a861d840cc47d94"><div class="ttname"><a href="classultra64_1_1vr4300.html#a5639eeb2b1e683591a861d840cc47d94">ultra64::vr4300::opcode_regimm</a></div><div class="ttdeci">void(* opcode_regimm[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00065">vr4300.hpp:65</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a83eecb79ebe25004016ebf286ff3528b"><div class="ttname"><a href="classultra64_1_1vr4300.html#a83eecb79ebe25004016ebf286ff3528b">ultra64::vr4300::opcode</a></div><div class="ttdeci">void(* opcode[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00062">vr4300.hpp:62</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_ad1498e1dab861ceee008b891431871de"><div class="ttname"><a href="classultra64_1_1vr4300.html#ad1498e1dab861ceee008b891431871de">ultra64::vr4300::opcode_special</a></div><div class="ttdeci">void(* opcode_special[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00064">vr4300.hpp:64</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_aed1d83465ac39bf99d4bee826581c9cd"><div class="ttname"><a href="classultra64_1_1vr4300.html#aed1d83465ac39bf99d4bee826581c9cd">ultra64::vr4300::opcode_cp0</a></div><div class="ttdeci">void(* opcode_cp0[0x40])(vr4300 *)</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00063">vr4300.hpp:63</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_af9c5aeef3f3865634a6fab6020040c72"><div class="ttname"><a href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">ultra64::vr4300::PC</a></div><div class="ttdeci">uint32_t PC</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00058">vr4300.hpp:58</a></div></div>
 <div class="ttc" id="anamespaceultra64_html_a029cc7b0d0834f088861a55b214d107c"><div class="ttname"><a href="namespaceultra64.html#a029cc7b0d0834f088861a55b214d107c">ultra64::_REGIMM</a></div><div class="ttdeci">const uint8_t _REGIMM</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00077">opcodes.hpp:77</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a02f09cffae84f17ca0732cc8d9c18250"><div class="ttname"><a href="namespaceultra64.html#a02f09cffae84f17ca0732cc8d9c18250">ultra64::JR</a></div><div class="ttdeci">const uint8_t JR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00097">opcodes.hpp:97</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a0b70d626463dea18bed09dd6d8e10e32"><div class="ttname"><a href="namespaceultra64.html#a0b70d626463dea18bed09dd6d8e10e32">ultra64::SRLV</a></div><div class="ttdeci">const uint8_t SRLV</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00096">opcodes.hpp:96</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a240a3b863b38370a2a32143ba7aba99e"><div class="ttname"><a href="namespaceultra64.html#a240a3b863b38370a2a32143ba7aba99e">ultra64::XOR</a></div><div class="ttdeci">const uint8_t XOR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00105">opcodes.hpp:105</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a4f12e559fef368e0dd4509147affabf4"><div class="ttname"><a href="namespaceultra64.html#a4f12e559fef368e0dd4509147affabf4">ultra64::MTC0</a></div><div class="ttdeci">const uint8_t MTC0</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00114">opcodes.hpp:114</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a5635f33f1d04c315de85f78c1a7a14c3"><div class="ttname"><a href="namespaceultra64.html#a5635f33f1d04c315de85f78c1a7a14c3">ultra64::BEQL</a></div><div class="ttdeci">const uint8_t BEQL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00086">opcodes.hpp:86</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a60b88d4095ddfca298a5c3f988816f45"><div class="ttname"><a href="namespaceultra64.html#a60b88d4095ddfca298a5c3f988816f45">ultra64::BNE</a></div><div class="ttdeci">const uint8_t BNE</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00079">opcodes.hpp:79</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a69a284db22a1e8364e0e0a9d45d09b49"><div class="ttname"><a href="namespaceultra64.html#a69a284db22a1e8364e0e0a9d45d09b49">ultra64::SLTU</a></div><div class="ttdeci">const uint8_t SLTU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00106">opcodes.hpp:106</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a7412e5cd068e5e3e326270f4d8db2a3e"><div class="ttname"><a href="namespaceultra64.html#a7412e5cd068e5e3e326270f4d8db2a3e">ultra64::ADDU</a></div><div class="ttdeci">const uint8_t ADDU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00101">opcodes.hpp:101</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a7799c6a8b4f1bd4a0bae78a93cfcd733"><div class="ttname"><a href="namespaceultra64.html#a7799c6a8b4f1bd4a0bae78a93cfcd733">ultra64::OR</a></div><div class="ttdeci">const uint8_t OR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00104">opcodes.hpp:104</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a7bb1ac95e5ba547105f10d8879a4b63e"><div class="ttname"><a href="namespaceultra64.html#a7bb1ac95e5ba547105f10d8879a4b63e">ultra64::ADDI</a></div><div class="ttdeci">const uint8_t ADDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00080">opcodes.hpp:80</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a823b25b5d6687eb12041431d8e712c07"><div class="ttname"><a href="namespaceultra64.html#a823b25b5d6687eb12041431d8e712c07">ultra64::BNEL</a></div><div class="ttdeci">const uint8_t BNEL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00087">opcodes.hpp:87</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a8ad25d116c722df0f279eadf995ef989"><div class="ttname"><a href="namespaceultra64.html#a8ad25d116c722df0f279eadf995ef989">ultra64::SUBU</a></div><div class="ttdeci">const uint8_t SUBU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00102">opcodes.hpp:102</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a02f09cffae84f17ca0732cc8d9c18250"><div class="ttname"><a href="namespaceultra64.html#a02f09cffae84f17ca0732cc8d9c18250">ultra64::JR</a></div><div class="ttdeci">const uint8_t JR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00100">opcodes.hpp:100</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a0b70d626463dea18bed09dd6d8e10e32"><div class="ttname"><a href="namespaceultra64.html#a0b70d626463dea18bed09dd6d8e10e32">ultra64::SRLV</a></div><div class="ttdeci">const uint8_t SRLV</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00099">opcodes.hpp:99</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a240a3b863b38370a2a32143ba7aba99e"><div class="ttname"><a href="namespaceultra64.html#a240a3b863b38370a2a32143ba7aba99e">ultra64::XOR</a></div><div class="ttdeci">const uint8_t XOR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00109">opcodes.hpp:109</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a4f12e559fef368e0dd4509147affabf4"><div class="ttname"><a href="namespaceultra64.html#a4f12e559fef368e0dd4509147affabf4">ultra64::MTC0</a></div><div class="ttdeci">const uint8_t MTC0</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00119">opcodes.hpp:119</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a5635f33f1d04c315de85f78c1a7a14c3"><div class="ttname"><a href="namespaceultra64.html#a5635f33f1d04c315de85f78c1a7a14c3">ultra64::BEQL</a></div><div class="ttdeci">const uint8_t BEQL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00088">opcodes.hpp:88</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a60b88d4095ddfca298a5c3f988816f45"><div class="ttname"><a href="namespaceultra64.html#a60b88d4095ddfca298a5c3f988816f45">ultra64::BNE</a></div><div class="ttdeci">const uint8_t BNE</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00080">opcodes.hpp:80</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a69a284db22a1e8364e0e0a9d45d09b49"><div class="ttname"><a href="namespaceultra64.html#a69a284db22a1e8364e0e0a9d45d09b49">ultra64::SLTU</a></div><div class="ttdeci">const uint8_t SLTU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00110">opcodes.hpp:110</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a7412e5cd068e5e3e326270f4d8db2a3e"><div class="ttname"><a href="namespaceultra64.html#a7412e5cd068e5e3e326270f4d8db2a3e">ultra64::ADDU</a></div><div class="ttdeci">const uint8_t ADDU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00105">opcodes.hpp:105</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a7799c6a8b4f1bd4a0bae78a93cfcd733"><div class="ttname"><a href="namespaceultra64.html#a7799c6a8b4f1bd4a0bae78a93cfcd733">ultra64::OR</a></div><div class="ttdeci">const uint8_t OR</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00108">opcodes.hpp:108</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a7bb1ac95e5ba547105f10d8879a4b63e"><div class="ttname"><a href="namespaceultra64.html#a7bb1ac95e5ba547105f10d8879a4b63e">ultra64::ADDI</a></div><div class="ttdeci">const uint8_t ADDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00081">opcodes.hpp:81</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a823b25b5d6687eb12041431d8e712c07"><div class="ttname"><a href="namespaceultra64.html#a823b25b5d6687eb12041431d8e712c07">ultra64::BNEL</a></div><div class="ttdeci">const uint8_t BNEL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00089">opcodes.hpp:89</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a8ad25d116c722df0f279eadf995ef989"><div class="ttname"><a href="namespaceultra64.html#a8ad25d116c722df0f279eadf995ef989">ultra64::SUBU</a></div><div class="ttdeci">const uint8_t SUBU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00106">opcodes.hpp:106</a></div></div>
 <div class="ttc" id="anamespaceultra64_html_a970291d4839d0acb0e58bca746a90149"><div class="ttname"><a href="namespaceultra64.html#a970291d4839d0acb0e58bca746a90149">ultra64::_SPECIAL</a></div><div class="ttdeci">const uint8_t _SPECIAL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00076">opcodes.hpp:76</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a98b2de5975eb427809ef57947aa19711"><div class="ttname"><a href="namespaceultra64.html#a98b2de5975eb427809ef57947aa19711">ultra64::SW</a></div><div class="ttdeci">const uint8_t SW</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00090">opcodes.hpp:90</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_a9910fdc652c1b1cb1769c9bbd7f3e224"><div class="ttname"><a href="namespaceultra64.html#a9910fdc652c1b1cb1769c9bbd7f3e224">ultra64::SLL</a></div><div class="ttdeci">const uint8_t SLL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00093">opcodes.hpp:93</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_aacaab8940cb6db5bd0e4862d3dcc5336"><div class="ttname"><a href="namespaceultra64.html#aacaab8940cb6db5bd0e4862d3dcc5336">ultra64::BGEZAL</a></div><div class="ttdeci">const uint8_t BGEZAL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00111">opcodes.hpp:111</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_aace0d566926869cb9039b0b81344bbe5"><div class="ttname"><a href="namespaceultra64.html#aace0d566926869cb9039b0b81344bbe5">ultra64::SLLV</a></div><div class="ttdeci">const uint8_t SLLV</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00095">opcodes.hpp:95</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_aad7c1803d480f60aa843a927f6eb1117"><div class="ttname"><a href="namespaceultra64.html#aad7c1803d480f60aa843a927f6eb1117">ultra64::MULTU</a></div><div class="ttdeci">const uint8_t MULTU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00100">opcodes.hpp:100</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ab0f86dd8fca7875a2b3959871e42cdcb"><div class="ttname"><a href="namespaceultra64.html#ab0f86dd8fca7875a2b3959871e42cdcb">ultra64::DSLL32</a></div><div class="ttdeci">const uint8_t DSLL32</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00107">opcodes.hpp:107</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ac78ec61e835554fe5f39aab63e59bd00"><div class="ttname"><a href="namespaceultra64.html#ac78ec61e835554fe5f39aab63e59bd00">ultra64::MFLO</a></div><div class="ttdeci">const uint8_t MFLO</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00099">opcodes.hpp:99</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_aca08c1f1ab959d778fdc6e367ad5218c"><div class="ttname"><a href="namespaceultra64.html#aca08c1f1ab959d778fdc6e367ad5218c">ultra64::ANDI</a></div><div class="ttdeci">const uint8_t ANDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00082">opcodes.hpp:82</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_acaf0b17cc7a446f164023e6fecf144d3"><div class="ttname"><a href="namespaceultra64.html#acaf0b17cc7a446f164023e6fecf144d3">ultra64::LUI</a></div><div class="ttdeci">const uint8_t LUI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00084">opcodes.hpp:84</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_acff2d2b375ba6c3d0b49e4678b28837d"><div class="ttname"><a href="namespaceultra64.html#acff2d2b375ba6c3d0b49e4678b28837d">ultra64::LW</a></div><div class="ttdeci">const uint8_t LW</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00089">opcodes.hpp:89</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ad0e0e5df19a56d2a2f1c872fa3fa86ac"><div class="ttname"><a href="namespaceultra64.html#ad0e0e5df19a56d2a2f1c872fa3fa86ac">ultra64::BEQ</a></div><div class="ttdeci">const uint8_t BEQ</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00078">opcodes.hpp:78</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ad5548296e81d4113309771b610f8700b"><div class="ttname"><a href="namespaceultra64.html#ad5548296e81d4113309771b610f8700b">ultra64::SRL</a></div><div class="ttdeci">const uint8_t SRL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00094">opcodes.hpp:94</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_adcbd9d5e611e629e32c0ad1d4f429e22"><div class="ttname"><a href="namespaceultra64.html#adcbd9d5e611e629e32c0ad1d4f429e22">ultra64::DADDI</a></div><div class="ttdeci">const uint8_t DADDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00088">opcodes.hpp:88</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ae2b181cec383fa6bc3e81066d847859a"><div class="ttname"><a href="namespaceultra64.html#ae2b181cec383fa6bc3e81066d847859a">ultra64::MFHI</a></div><div class="ttdeci">const uint8_t MFHI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00098">opcodes.hpp:98</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_ae3de1497ac93b3c778158ec6a911c94c"><div class="ttname"><a href="namespaceultra64.html#ae3de1497ac93b3c778158ec6a911c94c">ultra64::ADDIU</a></div><div class="ttdeci">const uint8_t ADDIU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00081">opcodes.hpp:81</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_af019b59323a20375f16388fedeca6cab"><div class="ttname"><a href="namespaceultra64.html#af019b59323a20375f16388fedeca6cab">ultra64::_CP0</a></div><div class="ttdeci">const uint8_t _CP0</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00085">opcodes.hpp:85</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_af681477315a116f1091e3f0dab47138a"><div class="ttname"><a href="namespaceultra64.html#af681477315a116f1091e3f0dab47138a">ultra64::ORI</a></div><div class="ttdeci">const uint8_t ORI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00083">opcodes.hpp:83</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_af7910a60106fa1eb87d0eecad16262e9"><div class="ttname"><a href="namespaceultra64.html#af7910a60106fa1eb87d0eecad16262e9">ultra64::AND</a></div><div class="ttdeci">const uint8_t AND</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00103">opcodes.hpp:103</a></div></div>
-<div class="ttc" id="anamespaceultra64_html_afe9954c4eab7e197b243c73dfcbc95b3"><div class="ttname"><a href="namespaceultra64.html#afe9954c4eab7e197b243c73dfcbc95b3">ultra64::BLTZ</a></div><div class="ttdeci">const uint8_t BLTZ</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00110">opcodes.hpp:110</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a98b2de5975eb427809ef57947aa19711"><div class="ttname"><a href="namespaceultra64.html#a98b2de5975eb427809ef57947aa19711">ultra64::SW</a></div><div class="ttdeci">const uint8_t SW</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00092">opcodes.hpp:92</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_a9910fdc652c1b1cb1769c9bbd7f3e224"><div class="ttname"><a href="namespaceultra64.html#a9910fdc652c1b1cb1769c9bbd7f3e224">ultra64::SLL</a></div><div class="ttdeci">const uint8_t SLL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00096">opcodes.hpp:96</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_aacaab8940cb6db5bd0e4862d3dcc5336"><div class="ttname"><a href="namespaceultra64.html#aacaab8940cb6db5bd0e4862d3dcc5336">ultra64::BGEZAL</a></div><div class="ttdeci">const uint8_t BGEZAL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00115">opcodes.hpp:115</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_aace0d566926869cb9039b0b81344bbe5"><div class="ttname"><a href="namespaceultra64.html#aace0d566926869cb9039b0b81344bbe5">ultra64::SLLV</a></div><div class="ttdeci">const uint8_t SLLV</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00098">opcodes.hpp:98</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_aad7c1803d480f60aa843a927f6eb1117"><div class="ttname"><a href="namespaceultra64.html#aad7c1803d480f60aa843a927f6eb1117">ultra64::MULTU</a></div><div class="ttdeci">const uint8_t MULTU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00104">opcodes.hpp:104</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ab0f86dd8fca7875a2b3959871e42cdcb"><div class="ttname"><a href="namespaceultra64.html#ab0f86dd8fca7875a2b3959871e42cdcb">ultra64::DSLL32</a></div><div class="ttdeci">const uint8_t DSLL32</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00111">opcodes.hpp:111</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ac78ec61e835554fe5f39aab63e59bd00"><div class="ttname"><a href="namespaceultra64.html#ac78ec61e835554fe5f39aab63e59bd00">ultra64::MFLO</a></div><div class="ttdeci">const uint8_t MFLO</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00102">opcodes.hpp:102</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_aca08c1f1ab959d778fdc6e367ad5218c"><div class="ttname"><a href="namespaceultra64.html#aca08c1f1ab959d778fdc6e367ad5218c">ultra64::ANDI</a></div><div class="ttdeci">const uint8_t ANDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00083">opcodes.hpp:83</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_acaf0b17cc7a446f164023e6fecf144d3"><div class="ttname"><a href="namespaceultra64.html#acaf0b17cc7a446f164023e6fecf144d3">ultra64::LUI</a></div><div class="ttdeci">const uint8_t LUI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00085">opcodes.hpp:85</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_acff2d2b375ba6c3d0b49e4678b28837d"><div class="ttname"><a href="namespaceultra64.html#acff2d2b375ba6c3d0b49e4678b28837d">ultra64::LW</a></div><div class="ttdeci">const uint8_t LW</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00091">opcodes.hpp:91</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ad0e0e5df19a56d2a2f1c872fa3fa86ac"><div class="ttname"><a href="namespaceultra64.html#ad0e0e5df19a56d2a2f1c872fa3fa86ac">ultra64::BEQ</a></div><div class="ttdeci">const uint8_t BEQ</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00079">opcodes.hpp:79</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ad5548296e81d4113309771b610f8700b"><div class="ttname"><a href="namespaceultra64.html#ad5548296e81d4113309771b610f8700b">ultra64::SRL</a></div><div class="ttdeci">const uint8_t SRL</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00097">opcodes.hpp:97</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_adcbd9d5e611e629e32c0ad1d4f429e22"><div class="ttname"><a href="namespaceultra64.html#adcbd9d5e611e629e32c0ad1d4f429e22">ultra64::DADDI</a></div><div class="ttdeci">const uint8_t DADDI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00090">opcodes.hpp:90</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ae2b181cec383fa6bc3e81066d847859a"><div class="ttname"><a href="namespaceultra64.html#ae2b181cec383fa6bc3e81066d847859a">ultra64::MFHI</a></div><div class="ttdeci">const uint8_t MFHI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00101">opcodes.hpp:101</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_ae3de1497ac93b3c778158ec6a911c94c"><div class="ttname"><a href="namespaceultra64.html#ae3de1497ac93b3c778158ec6a911c94c">ultra64::ADDIU</a></div><div class="ttdeci">const uint8_t ADDIU</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00082">opcodes.hpp:82</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_af019b59323a20375f16388fedeca6cab"><div class="ttname"><a href="namespaceultra64.html#af019b59323a20375f16388fedeca6cab">ultra64::_CP0</a></div><div class="ttdeci">const uint8_t _CP0</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00086">opcodes.hpp:86</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_af681477315a116f1091e3f0dab47138a"><div class="ttname"><a href="namespaceultra64.html#af681477315a116f1091e3f0dab47138a">ultra64::ORI</a></div><div class="ttdeci">const uint8_t ORI</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00084">opcodes.hpp:84</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_af7910a60106fa1eb87d0eecad16262e9"><div class="ttname"><a href="namespaceultra64.html#af7910a60106fa1eb87d0eecad16262e9">ultra64::AND</a></div><div class="ttdeci">const uint8_t AND</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00107">opcodes.hpp:107</a></div></div>
+<div class="ttc" id="anamespaceultra64_html_afe9954c4eab7e197b243c73dfcbc95b3"><div class="ttname"><a href="namespaceultra64.html#afe9954c4eab7e197b243c73dfcbc95b3">ultra64::BLTZ</a></div><div class="ttdeci">const uint8_t BLTZ</div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00114">opcodes.hpp:114</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="opcodes_8hpp_source.html#l00085">ultra64::_CP0</a>, <a class="el" href="opcodes_8hpp_source.html#l00077">ultra64::_REGIMM</a>, <a class="el" href="opcodes_8hpp_source.html#l00076">ultra64::_SPECIAL</a>, <a class="el" href="opcodes_8hpp_source.html#l00080">ultra64::ADDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00081">ultra64::ADDIU</a>, <a class="el" href="opcodes_8hpp_source.html#l00101">ultra64::ADDU</a>, <a class="el" href="opcodes_8hpp_source.html#l00103">ultra64::AND</a>, <a class="el" href="opcodes_8hpp_source.html#l00082">ultra64::ANDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00078">ultra64::BEQ</a>, <a class="el" href="opcodes_8hpp_source.html#l00086">ultra64::BEQL</a>, <a class="el" href="opcodes_8hpp_source.html#l00111">ultra64::BGEZAL</a>, <a class="el" href="opcodes_8hpp_source.html#l00110">ultra64::BLTZ</a>, <a class="el" href="opcodes_8hpp_source.html#l00079">ultra64::BNE</a>, <a class="el" href="opcodes_8hpp_source.html#l00087">ultra64::BNEL</a>, <a class="el" href="opcodes_8hpp_source.html#l00088">ultra64::DADDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00107">ultra64::DSLL32</a>, <a class="el" href="opcodes_8hpp_source.html#l00097">ultra64::JR</a>, <a class="el" href="opcodes_8hpp_source.html#l00084">ultra64::LUI</a>, <a class="el" href="opcodes_8hpp_source.html#l00089">ultra64::LW</a>, <a class="el" href="opcodes_8hpp_source.html#l00098">ultra64::MFHI</a>, <a class="el" href="opcodes_8hpp_source.html#l00099">ultra64::MFLO</a>, <a class="el" href="opcodes_8hpp_source.html#l00114">ultra64::MTC0</a>, <a class="el" href="opcodes_8hpp_source.html#l00100">ultra64::MULTU</a>, <a class="el" href="vr4300_8hpp_source.html#l00060">opcode</a>, <a class="el" href="vr4300_8hpp_source.html#l00061">opcode_cp0</a>, <a class="el" href="vr4300_8hpp_source.html#l00063">opcode_regimm</a>, <a class="el" href="vr4300_8hpp_source.html#l00062">opcode_special</a>, <a class="el" href="opcodes_8hpp_source.html#l00104">ultra64::OR</a>, <a class="el" href="opcodes_8hpp_source.html#l00083">ultra64::ORI</a>, <a class="el" href="vr4300_8hpp_source.html#l00056">PC</a>, <a class="el" href="opcodes_8hpp_source.html#l00093">ultra64::SLL</a>, <a class="el" href="opcodes_8hpp_source.html#l00095">ultra64::SLLV</a>, <a class="el" href="opcodes_8hpp_source.html#l00106">ultra64::SLTU</a>, <a class="el" href="opcodes_8hpp_source.html#l00094">ultra64::SRL</a>, <a class="el" href="opcodes_8hpp_source.html#l00096">ultra64::SRLV</a>, <a class="el" href="opcodes_8hpp_source.html#l00102">ultra64::SUBU</a>, <a class="el" href="opcodes_8hpp_source.html#l00090">ultra64::SW</a>, and <a class="el" href="opcodes_8hpp_source.html#l00105">ultra64::XOR</a>.</p>
+<p class="reference">References <a class="el" href="opcodes_8hpp_source.html#l00086">ultra64::_CP0</a>, <a class="el" href="opcodes_8hpp_source.html#l00077">ultra64::_REGIMM</a>, <a class="el" href="opcodes_8hpp_source.html#l00076">ultra64::_SPECIAL</a>, <a class="el" href="opcodes_8hpp_source.html#l00081">ultra64::ADDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00082">ultra64::ADDIU</a>, <a class="el" href="opcodes_8hpp_source.html#l00105">ultra64::ADDU</a>, <a class="el" href="opcodes_8hpp_source.html#l00107">ultra64::AND</a>, <a class="el" href="opcodes_8hpp_source.html#l00083">ultra64::ANDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00079">ultra64::BEQ</a>, <a class="el" href="opcodes_8hpp_source.html#l00088">ultra64::BEQL</a>, <a class="el" href="opcodes_8hpp_source.html#l00115">ultra64::BGEZAL</a>, <a class="el" href="opcodes_8hpp_source.html#l00114">ultra64::BLTZ</a>, <a class="el" href="opcodes_8hpp_source.html#l00080">ultra64::BNE</a>, <a class="el" href="opcodes_8hpp_source.html#l00089">ultra64::BNEL</a>, <a class="el" href="opcodes_8hpp_source.html#l00090">ultra64::DADDI</a>, <a class="el" href="opcodes_8hpp_source.html#l00111">ultra64::DSLL32</a>, <a class="el" href="opcodes_8hpp_source.html#l00100">ultra64::JR</a>, <a class="el" href="opcodes_8hpp_source.html#l00085">ultra64::LUI</a>, <a class="el" href="opcodes_8hpp_source.html#l00091">ultra64::LW</a>, <a class="el" href="opcodes_8hpp_source.html#l00101">ultra64::MFHI</a>, <a class="el" href="opcodes_8hpp_source.html#l00102">ultra64::MFLO</a>, <a class="el" href="opcodes_8hpp_source.html#l00119">ultra64::MTC0</a>, <a class="el" href="opcodes_8hpp_source.html#l00104">ultra64::MULTU</a>, <a class="el" href="vr4300_8hpp_source.html#l00062">opcode</a>, <a class="el" href="vr4300_8hpp_source.html#l00063">opcode_cp0</a>, <a class="el" href="vr4300_8hpp_source.html#l00065">opcode_regimm</a>, <a class="el" href="vr4300_8hpp_source.html#l00064">opcode_special</a>, <a class="el" href="opcodes_8hpp_source.html#l00108">ultra64::OR</a>, <a class="el" href="opcodes_8hpp_source.html#l00084">ultra64::ORI</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">PC</a>, <a class="el" href="opcodes_8hpp_source.html#l00096">ultra64::SLL</a>, <a class="el" href="opcodes_8hpp_source.html#l00098">ultra64::SLLV</a>, <a class="el" href="opcodes_8hpp_source.html#l00110">ultra64::SLTU</a>, <a class="el" href="opcodes_8hpp_source.html#l00097">ultra64::SRL</a>, <a class="el" href="opcodes_8hpp_source.html#l00099">ultra64::SRLV</a>, <a class="el" href="opcodes_8hpp_source.html#l00106">ultra64::SUBU</a>, <a class="el" href="opcodes_8hpp_source.html#l00092">ultra64::SW</a>, and <a class="el" href="opcodes_8hpp_source.html#l00109">ultra64::XOR</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7a8a45f1b1344f7f6dc2ebb2074a5db2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a8a45f1b1344f7f6dc2ebb2074a5db2">&#9670;&nbsp;</a></span>get_PC()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t vr4300::get_PC </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="vr4300_8cpp_source.html#l00063">63</a> of file <a class="el" href="vr4300_8cpp_source.html">vr4300.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00056">PC</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_debugger_window_8cpp_source.html#l00040">DebuggerWindow::OnCPUStep()</a>, <a class="el" href="_debugger_window_8cpp_source.html#l00061">DebuggerWindow::OnCPUSteps()</a>, <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00093">DebuggerWindow::view()</a>.</p>
-
-</div>
-</div>
 <a id="ab21c460db0a45d7c32e85e22aac09fdc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab21c460db0a45d7c32e85e22aac09fdc">&#9670;&nbsp;</a></span>IMPL_OP() <span class="overload">[1/34]</span></h2>
 
@@ -933,6 +909,114 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a73eee1afd18ff031c13443f8b911e829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73eee1afd18ff031c13443f8b911e829">&#9670;&nbsp;</a></span>load_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vr4300::load_state </td>
+          <td>(</td>
+          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vr4300_8cpp_source.html#l00063">63</a> of file <a class="el" href="vr4300_8cpp_source.html">vr4300.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::vector&lt;std::string&gt; indices;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    indices = state[<span class="stringliteral">&quot;CP0&quot;</span>].getMemberNames();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> &amp;index : indices)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        uint8_t i = std::strtol(index.c_str(), <span class="keyword">nullptr</span>, 10);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        uint64_t value = std::strtol(state[<span class="stringliteral">&quot;CP0&quot;</span>][index].asString().c_str(), <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[i] = value;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    indices = state[<span class="stringliteral">&quot;GPR&quot;</span>].getMemberNames();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> &amp;index : indices)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        uint8_t i = std::strtol(index.c_str(), <span class="keyword">nullptr</span>, 10);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        uint64_t value = std::strtol(state[<span class="stringliteral">&quot;GPR&quot;</span>][index].asString().c_str(), <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">GPR</a>[i] = value;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> = std::strtol(state[<span class="stringliteral">&quot;PC&quot;</span>].asString().c_str(), <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a841ed45f61aa50a00814ffe4ed4b261b">HI</a> = std::strtol(state[<span class="stringliteral">&quot;HI&quot;</span>].asString().c_str(), <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a77c69bd2f5d9f60438c89e7610409819">LO</a> = std::strtol(state[<span class="stringliteral">&quot;LO&quot;</span>].asString().c_str(), <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a392f2a3d7797ac1804276fd69ec6303e"><div class="ttname"><a href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">ultra64::vr4300::GPR</a></div><div class="ttdeci">uint64_t GPR[32]</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00059">vr4300.hpp:59</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a77c69bd2f5d9f60438c89e7610409819"><div class="ttname"><a href="classultra64_1_1vr4300.html#a77c69bd2f5d9f60438c89e7610409819">ultra64::vr4300::LO</a></div><div class="ttdeci">uint32_t LO</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00058">vr4300.hpp:58</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a841ed45f61aa50a00814ffe4ed4b261b"><div class="ttname"><a href="classultra64_1_1vr4300.html#a841ed45f61aa50a00814ffe4ed4b261b">ultra64::vr4300::HI</a></div><div class="ttdeci">uint32_t HI</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00058">vr4300.hpp:58</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_ac0ad1190254a7e8feabad3b6cea8cb1c"><div class="ttname"><a href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">ultra64::vr4300::CP0</a></div><div class="ttdeci">uint64_t CP0[32]</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00060">vr4300.hpp:60</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00060">CP0</a>, <a class="el" href="vr4300_8hpp_source.html#l00059">GPR</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">HI</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">LO</a>, and <a class="el" href="vr4300_8hpp_source.html#l00058">PC</a>.</p>
+
+</div>
+</div>
+<a id="ac0677f6a7902f649fdd890861210d41a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0677f6a7902f649fdd890861210d41a">&#9670;&nbsp;</a></span>save_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value vr4300::save_state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vr4300_8cpp_source.html#l00088">88</a> of file <a class="el" href="vr4300_8cpp_source.html">vr4300.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    Json::Value state;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    std::string index;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    std::stringstream value;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    value &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    state[<span class="stringliteral">&quot;PC&quot;</span>] = value.str();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    value.clear();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    value.str(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    value &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a841ed45f61aa50a00814ffe4ed4b261b">HI</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    state[<span class="stringliteral">&quot;HI&quot;</span>] = value.str();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    value.clear();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    value.str(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    value &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a77c69bd2f5d9f60438c89e7610409819">LO</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    state[<span class="stringliteral">&quot;LO&quot;</span>] = value.str();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    value.clear();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    value.str(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">for</span>(uint8_t i = 0; i &lt; 32; i++)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        index = std::to_string(i);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span>(index.size() == 1) index = <span class="stringliteral">&quot;0&quot;</span> + index;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        value &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a392f2a3d7797ac1804276fd69ec6303e">GPR</a>[i];</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        state[<span class="stringliteral">&quot;GPR&quot;</span>][index] = value.str();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        value.clear();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        value.str(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        value &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[i];</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        state[<span class="stringliteral">&quot;CP0&quot;</span>][index] = value.str();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        value.clear();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        value.str(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">return</span> state;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00060">CP0</a>, <a class="el" href="vr4300_8hpp_source.html#l00059">GPR</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">HI</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">LO</a>, and <a class="el" href="vr4300_8hpp_source.html#l00058">PC</a>.</p>
+
+</div>
+</div>
 <a id="ad0654a81dd48d84eccc03c57b289db68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0654a81dd48d84eccc03c57b289db68">&#9670;&nbsp;</a></span>set_n64()</h2>
 
@@ -954,9 +1038,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">n64</a> = (<a class="code" href="classultra64_1_1_n64.html">ultra64::N64</a> *)<a class="code" href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">n64</a>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
 <div class="ttc" id="aclassultra64_1_1_n64_html"><div class="ttname"><a href="classultra64_1_1_n64.html">ultra64::N64</a></div><div class="ttdef"><b>Definition:</b> <a href="_n64_8hpp_source.html#l00011">N64.hpp:12</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a13c97846a607930f02c3af7e4de2ff3b"><div class="ttname"><a href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">ultra64::vr4300::n64</a></div><div class="ttdeci">N64 * n64</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00065">vr4300.hpp:65</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a13c97846a607930f02c3af7e4de2ff3b"><div class="ttname"><a href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">ultra64::vr4300::n64</a></div><div class="ttdeci">N64 * n64</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00067">vr4300.hpp:67</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00065">n64</a>.</p>
+<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00067">n64</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_n64_8hpp_source.html#l00014">ultra64::N64::N64()</a>.</p>
 
@@ -977,25 +1061,24 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8cpp_source.html#l00068">68</a> of file <a class="el" href="vr4300_8cpp_source.html">vr4300.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a> = this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">n64</a>-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>-&gt;<a class="code" href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">read_word</a>(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a>);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classultra64_1_1opcode__i__type.html">opcode_i_type</a> icode(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classultra64_1_1instruction.html">instruction</a> i(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a>);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::cout &lt;&lt; std::dec &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[9] &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; i.to_string() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a83eecb79ebe25004016ebf286ff3528b">opcode</a>[icode.op](<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[9] += 2;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="ttc" id="aclassultra64_1_1_m_m_u_html_a978969e2667642d04edc84e79ffc97d5"><div class="ttname"><a href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">ultra64::MMU::read_word</a></div><div class="ttdeci">uint32_t read_word(uint32_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00154">MMU.cpp:154</a></div></div>
+<p class="definition">Definition at line <a class="el" href="vr4300_8cpp_source.html#l00128">128</a> of file <a class="el" href="vr4300_8cpp_source.html">vr4300.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a> = this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a13c97846a607930f02c3af7e4de2ff3b">n64</a>-&gt;<a class="code" href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">mmu</a>-&gt;<a class="code" href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">read_word</a>(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="classultra64_1_1opcode__i__type.html">opcode_i_type</a> icode(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a>);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="classultra64_1_1instruction.html">instruction</a> i(this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">current_instruction</a>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::cout &lt;&lt; std::dec &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[9] &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; std::hex &lt;&lt; this-&gt;<a class="code" href="classultra64_1_1vr4300.html#af9c5aeef3f3865634a6fab6020040c72">PC</a> &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; i.to_string() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#a83eecb79ebe25004016ebf286ff3528b">opcode</a>[icode.op](<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    this-&gt;<a class="code" href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">CP0</a>[9] += 2;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
+<div class="ttc" id="aclassultra64_1_1_m_m_u_html_a978969e2667642d04edc84e79ffc97d5"><div class="ttname"><a href="classultra64_1_1_m_m_u.html#a978969e2667642d04edc84e79ffc97d5">ultra64::MMU::read_word</a></div><div class="ttdeci">uint32_t read_word(uint32_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="_m_m_u_8cpp_source.html#l00219">MMU.cpp:219</a></div></div>
 <div class="ttc" id="aclassultra64_1_1_n64_html_a766b2e95c8d1c6320c4e94fd3be95821"><div class="ttname"><a href="classultra64_1_1_n64.html#a766b2e95c8d1c6320c4e94fd3be95821">ultra64::N64::mmu</a></div><div class="ttdeci">MMU * mmu</div><div class="ttdef"><b>Definition:</b> <a href="_n64_8hpp_source.html#l00020">N64.hpp:19</a></div></div>
 <div class="ttc" id="aclassultra64_1_1instruction_html"><div class="ttname"><a href="classultra64_1_1instruction.html">ultra64::instruction</a></div><div class="ttdef"><b>Definition:</b> <a href="instruction_8hpp_source.html#l00007">instruction.hpp:8</a></div></div>
 <div class="ttc" id="aclassultra64_1_1opcode__i__type_html"><div class="ttname"><a href="classultra64_1_1opcode__i__type.html">ultra64::opcode_i_type</a></div><div class="ttdef"><b>Definition:</b> <a href="opcodes_8hpp_source.html#l00008">opcodes.hpp:9</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_a82323f15dcd7191e50b887e75ece15e9"><div class="ttname"><a href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">ultra64::vr4300::current_instruction</a></div><div class="ttdeci">uint32_t current_instruction</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00064">vr4300.hpp:64</a></div></div>
-<div class="ttc" id="aclassultra64_1_1vr4300_html_ac0ad1190254a7e8feabad3b6cea8cb1c"><div class="ttname"><a href="classultra64_1_1vr4300.html#ac0ad1190254a7e8feabad3b6cea8cb1c">ultra64::vr4300::CP0</a></div><div class="ttdeci">uint64_t CP0[32]</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00058">vr4300.hpp:58</a></div></div>
+<div class="ttc" id="aclassultra64_1_1vr4300_html_a82323f15dcd7191e50b887e75ece15e9"><div class="ttname"><a href="classultra64_1_1vr4300.html#a82323f15dcd7191e50b887e75ece15e9">ultra64::vr4300::current_instruction</a></div><div class="ttdeci">uint32_t current_instruction</div><div class="ttdef"><b>Definition:</b> <a href="vr4300_8hpp_source.html#l00066">vr4300.hpp:66</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00058">CP0</a>, <a class="el" href="vr4300_8hpp_source.html#l00064">current_instruction</a>, <a class="el" href="_n64_8hpp_source.html#l00019">ultra64::N64::mmu</a>, <a class="el" href="vr4300_8hpp_source.html#l00065">n64</a>, <a class="el" href="opcodes_8hpp_source.html#l00011">ultra64::opcode_i_type::op</a>, <a class="el" href="vr4300_8hpp_source.html#l00060">opcode</a>, <a class="el" href="vr4300_8hpp_source.html#l00056">PC</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00154">ultra64::MMU::read_word()</a>, and <a class="el" href="instruction_8cpp_source.html#l00014">ultra64::instruction::to_string()</a>.</p>
+<p class="reference">References <a class="el" href="vr4300_8hpp_source.html#l00060">CP0</a>, <a class="el" href="vr4300_8hpp_source.html#l00066">current_instruction</a>, <a class="el" href="_n64_8hpp_source.html#l00019">ultra64::N64::mmu</a>, <a class="el" href="vr4300_8hpp_source.html#l00067">n64</a>, <a class="el" href="opcodes_8hpp_source.html#l00011">ultra64::opcode_i_type::op</a>, <a class="el" href="vr4300_8hpp_source.html#l00062">opcode</a>, <a class="el" href="vr4300_8hpp_source.html#l00058">PC</a>, <a class="el" href="_m_m_u_8cpp_source.html#l00219">ultra64::MMU::read_word()</a>, and <a class="el" href="instruction_8cpp_source.html#l00016">ultra64::instruction::to_string()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_debugger_window_8cpp_source.html#l00040">DebuggerWindow::OnCPUStep()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00061">DebuggerWindow::OnCPUSteps()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_debugger_window_8cpp_source.html#l00071">DebuggerWindow::OnCPUStep()</a>.</p>
 
 </div>
 </div>
@@ -1012,9 +1095,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00058">58</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00060">60</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00068">step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00063">load_state()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, <a class="el" href="vr4300_8cpp_source.html#l00088">save_state()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00128">step()</a>.</p>
 
 </div>
 </div>
@@ -1038,9 +1121,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00064">64</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00066">66</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00068">step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00128">step()</a>.</p>
 
 </div>
 </div>
@@ -1056,9 +1139,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00057">57</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00059">59</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00063">load_state()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00088">save_state()</a>.</p>
 
 </div>
 </div>
@@ -1074,9 +1157,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00056">56</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00058">58</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00063">load_state()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00088">save_state()</a>.</p>
 
 </div>
 </div>
@@ -1092,9 +1175,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00056">56</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00058">58</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00063">load_state()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00088">save_state()</a>.</p>
 
 </div>
 </div>
@@ -1118,9 +1201,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00065">65</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00067">67</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00058">set_n64()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00068">step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00058">set_n64()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00128">step()</a>.</p>
 
 </div>
 </div>
@@ -1144,9 +1227,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00060">60</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00062">62</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00068">step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00128">step()</a>.</p>
 
 </div>
 </div>
@@ -1170,7 +1253,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00061">61</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00063">63</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>.</p>
 
@@ -1196,7 +1279,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00063">63</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00065">65</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>.</p>
 
@@ -1222,7 +1305,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00062">62</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00064">64</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>.</p>
 
@@ -1240,9 +1323,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00056">56</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vr4300_8hpp_source.html#l00058">58</a> of file <a class="el" href="vr4300_8hpp_source.html">vr4300.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>, <a class="el" href="vr4300_8cpp_source.html#l00063">get_PC()</a>, and <a class="el" href="vr4300_8cpp_source.html#l00068">step()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vr4300_8cpp_source.html#l00011">vr4300()</a>, <a class="el" href="vr4300_8cpp_source.html#l00063">load_state()</a>, <a class="el" href="_debugger_window_8cpp_source.html#l00071">DebuggerWindow::OnCPUStep()</a>, <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>, <a class="el" href="vr4300_8cpp_source.html#l00088">save_state()</a>, <a class="el" href="vr4300_8cpp_source.html#l00128">step()</a>, and <a class="el" href="_debugger_window_8cpp_source.html#l00103">DebuggerWindow::view()</a>.</p>
 
 </div>
 </div>

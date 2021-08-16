@@ -82,11 +82,19 @@ Inheritance diagram for wxUltra64:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af6525a93f34085750dfb8ee82498c20a"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#af6525a93f34085750dfb8ee82498c20a">load_config</a> ()</td></tr>
+<tr class="separator:af6525a93f34085750dfb8ee82498c20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac90ecee574b2aaeb016f34d46f5ca87d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#ac90ecee574b2aaeb016f34d46f5ca87d">OnInit</a> ()</td></tr>
 <tr class="separator:ac90ecee574b2aaeb016f34d46f5ca87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb2ea99c15099619e1b689dfd98d373"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#a5fb2ea99c15099619e1b689dfd98d373">save_config</a> ()</td></tr>
+<tr class="separator:a5fb2ea99c15099619e1b689dfd98d373"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a238827f60b5ce29bb3d42d00621b6892"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a></td></tr>
+<tr class="separator:a238827f60b5ce29bb3d42d00621b6892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d5af27bd03d917976bf325180c591f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#a78d5af27bd03d917976bf325180c591f">config_path</a> = &quot;.config/ultra64&quot;</td></tr>
+<tr class="separator:a78d5af27bd03d917976bf325180c591f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2a892a46d0d8b8c2ff29a1b2d32133b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_debugger_window.html">DebuggerWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#ae2a892a46d0d8b8c2ff29a1b2d32133b">debugger</a> = nullptr</td></tr>
 <tr class="separator:ae2a892a46d0d8b8c2ff29a1b2d32133b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46b06489d6a269c6be154cb0a7e1e4e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = nullptr</td></tr>
@@ -98,8 +106,73 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00030">30</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00015">15</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af6525a93f34085750dfb8ee82498c20a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6525a93f34085750dfb8ee82498c20a">&#9670;&nbsp;</a></span>load_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value wxUltra64::load_config </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00039">39</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    std::string home_dir(getenv(<span class="stringliteral">&quot;HOME&quot;</span>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string config_dir = home_dir + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classwx_ultra64.html#a78d5af27bd03d917976bf325180c591f">config_path</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span>(!std::filesystem::is_directory(config_dir))</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::cout &lt;&lt; config_dir &lt;&lt; <span class="stringliteral">&quot; doesn&#39;t exist, creating.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::filesystem::create_directory(config_dir);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string config_file_path =  config_dir + <span class="stringliteral">&quot;/config.json&quot;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">if</span>(!std::filesystem::exists(config_file_path))</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        std::cout &lt;&lt; config_file_path &lt;&lt; <span class="stringliteral">&quot; doesn&#39;t exist, creating.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        Json::Value <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>[<span class="stringliteral">&quot;pif_rom_path&quot;</span>] = config_dir;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span>(std::filesystem::exists(config_dir + <span class="stringliteral">&quot;/pifdata.bin&quot;</span>))</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>[<span class="stringliteral">&quot;pif_rom&quot;</span>] = <span class="stringliteral">&quot;pifdata.bin&quot;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">else</span> <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>[<span class="stringliteral">&quot;pif_rom&quot;</span>] = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>[<span class="stringliteral">&quot;rom_path&quot;</span>] = home_dir;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        Json::StreamWriterBuilder builder;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        builder[<span class="stringliteral">&quot;indentation&quot;</span>] = <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::unique_ptr&lt;Json::StreamWriter&gt; writer(builder.newStreamWriter());</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        std::ofstream config_file(config_file_path);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        writer-&gt;write(<a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>, &amp;config_file);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        config_file.close();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Json::Value <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::ifstream config_file(config_file_path);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    config_file &gt;&gt; <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="ttc" id="aclasswx_ultra64_html_a238827f60b5ce29bb3d42d00621b6892"><div class="ttname"><a href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">wxUltra64::config</a></div><div class="ttdeci">Json::Value config</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00023">ultra64.hpp:23</a></div></div>
+<div class="ttc" id="aclasswx_ultra64_html_a78d5af27bd03d917976bf325180c591f"><div class="ttname"><a href="classwx_ultra64.html#a78d5af27bd03d917976bf325180c591f">wxUltra64::config_path</a></div><div class="ttdeci">std::string config_path</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00024">ultra64.hpp:24</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00023">config</a>, and <a class="el" href="ultra64_8hpp_source.html#l00024">config_path</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00018">OnInit()</a>.</p>
+
+</div>
+</div>
 <a id="ac90ecee574b2aaeb016f34d46f5ca87d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac90ecee574b2aaeb016f34d46f5ca87d">&#9670;&nbsp;</a></span>OnInit()</h2>
 
@@ -123,27 +196,103 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00111">111</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = <span class="keyword">new</span> <a class="code" href="class_main_window.html">MainWindow</a>(<span class="stringliteral">&quot;Ultra64&quot;</span>, wxPoint(20, 20), wxSize(320, 240));</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a>-&gt;Show(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().argc &lt; 2) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::string argv1 = wxGetApp().argv[1].ToStdString();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a>(argv1);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
-<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00013">ultra64.hpp:14</a></div></div>
-<div class="ttc" id="aclasswx_ultra64_html_a46b06489d6a269c6be154cb0a7e1e4e9"><div class="ttname"><a href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">wxUltra64::frame</a></div><div class="ttdeci">MainWindow * frame</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00034">ultra64.hpp:34</a></div></div>
-<div class="ttc" id="aultra64_8cpp_html_a848e3785d6cbc802d5477b72cc444d34"><div class="ttname"><a href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a></div><div class="ttdeci">void start(std::string filename)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00218">ultra64.cpp:218</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00018">18</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a> = <span class="keyword">new</span> <a class="code" href="class_main_window.html">MainWindow</a>(<span class="stringliteral">&quot;Ultra64&quot;</span>, wxPoint(20, 20), wxSize(320, 240));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">frame</a>-&gt;Show(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    this-&gt;<a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a> = this-&gt;<a class="code" href="classwx_ultra64.html#af6525a93f34085750dfb8ee82498c20a">load_config</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::string argv1;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span>(wxGetApp().argc &gt; 1)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        argv1 = wxGetApp().argv[1].ToStdString();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a>(argv1);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="_main_window_8hpp_source.html#l00005">MainWindow.hpp:6</a></div></div>
+<div class="ttc" id="aclasswx_ultra64_html_a46b06489d6a269c6be154cb0a7e1e4e9"><div class="ttname"><a href="classwx_ultra64.html#a46b06489d6a269c6be154cb0a7e1e4e9">wxUltra64::frame</a></div><div class="ttdeci">MainWindow * frame</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00019">ultra64.hpp:19</a></div></div>
+<div class="ttc" id="aclasswx_ultra64_html_af6525a93f34085750dfb8ee82498c20a"><div class="ttname"><a href="classwx_ultra64.html#af6525a93f34085750dfb8ee82498c20a">wxUltra64::load_config</a></div><div class="ttdeci">Json::Value load_config()</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00039">ultra64.cpp:39</a></div></div>
+<div class="ttc" id="aultra64_8cpp_html_a848e3785d6cbc802d5477b72cc444d34"><div class="ttname"><a href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a></div><div class="ttdeci">void start(std::string filename)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00132">ultra64.cpp:132</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00034">frame</a>, and <a class="el" href="ultra64_8cpp_source.html#l00218">start()</a>.</p>
+<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00023">config</a>, <a class="el" href="ultra64_8hpp_source.html#l00019">frame</a>, <a class="el" href="ultra64_8cpp_source.html#l00039">load_config()</a>, and <a class="el" href="ultra64_8cpp_source.html#l00132">start()</a>.</p>
+
+</div>
+</div>
+<a id="a5fb2ea99c15099619e1b689dfd98d373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fb2ea99c15099619e1b689dfd98d373">&#9670;&nbsp;</a></span>save_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void wxUltra64::save_config </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00081">81</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::string home_dir(getenv(<span class="stringliteral">&quot;HOME&quot;</span>));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::string config_dir = home_dir + <span class="stringliteral">&quot;/&quot;</span> + <a class="code" href="classwx_ultra64.html#a78d5af27bd03d917976bf325180c591f">config_path</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::string config_file_path =  config_dir + <span class="stringliteral">&quot;/config.json&quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    Json::StreamWriterBuilder builder;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    builder[<span class="stringliteral">&quot;indentation&quot;</span>] = <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::unique_ptr&lt;Json::StreamWriter&gt; writer(builder.newStreamWriter());</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    std::ofstream config_file(config_file_path);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    writer-&gt;write(this-&gt;<a class="code" href="classwx_ultra64.html#a238827f60b5ce29bb3d42d00621b6892">config</a>, &amp;config_file);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    config_file.close();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00023">config</a>, and <a class="el" href="ultra64_8hpp_source.html#l00024">config_path</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a238827f60b5ce29bb3d42d00621b6892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a238827f60b5ce29bb3d42d00621b6892">&#9670;&nbsp;</a></span>config</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value wxUltra64::config</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00023">23</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00039">load_config()</a>, <a class="el" href="ultra64_8cpp_source.html#l00018">OnInit()</a>, and <a class="el" href="ultra64_8cpp_source.html#l00081">save_config()</a>.</p>
+
+</div>
+</div>
+<a id="a78d5af27bd03d917976bf325180c591f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d5af27bd03d917976bf325180c591f">&#9670;&nbsp;</a></span>config_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string wxUltra64::config_path = &quot;.config/ultra64&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00024">24</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00039">load_config()</a>, and <a class="el" href="ultra64_8cpp_source.html#l00081">save_config()</a>.</p>
+
+</div>
+</div>
 <a id="ae2a892a46d0d8b8c2ff29a1b2d32133b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2a892a46d0d8b8c2ff29a1b2d32133b">&#9670;&nbsp;</a></span>debugger</h2>
 
@@ -156,7 +305,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00036">36</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00021">21</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
 </div>
 </div>
@@ -172,9 +321,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00034">34</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00019">19</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00111">OnInit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="ultra64_8cpp_source.html#l00018">OnInit()</a>.</p>
 
 </div>
 </div>
@@ -190,7 +339,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00037">37</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00022">22</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
 </div>
 </div>
@@ -206,7 +355,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00035">35</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00020">20</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
 
 </div>
 </div>

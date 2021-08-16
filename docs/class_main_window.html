@@ -72,7 +72,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_main_window_8hpp_source.html">MainWindow.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for MainWindow:</div>
 <div class="dyncontent">
@@ -95,8 +95,14 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:af112afb589538613e918372017a64084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a605e490ac5deeb89ed16cfc871bf3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a1a605e490ac5deeb89ed16cfc871bf3f">OnExit</a> (wxCommandEvent &amp;event)</td></tr>
 <tr class="separator:a1a605e490ac5deeb89ed16cfc871bf3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d88bb66f3c2139a7f8d03086f4dbfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ab2d88bb66f3c2139a7f8d03086f4dbfd">OnLoadState</a> (wxCommandEvent &amp;event)</td></tr>
+<tr class="separator:ab2d88bb66f3c2139a7f8d03086f4dbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e8accc0a0157573cd8f9aad24c0c70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a28e8accc0a0157573cd8f9aad24c0c70">OnOpenROM</a> (wxCommandEvent &amp;event)</td></tr>
+<tr class="separator:a28e8accc0a0157573cd8f9aad24c0c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a040de5f88ae4da8b96e25f5e98028c1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a040de5f88ae4da8b96e25f5e98028c1f">OnPaint</a> (wxPaintEvent &amp;event)</td></tr>
 <tr class="separator:a040de5f88ae4da8b96e25f5e98028c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068f3e57d1a8a96ebe4790123042e192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a068f3e57d1a8a96ebe4790123042e192">OnSaveState</a> (wxCommandEvent &amp;event)</td></tr>
+<tr class="separator:a068f3e57d1a8a96ebe4790123042e192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae682d2c2712378c2eb507bcf7f5bbc1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ae682d2c2712378c2eb507bcf7f5bbc1f">OnSelectPIFROM</a> (wxCommandEvent &amp;event)</td></tr>
 <tr class="separator:ae682d2c2712378c2eb507bcf7f5bbc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ff5d7859e51963c5c07ab11583021a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ae2ff5d7859e51963c5c07ab11583021a">wxDECLARE_EVENT_TABLE</a> ()</td></tr>
@@ -104,7 +110,7 @@ Private Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ultra64_8hpp_source.html#l00013">13</a> of file <a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_main_window_8hpp_source.html#l00005">5</a> of file <a class="el" href="_main_window_8hpp_source.html">MainWindow.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab5bd7c178471f31f5c7f20fad6446382"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5bd7c178471f31f5c7f20fad6446382">&#9670;&nbsp;</a></span>MainWindow()</h2>
@@ -138,31 +144,40 @@ Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00030">30</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        : wxFrame(NULL, wxID_ANY, title, pos, size)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    wxMenu *menuFile = <span class="keyword">new</span> wxMenu;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    menuFile-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7">ID_select_pif_rom</a>, <span class="stringliteral">&quot;Select &amp;PIF ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    menuFile-&gt;Append(wxID_EXIT);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    wxMenu *menuDebug = <span class="keyword">new</span> wxMenu;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc">ID_debug_pif_rom</a>, <span class="stringliteral">&quot;View &amp;PIF ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482">ID_debug_rom</a>, <span class="stringliteral">&quot;View &amp;ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26">ID_debug_registers</a>, <span class="stringliteral">&quot;View R&amp;egisters&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    wxMenuBar *menuBar = <span class="keyword">new</span> wxMenuBar;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    menuBar-&gt;Append(menuFile, <span class="stringliteral">&quot;&amp;File&quot;</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    menuBar-&gt;Append(menuDebug, <span class="stringliteral">&quot;&amp;Debug&quot;</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    SetMenuBar(menuBar);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    CreateStatusBar(1);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482">ID_debug_rom</a></div><div class="ttdeci">@ ID_debug_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00046">ultra64.hpp:46</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26">ID_debug_registers</a></div><div class="ttdeci">@ ID_debug_registers</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00047">ultra64.hpp:47</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc">ID_debug_pif_rom</a></div><div class="ttdeci">@ ID_debug_pif_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00045">ultra64.hpp:45</a></div></div>
-<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7">ID_select_pif_rom</a></div><div class="ttdeci">@ ID_select_pif_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00042">ultra64.hpp:42</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00023">23</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        : wxFrame(NULL, wxID_ANY, title, pos, size)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    wxMenu *menuFile = <span class="keyword">new</span> wxMenu;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    menuFile-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba6b05e9097a6fe61c61e5d101e2af72bd">ID_open_rom</a>, <span class="stringliteral">&quot;&amp;Open ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    menuFile-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7">ID_select_pif_rom</a>, <span class="stringliteral">&quot;Select &amp;PIF ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    menuFile-&gt;Append(wxID_EXIT);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    wxMenu *menuState = <span class="keyword">new</span> wxMenu;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    menuState-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba4b0aac8f6fe07897f80b009f7efad6ec">ID_save_state</a>, <span class="stringliteral">&quot;&amp;Save state&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    menuState-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba9572ea4566af7ea953c096004f415d95">ID_load_state</a>, <span class="stringliteral">&quot;&amp;Load state&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    wxMenu *menuDebug = <span class="keyword">new</span> wxMenu;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc">ID_debug_pif_rom</a>, <span class="stringliteral">&quot;View &amp;PIF ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482">ID_debug_rom</a>, <span class="stringliteral">&quot;View &amp;ROM&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    menuDebug-&gt;Append(<a class="code" href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26">ID_debug_registers</a>, <span class="stringliteral">&quot;View R&amp;egisters&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    wxMenuBar *menuBar = <span class="keyword">new</span> wxMenuBar;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    menuBar-&gt;Append(menuFile, <span class="stringliteral">&quot;&amp;File&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    menuBar-&gt;Append(menuState, <span class="stringliteral">&quot;&amp;State&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    menuBar-&gt;Append(menuDebug, <span class="stringliteral">&quot;&amp;Debug&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    SetMenuBar(menuBar);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    CreateStatusBar(1);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba1623a6292884b1445948dda00872f482">ID_debug_rom</a></div><div class="ttdeci">@ ID_debug_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00038">ultra64.hpp:38</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba2ca5aaf6cd3ab604a863e6bea3173d26">ID_debug_registers</a></div><div class="ttdeci">@ ID_debug_registers</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00039">ultra64.hpp:39</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba4b0aac8f6fe07897f80b009f7efad6ec"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba4b0aac8f6fe07897f80b009f7efad6ec">ID_save_state</a></div><div class="ttdeci">@ ID_save_state</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00034">ultra64.hpp:34</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba6b05e9097a6fe61c61e5d101e2af72bd"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba6b05e9097a6fe61c61e5d101e2af72bd">ID_open_rom</a></div><div class="ttdeci">@ ID_open_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00032">ultra64.hpp:32</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55ba9572ea4566af7ea953c096004f415d95"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55ba9572ea4566af7ea953c096004f415d95">ID_load_state</a></div><div class="ttdeci">@ ID_load_state</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00035">ultra64.hpp:35</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55baabeeff4136e54bb118b03b308d3f8fcc">ID_debug_pif_rom</a></div><div class="ttdeci">@ ID_debug_pif_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00037">ultra64.hpp:37</a></div></div>
+<div class="ttc" id="aultra64_8hpp_html_a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7"><div class="ttname"><a href="ultra64_8hpp.html#a06fc87d81c62e9abb8790b6e5713c55bac838719abd812f77ff81e07663246ef7">ID_select_pif_rom</a></div><div class="ttdeci">@ ID_select_pif_rom</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8hpp_source.html#l00031">ultra64.hpp:31</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00045">ID_debug_pif_rom</a>, <a class="el" href="ultra64_8hpp_source.html#l00047">ID_debug_registers</a>, <a class="el" href="ultra64_8hpp_source.html#l00046">ID_debug_rom</a>, and <a class="el" href="ultra64_8hpp_source.html#l00042">ID_select_pif_rom</a>.</p>
+<p class="reference">References <a class="el" href="ultra64_8hpp_source.html#l00037">ID_debug_pif_rom</a>, <a class="el" href="ultra64_8hpp_source.html#l00039">ID_debug_registers</a>, <a class="el" href="ultra64_8hpp_source.html#l00038">ID_debug_rom</a>, <a class="el" href="ultra64_8hpp_source.html#l00035">ID_load_state</a>, <a class="el" href="ultra64_8hpp_source.html#l00032">ID_open_rom</a>, <a class="el" href="ultra64_8hpp_source.html#l00034">ID_save_state</a>, and <a class="el" href="ultra64_8hpp_source.html#l00031">ID_select_pif_rom</a>.</p>
 
 </div>
 </div>
@@ -191,14 +206,14 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00086">86</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="ultra64_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a>();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    wxGetApp().debugger-&gt;view(0x1FC00000, 0x1FC007BF);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
-<div class="ttc" id="aultra64_8cpp_html_a72de2859e060e665ed214a7cc99cb1f8"><div class="ttname"><a href="ultra64_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a></div><div class="ttdeci">void open_debugger()</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00077">ultra64.cpp:77</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00106">106</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="_main_window_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    wxGetApp().debugger-&gt;view(0x1FC00000, 0x1FC007BF);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="ttc" id="a_main_window_8cpp_html_a72de2859e060e665ed214a7cc99cb1f8"><div class="ttname"><a href="_main_window_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a></div><div class="ttdeci">void open_debugger()</div><div class="ttdef"><b>Definition:</b> <a href="_main_window_8cpp_source.html#l00095">MainWindow.cpp:95</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00077">open_debugger()</a>.</p>
+<p class="reference">References <a class="el" href="_main_window_8cpp_source.html#l00095">open_debugger()</a>.</p>
 
 </div>
 </div>
@@ -226,22 +241,22 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00098">98</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;{</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span>(!wxGetApp().registers)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        wxGetApp().registers = <span class="keyword">new</span> <a class="code" href="class_registers_window.html">RegistersWindow</a>(wxGetApp().frame,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                               <span class="stringliteral">&quot;Registers&quot;</span>, wxPoint(200, 50), wxSize(820, 450));</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    wxGetApp().registers-&gt;SetBackgroundColour(wxColour(*wxWHITE));</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    wxGetApp().registers-&gt;Show(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    wxGetApp().registers-&gt;UpdateRegisters(<a class="code" href="ultra64_8cpp.html#a23e2d287d9b60dfd6f30dd3506f1dd02">render_debugger_registers</a>(wxGetApp().n64));</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00118">118</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span>(!wxGetApp().registers)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        wxGetApp().registers = <span class="keyword">new</span> <a class="code" href="class_registers_window.html">RegistersWindow</a>(wxGetApp().frame,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                               <span class="stringliteral">&quot;Registers&quot;</span>, wxPoint(200, 50), wxSize(820, 450));</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    wxGetApp().registers-&gt;SetBackgroundColour(wxColour(*wxWHITE));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    wxGetApp().registers-&gt;Show(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    wxGetApp().registers-&gt;UpdateRegisters(<a class="code" href="ultra64_8cpp.html#adf9f80ca370d6da6df16320c8d99c4e2">render_registers</a>(wxGetApp().n64));</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
 <div class="ttc" id="aclass_registers_window_html"><div class="ttname"><a href="class_registers_window.html">RegistersWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="_registers_window_8hpp_source.html#l00005">RegistersWindow.hpp:6</a></div></div>
-<div class="ttc" id="aultra64_8cpp_html_a23e2d287d9b60dfd6f30dd3506f1dd02"><div class="ttname"><a href="ultra64_8cpp.html#a23e2d287d9b60dfd6f30dd3506f1dd02">render_debugger_registers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; render_debugger_registers(ultra64::N64 *n64)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00194">ultra64.cpp:194</a></div></div>
+<div class="ttc" id="aultra64_8cpp_html_adf9f80ca370d6da6df16320c8d99c4e2"><div class="ttname"><a href="ultra64_8cpp.html#adf9f80ca370d6da6df16320c8d99c4e2">render_registers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; render_registers(ultra64::N64 *n64)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00108">ultra64.cpp:108</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00194">render_debugger_registers()</a>.</p>
+<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00108">render_registers()</a>.</p>
 
 </div>
 </div>
@@ -269,13 +284,13 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00092">92</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="ultra64_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a>();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    wxGetApp().debugger-&gt;view(0x10000000, 0x10008000);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00112">112</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="_main_window_8cpp.html#a72de2859e060e665ed214a7cc99cb1f8">open_debugger</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    wxGetApp().debugger-&gt;view(0x10000000, 0x10008000);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00077">open_debugger()</a>.</p>
+<p class="reference">References <a class="el" href="_main_window_8cpp_source.html#l00095">open_debugger()</a>.</p>
 
 </div>
 </div>
@@ -303,11 +318,96 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00055">55</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    Close(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00054">54</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Close(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="ab2d88bb66f3c2139a7f8d03086f4dbfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2d88bb66f3c2139a7f8d03086f4dbfd">&#9670;&nbsp;</a></span>OnLoadState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::OnLoadState </td>
+          <td>(</td>
+          <td class="paramtype">wxCommandEvent &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00137">137</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    Json::Value state;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    std::ifstream state_file(<span class="stringliteral">&quot;./mario64.save&quot;</span>);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    state_file &gt;&gt; state;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    wxGetApp().n64-&gt;cpu.load_state(state);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a28e8accc0a0157573cd8f9aad24c0c70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28e8accc0a0157573cd8f9aad24c0c70">&#9670;&nbsp;</a></span>OnOpenROM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::OnOpenROM </td>
+          <td>(</td>
+          <td class="paramtype">wxCommandEvent &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00075">75</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::string rom_path = wxGetApp().config[<span class="stringliteral">&quot;rom_path&quot;</span>].asString();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    wxFileDialog rom_dialog(<span class="keyword">this</span>, _(<span class="stringliteral">&quot;Open N64 ROM file&quot;</span>), rom_path, <span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                <span class="stringliteral">&quot;N64 ROM files (*.n64;*.v64;*.z64;*.bin)|*.n64;*.v64;*.bin|All files (*.*)|*.*&quot;</span>,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                wxFD_OPEN|wxFD_FILE_MUST_EXIST);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span>(wxID_CANCEL == rom_dialog.ShowModal()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::string directory = rom_dialog.GetDirectory().ToStdString();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    wxGetApp().config[<span class="stringliteral">&quot;rom_path&quot;</span>] = directory;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    wxGetApp().save_config();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::string rom = rom_dialog.GetPath().ToStdString();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Opening &quot;</span> &lt;&lt; rom &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a>(rom);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="ttc" id="aultra64_8cpp_html_a848e3785d6cbc802d5477b72cc444d34"><div class="ttname"><a href="ultra64_8cpp.html#a848e3785d6cbc802d5477b72cc444d34">start</a></div><div class="ttdeci">void start(std::string filename)</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00132">ultra64.cpp:132</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00132">start()</a>.</p>
+
 </div>
 </div>
 <a id="a040de5f88ae4da8b96e25f5e98028c1f"></a>
@@ -334,10 +434,42 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00050">50</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    wxPaintDC dc(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00049">49</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    wxPaintDC dc(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a068f3e57d1a8a96ebe4790123042e192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a068f3e57d1a8a96ebe4790123042e192">&#9670;&nbsp;</a></span>OnSaveState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::OnSaveState </td>
+          <td>(</td>
+          <td class="paramtype">wxCommandEvent &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00131">131</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    Json::Value state = wxGetApp().n64-&gt;cpu.save_state();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    std::cout &lt;&lt; state &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -365,26 +497,22 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ultra64_8cpp_source.html#l00060">60</a> of file <a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    Json::Value config = <a class="code" href="ultra64_8cpp.html#a3a2c0490db9b0d6591518c82f5f4a796">load_config</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::string pif_path = config[<span class="stringliteral">&quot;pif_rom_path&quot;</span>].asString();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    wxFileDialog rom_dialog(<span class="keyword">this</span>, _(<span class="stringliteral">&quot;Open PIF ROM file&quot;</span>), pif_path, <span class="stringliteral">&quot;&quot;</span>,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                <span class="stringliteral">&quot;ROM files (*.bin)|*.bin|All files (*.*)|*.*&quot;</span>,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                wxFD_OPEN|wxFD_FILE_MUST_EXIST);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span>(wxID_CANCEL == rom_dialog.ShowModal()) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::string filename = rom_dialog.GetPath().ToStdString();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">if</span>(!filename.size()) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;PIF ROM: &quot;</span> &lt;&lt; filename &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
-<div class="ttc" id="aultra64_8cpp_html_a3a2c0490db9b0d6591518c82f5f4a796"><div class="ttname"><a href="ultra64_8cpp.html#a3a2c0490db9b0d6591518c82f5f4a796">load_config</a></div><div class="ttdeci">Json::Value load_config()</div><div class="ttdef"><b>Definition:</b> <a href="ultra64_8cpp_source.html#l00127">ultra64.cpp:127</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_main_window_8cpp_source.html#l00059">59</a> of file <a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string pif_path = wxGetApp().config[<span class="stringliteral">&quot;pif_rom_path&quot;</span>].asString();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    wxFileDialog rom_dialog(<span class="keyword">this</span>, _(<span class="stringliteral">&quot;Open PIF ROM file&quot;</span>), pif_path, <span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                <span class="stringliteral">&quot;ROM files (*.bin)|*.bin|All files (*.*)|*.*&quot;</span>,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                wxFD_OPEN|wxFD_FILE_MUST_EXIST);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span>(wxID_CANCEL == rom_dialog.ShowModal()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::string filename = rom_dialog.GetFilename().ToStdString();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span>(!filename.size()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    wxGetApp().config[<span class="stringliteral">&quot;pif_rom&quot;</span>] = filename;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    wxGetApp().save_config();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="ultra64_8cpp_source.html#l00127">load_config()</a>.</p>
-
 </div>
 </div>
 <a id="ae2ff5d7859e51963c5c07ab11583021a"></a>
@@ -413,8 +541,8 @@ Private Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="ultra64_8hpp_source.html">ultra64.hpp</a></li>
-<li>src/<a class="el" href="ultra64_8cpp_source.html">ultra64.cpp</a></li>
+<li>src/<a class="el" href="_main_window_8hpp_source.html">MainWindow.hpp</a></li>
+<li>src/<a class="el" href="_main_window_8cpp_source.html">MainWindow.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
