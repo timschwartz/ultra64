@@ -64,6 +64,7 @@ config.h
 *.o
 *.a
 src/wxWidgets/ultra64
+src/cli/ultra64-cli
 
 *.bin
 *.BIN

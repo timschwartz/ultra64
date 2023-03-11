@@ -37,12 +37,12 @@ if test "$wxWin" != 1; then
                 ])
 fi
 
-CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
-CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
-LIBS="$LIBS $WX_LIBS"
+# CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
+# CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
+# CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
+# LIBS="$LIBS $WX_LIBS"
 
-PKG_CHECK_MODULES([JSONCPP], jsoncpp)
+# PKG_CHECK_MODULES([JSONCPP], jsoncpp)
 
 # Checks for header files.
 
@@ -52,6 +52,7 @@ PKG_CHECK_MODULES([JSONCPP], jsoncpp)
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile
-                 src/n64/Makefile
-                 src/wxWidgets/Makefile])
+                 src/cli/Makefile])
+#                 src/n64/Makefile
+#                 src/wxWidgets/Makefile
 AC_OUTPUT
