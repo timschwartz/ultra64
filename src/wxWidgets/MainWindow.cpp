@@ -1,5 +1,5 @@
 #include "MainWindow.hpp"
-#include "ultra64.hpp"
+#include "wxUltra64.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <filesystem>

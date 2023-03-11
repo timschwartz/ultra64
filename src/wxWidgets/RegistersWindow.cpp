@@ -1,5 +1,5 @@
 #include "RegistersWindow.hpp"
-#include "ultra64.hpp"
+#include "wxUltra64.hpp"
 
 DECLARE_APP(wxUltra64)
 

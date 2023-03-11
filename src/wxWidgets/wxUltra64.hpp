@@ -2,7 +2,7 @@
 
 #include <wx/wx.h>
 #include <json/json.h>
-#include "n64/N64.hpp"
+#include "../n64/N64.hpp"
 #include "MainWindow.hpp"
 #include "RegistersWindow.hpp"
 #include "DebuggerWindow.hpp"

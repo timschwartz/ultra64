@@ -26,6 +26,7 @@ autom4te.cache
 /config.status
 /config.sub
 /configure
+/configure~
 /configure.scan
 /depcomp
 /install-sh
@@ -61,7 +62,8 @@ Makefile
 config.h
 .dirstamp
 *.o
-src/ultra64
+*.a
+src/wxWidgets/ultra64
 
 *.bin
 *.BIN

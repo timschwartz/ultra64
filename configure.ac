@@ -1,6 +1,6 @@
 AC_PREREQ([2.69])
 AC_INIT([ultra64], [0.2], [tim@metaverse.systems])
-AC_CONFIG_SRCDIR([src/ultra64.cpp])
+AC_CONFIG_SRCDIR([src/wxWidgets/wxUltra64.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 AC_CONFIG_MACRO_DIR([m4])
@@ -10,7 +10,9 @@ AM_INIT_AUTOMAKE([subdir-objects])
 # Checks for programs.
 # CXXFLAGS="$CXXFLAGS -g3 -O0"
 
+AC_PROG_CC
 AC_PROG_CXX
+AC_PROG_RANLIB
 
 AC_CHECK_PROGS([DOXYGEN], [doxygen])
 if test -z "$DOXYGEN";
@@ -49,5 +51,7 @@ PKG_CHECK_MODULES([JSONCPP], jsoncpp)
 # Checks for library functions.
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/Makefile
+                 src/n64/Makefile
+                 src/wxWidgets/Makefile])
 AC_OUTPUT

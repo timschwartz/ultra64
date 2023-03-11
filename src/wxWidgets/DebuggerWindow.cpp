@@ -1,6 +1,6 @@
 #include "DebuggerWindow.hpp"
-#include "ultra64.hpp"
-#include "n64/instruction.hpp"
+#include "wxUltra64.hpp"
+#include "../n64/instruction.hpp"
 
 wxBEGIN_EVENT_TABLE(DebuggerWindow, wxFrame)
     EVT_BUTTON(BUTTON_cpu_step, DebuggerWindow::OnCPUStep)

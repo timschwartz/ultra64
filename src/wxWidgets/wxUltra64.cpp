@@ -1,13 +1,13 @@
-#include "ultra64.hpp"
-#include "n64/N64.hpp"
-#include "n64/PIFrom.hpp"
-#include "n64/vr4300/vr4300.hpp"
-#include "n64/rcp/RSP.hpp"
+#include "wxUltra64.hpp"
+#include "../n64/N64.hpp"
+#include "../n64/PIFrom.hpp"
+#include "../n64/vr4300/vr4300.hpp"
+#include "../n64/rcp/RSP.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include "CRC.h"
+#include "../n64/CRC.h"
 
 const std::string config_path = ".config/ultra64";
 
