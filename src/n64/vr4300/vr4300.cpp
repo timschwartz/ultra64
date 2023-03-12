@@ -6,8 +6,6 @@
 #include <sstream>
 #include <iostream>
 
-using namespace ultra64;
-
 vr4300::vr4300()
 {
     for(int i = 0; i < 0x40; i++)
@@ -57,37 +55,33 @@ vr4300::vr4300()
 
 void vr4300::set_n64(void *n64)
 {
-    this->n64 = (ultra64::N64 *)n64;
+    this->n64 = (N64 *)n64;
 }
 
-void vr4300::load_state(Json::Value state)
+void vr4300::load_state(nlohmann::json state)
 {
-    std::vector<std::string> indices;
-
-    indices = state["CP0"].getMemberNames();
-    for(auto &index : indices)
+    for(auto &el : state["CP0"].items())
     {
-        uint8_t i = std::strtol(index.c_str(), nullptr, 10);
-        uint64_t value = std::strtol(state["CP0"][index].asString().c_str(), nullptr, 16);
+        uint8_t i = std::strtol(el.key().c_str(), nullptr, 10);
+        uint64_t value = std::strtol(el.value().dump().c_str(), nullptr, 16);
         this->CP0[i] = value;
     }
 
-    indices = state["GPR"].getMemberNames();
-    for(auto &index : indices)
+    for(auto &el : state["CPR"].items())
     {
-        uint8_t i = std::strtol(index.c_str(), nullptr, 10);
-        uint64_t value = std::strtol(state["GPR"][index].asString().c_str(), nullptr, 16);
+        uint8_t i = std::strtol(el.key().c_str(), nullptr, 10);
+        uint64_t value = std::strtol(el.value().dump().c_str(), nullptr, 16);
         this->GPR[i] = value;
     }
 
-    this->PC = std::strtol(state["PC"].asString().c_str(), nullptr, 16);
-    this->HI = std::strtol(state["HI"].asString().c_str(), nullptr, 16);
-    this->LO = std::strtol(state["LO"].asString().c_str(), nullptr, 16);
+    this->PC = std::strtol(state["PC"].dump().c_str(), nullptr, 16);
+    this->HI = std::strtol(state["HI"].dump().c_str(), nullptr, 16);
+    this->LO = std::strtol(state["LO"].dump().c_str(), nullptr, 16);
 }
 
-Json::Value vr4300::save_state()
+nlohmann::json vr4300::save_state()
 {
-    Json::Value state;
+    nlohmann::json state;
     std::string index;
     std::stringstream value;
 
@@ -127,7 +121,7 @@ Json::Value vr4300::save_state()
 
 void vr4300::step()
 {
-    this->current_instruction = this->n64->mmu->read_word(this->PC);
+    this->current_instruction = this->n64->mmu.read_word(this->PC);
     opcode_i_type icode(this->current_instruction);
     instruction i(this->current_instruction);
     std::cout << std::dec << this->CP0[9] << " - " << std::hex << this->PC << ": " << i.to_string() << std::endl;
@@ -298,7 +292,7 @@ void vr4300::lw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
     uint32_t address = cpu->GPR[op.rs] | op.immediate;
-    cpu->GPR[op.rt] = cpu->n64->mmu->read_word(address);
+    cpu->GPR[op.rt] = cpu->n64->mmu.read_word(address);
     std::cout << "    Read 0x" << std::hex << cpu->GPR[op.rt] << " from 0x" << address << std::endl;
     cpu->PC += 4;
 }
@@ -306,7 +300,7 @@ void vr4300::lw(vr4300 *cpu)
 void vr4300::sw(vr4300 *cpu)
 {
     opcode_i_type op(cpu->current_instruction);
-    cpu->n64->mmu->write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
+    cpu->n64->mmu.write_word(cpu->GPR[op.rs] + (int16_t)op.immediate, (cpu->GPR[op.rt] & 0xFFFFFFFF));
     std::cout << "    Wrote 0x" << std::hex << (cpu->GPR[op.rt] & 0xFFFFFFFF) << " to 0x" << (cpu->GPR[op.rs] + (int16_t)op.immediate) << std::endl;
     cpu->PC += 4;
 }

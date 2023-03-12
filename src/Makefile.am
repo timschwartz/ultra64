@@ -1,7 +1,8 @@
-noinst_LIBRARIES = libultra64.a
+noinst_LTLIBRARIES = libultra64.la
 
-libultra64_a_SOURCES = ultra64.cpp
-libultra64_a_CXXFLAGS = -std=c++17 -Wall -Werror 
+libultra64_la_SOURCES = ultra64.cpp
+libultra64_la_CXXFLAGS = -std=c++17 -Wall -Werror 
+libultra64_la_LIBADD = n64/libn64.la
 
-SUBDIRS = . cli
-# SUBDIRS = n64 wxWidgets
+SUBDIRS = n64 . cli
+# SUBDIRS = wxWidgets

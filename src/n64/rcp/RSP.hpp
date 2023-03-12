@@ -10,18 +10,15 @@ const uint32_t  SP_STATUS_HALT = 0x00000001;
 /** RSP broke */
 const uint32_t  SP_STATUS_BROKE	= 0x00000002;
 
-namespace ultra64
-{
-    class N64;
+class N64;
 
-    class RSP
-    {
-      public:
-        RSP();
-        ~RSP();
-        void set_n64(void *n64);
-        void step();
-      private:
-        N64 *n64 = nullptr;
-    };
-}
+class RSP
+{
+  public:
+    RSP();
+    ~RSP();
+    void set_n64(void *n64);
+    void step();
+  private:
+    N64 *n64 = nullptr;
+};

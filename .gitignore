@@ -12,6 +12,7 @@ Makefile.in
 /test-driver
 /ylwrap
 .deps/
+libtool
 
 # http://www.gnu.org/software/autoconf
 
@@ -22,6 +23,7 @@ autom4te.cache
 /compile
 /config.guess
 /config.h.in
+/config.h.in~
 /config.log
 /config.status
 /config.sub
@@ -63,6 +65,8 @@ config.h
 .dirstamp
 *.o
 *.a
+*.la
+*.lo
 src/wxWidgets/ultra64
 src/cli/ultra64-cli
 
