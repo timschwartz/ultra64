@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: wxwidgets
       run: sudo apt-get install libwxgtk3.0-gtk3-dev libwxgtk-media3.0-gtk3-dev
     - name: autogen
