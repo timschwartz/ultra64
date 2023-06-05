@@ -58,6 +58,12 @@ void ultra64::option_set(std::string opt, std::string value)
     this->config[opt] = value;
 }
 
+std::string ultra64::option_get(std::string opt)
+{
+    if(this->config[opt] == nullptr) return std::string("");
+    return this->config[opt];
+}
+
 bool ultra64::is_valid_option(std::string opt)
 {
     return std::any_of(
@@ -137,3 +143,24 @@ void ultra64::map_memory(std::string name, uint32_t addr, uint32_t size, uint32_
     this->n64.mmu.memory_register(name, s);
 }
 
+nlohmann::json ultra64::state_save()
+{
+    nlohmann::json state;
+    state["cpu"] = this->n64.cpu.save_state();
+    return state;
+}
+
+void ultra64::state_load(nlohmann::json state)
+{
+    this->n64.cpu.load_state(state["cpu"]);
+}
+
+void ultra64::step()
+{
+    this->n64.cpu.step();
+}
+
+uint32_t ultra64::read_word_raw(uint32_t addr)
+{
+    return this->n64.mmu.read_word_raw(addr);
+}

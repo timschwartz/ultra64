@@ -29,11 +29,17 @@ class ultra64
     void config_save();
     std::string config_get();
     void option_set(std::string opt, std::string value);
+    std::string option_get(std::string opt);
     bool is_valid_option(std::string opt);
     bool has_args(std::string opt);
+    nlohmann::json state_save();
+    void state_load(nlohmann::json state);
 
     void n64_reset();
+    void step();
     void map_memory(std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr,
                 void (*write_handler)(memory_section s, uint64_t value),
                 void (*read_handler)(memory_section s, uint64_t value));
+
+    uint32_t read_word_raw(uint32_t addr);
 };
