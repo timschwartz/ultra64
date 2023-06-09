@@ -64,7 +64,12 @@ void start(std::string filename)
 
     std::cout << wxGetApp().config_get() << std::endl;
 
-    wxGetApp().n64_reset();
+    try {
+        wxGetApp().n64_reset();
+    } catch(std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return;
+    }
 
 #if 0
     std::stringstream ss;
