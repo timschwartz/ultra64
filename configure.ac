@@ -12,7 +12,7 @@ AM_INIT_AUTOMAKE([subdir-objects])
 
 AC_PROG_CC
 AC_PROG_CXX
-AC_PROG_RANLIB
+LT_INIT
 
 AC_CHECK_PROGS([DOXYGEN], [doxygen])
 if test -z "$DOXYGEN";
@@ -37,12 +37,12 @@ if test "$wxWin" != 1; then
                 ])
 fi
 
-CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
-CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
-LIBS="$LIBS $WX_LIBS"
+# CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
+# CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
+# CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
+# LIBS="$LIBS $WX_LIBS"
 
-PKG_CHECK_MODULES([JSONCPP], jsoncpp)
+# PKG_CHECK_MODULES([JSONCPP], jsoncpp)
 
 # Checks for header files.
 
@@ -53,5 +53,6 @@ PKG_CHECK_MODULES([JSONCPP], jsoncpp)
 AC_CONFIG_FILES([Makefile
                  src/Makefile
                  src/n64/Makefile
+                 src/cli/Makefile
                  src/wxWidgets/Makefile])
 AC_OUTPUT

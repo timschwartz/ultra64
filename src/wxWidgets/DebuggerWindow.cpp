@@ -70,8 +70,6 @@ void DebuggerWindow::OnResize(wxSizeEvent &event)
 
 void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
 {
-    ultra64::N64 *n64 = wxGetApp().n64;
-
     wxString contents = this->cpu_steps_count->GetValue();
     uint32_t steps = wxAtoi(contents), count = 0;
 
@@ -84,7 +82,7 @@ void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
     {
         try
         {
-            n64->cpu.step();
+            wxGetApp().step();
         }
         catch(std::string e)
         {
@@ -93,22 +91,24 @@ void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
         count++;
     }
 
-    sprintf(message, "0x%.4X %.4X", n64->cpu.PC >> 16, n64->cpu.PC & 0xFFFF);
+    nlohmann::json state = wxGetApp().state_save();
+    uint32_t PC = state["cpu"]["PC"];
+    sprintf(message, "0x%.4X %.4X", PC >> 16, PC & 0xFFFF);
     debugger_pc->Clear();
     debugger_pc->AppendText(message);
 
-    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
+//    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
 }
 
 void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
 {
-    ultra64::N64 *n64 = wxGetApp().n64;
-
     char message[1024];
     std::string msg;
     uint32_t value, addr = start_addr;
 
-    sprintf(message, "0x%.4X %.4X", n64->cpu.PC >> 16, n64->cpu.PC & 0xFFFF);
+    nlohmann::json state = wxGetApp().state_save();
+    uint32_t PC = state["cpu"]["PC"];
+    sprintf(message, "0x%.4X %.4X", PC >> 16, PC & 0xFFFF);
     this->debugger_pc->Clear();
     this->debugger_pc->AppendText(message);
 
@@ -117,10 +117,10 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
     {
         try
         {
-            value = n64->mmu->read_word_raw(addr);
+            value = wxGetApp().read_word_raw(addr);
             sprintf(message, "%.4X %.4X   %.2X %.2X %.2X %.2X   ", (addr >> 16), (addr & 0xFFFF), 
                    value >> 24, (value >> 16) & 0xFF, (value >> 8) & 0xFF, value & 0xFF);
-            ultra64::instruction i(value);
+            instruction i(value);
             msg = message + i.to_string();
 
             // Pad with whitespace

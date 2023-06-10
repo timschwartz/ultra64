@@ -1,8 +1,6 @@
 #include "vr4300.hpp"
 #include "../opcodes.hpp"
 
-using namespace ultra64;
-
 void vr4300::special(vr4300 *cpu)
 {
     opcode_special_type op(cpu->current_instruction);

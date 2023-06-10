@@ -1,7 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
-#include <json/json.h>
+#include "../ultra64.hpp"
 #include "../n64/N64.hpp"
 #include "MainWindow.hpp"
 #include "RegistersWindow.hpp"
@@ -12,18 +12,13 @@ const int ID_REGISTERS_LISTBOX = 101;
 const int ID_CPU_STEP_COUNT = 102;
 const int ID_DEBUGGER_PC = 103;
 
-class wxUltra64 : public wxApp
+class wxUltra64 : public wxApp, public ultra64
 {
   public:
     virtual bool OnInit();
     MainWindow *frame = nullptr;
     RegistersWindow *registers = nullptr;
     DebuggerWindow *debugger = nullptr;
-    ultra64::N64 *n64 = nullptr;
-    Json::Value config;
-    std::string config_path = ".config/ultra64";
-    Json::Value load_config();
-    void save_config();
 };
 
 enum
@@ -41,5 +36,5 @@ enum
     BUTTON_cpu_step = 20,
 };
 
-std::vector<std::string> render_registers(ultra64::N64 *n64);
+std::vector<std::string> render_registers(N64 *n64);
 void start(std::string filename);
