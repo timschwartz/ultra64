@@ -64,6 +64,7 @@ void vr4300::load_state(nlohmann::json state)
     {
         uint8_t i = std::strtol(el.key().c_str(), nullptr, 10);
         uint64_t value = std::strtol(el.value().dump().c_str(), nullptr, 16);
+        value = el.value().get<uint64_t>();
         this->CP0[i] = value;
     }
 
@@ -85,35 +86,17 @@ nlohmann::json vr4300::save_state()
     std::string index;
     std::stringstream value;
 
-    value << std::hex << this->PC;
-    state["PC"] = value.str();
-    value.clear();
-    value.str("");
-
-    value << std::hex << this->HI;
-    state["HI"] = value.str();
-    value.clear();
-    value.str("");
-
-    value << std::hex << this->LO;
-    state["LO"] = value.str();
-    value.clear();
-    value.str("");
+    state["PC"] = this->PC; 
+    state["HI"] = this->HI;
+    state["LO"] = this->LO;
 
     for(uint8_t i = 0; i < 32; i++)
     {
         index = std::to_string(i);
         if(index.size() == 1) index = "0" + index;
 
-        value << std::hex << this->GPR[i];
-        state["GPR"][index] = value.str();
-        value.clear();
-        value.str("");
-
-        value << std::hex << this->CP0[i];
-        state["CP0"][index] = value.str();
-        value.clear();
-        value.str("");
+        state["GPR"][index] = this->GPR[i];
+        state["CP0"][index] = this->CP0[i];
     }
 
     return state;

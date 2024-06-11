@@ -1,5 +1,6 @@
 #include <fstream>
-#include "PIFrom.hpp" 
+#include <cstdint>
+#include "PIFrom.hpp"
 #include <iostream>
 
 PIFrom::PIFrom(std::string filename)

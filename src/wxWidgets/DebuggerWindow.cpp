@@ -107,7 +107,8 @@ void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)
     uint32_t value, addr = start_addr;
 
     nlohmann::json state = wxGetApp().state_save();
-    uint32_t PC = state["cpu"]["PC"];
+    std::cout << std::hex << state << std::endl;
+    uint32_t PC = state["cpu"]["PC"].get<uint32_t>();
     sprintf(message, "0x%.4X %.4X", PC >> 16, PC & 0xFFFF);
     this->debugger_pc->Clear();
     this->debugger_pc->AppendText(message);

@@ -95,17 +95,21 @@ void open_debugger()
 {
     if(!wxGetApp().debugger) 
     {
+        std::cout << "Creating debugger window" << std::endl;
         wxGetApp().debugger = new DebuggerWindow(wxGetApp().frame, 
                               "Ultra 64 Debugger", wxPoint(150, 50), wxSize(1000, 480));
+        std::cout << "Created" << std::endl;
     }
 
     wxGetApp().debugger->Layout();
+    std::cout << "Layout()" << std::endl;
 }
 
 void MainWindow::OnDebugPIFROM(wxCommandEvent& event)
 {
     open_debugger();
     wxGetApp().debugger->view(0x1FC00000, 0x1FC007BF);
+    std::cout << "viewing" << std::endl;
 }
 
 void MainWindow::OnDebugROM(wxCommandEvent& event)
@@ -130,6 +134,8 @@ void MainWindow::OnDebugRegisters(wxCommandEvent &event)
 void MainWindow::OnSaveState(wxCommandEvent &event)
 {
     nlohmann::json state = wxGetApp().state_save();
+    std::ofstream state_file("./mario64.save");
+    state_file << state;
     std::cout << state << std::endl;
 }
 

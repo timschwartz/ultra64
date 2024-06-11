@@ -84,6 +84,7 @@ bool ultra64::has_args(std::string opt)
 
 void ultra64::n64_reset()
 {
+    std::cout << "Loading " << this->config["rom"] << std::endl;
     this->rom.open(this->config["rom"]);
 
     this->map_memory("rom", 0x10000000, this->rom.size(), 0x0FBFFFFF, new std::byte[this->rom.size()], nullptr, nullptr);
@@ -101,7 +102,12 @@ void ultra64::n64_reset()
     this->map_memory("si_registers", 0x04800000, 0x1C, 0x1C, new std::byte[0x1C], nullptr, &MMU::generic_read_logger);
     this->map_memory("dd_ipl_rom", 0x06000000, 0x400000, 0x400000, new std::byte[0x400000], nullptr, nullptr);
 
-    PIFrom pifrom(this->config["pif-rom"]);
+    std::cout << "Setup memory map" << std::endl;
+
+    std::string pif_file = this->config["pif_rom_path"].get<std::string>() + "/" + this->config["pif_rom"].get<std::string>();
+
+    std::cout << "Loading " << pif_file << std::endl;
+    PIFrom pifrom(pif_file);
     uint32_t *p = (uint32_t *)pifrom.get_pointer();
     for(size_t count = 0; count < 0x7C0; count +=4)
     {
@@ -118,12 +124,14 @@ void ultra64::n64_reset()
     this->n64.mmu.write_word_raw(SP_STATUS_REG, SP_STATUS_HALT);
     this->n64.mmu.write_word_raw(SP_DMA_BUSY_REG, 0x0);
 
+/*
     try {
         for(;;) this->n64.cpu.step();
     } catch(std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
         return;
     }
+*/
 }
 
 void ultra64::map_memory(std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr,

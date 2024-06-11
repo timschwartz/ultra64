@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdint>
 
 class opcode_i_type
 {
