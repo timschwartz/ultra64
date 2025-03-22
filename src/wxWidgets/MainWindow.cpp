@@ -1,5 +1,6 @@
 #include "MainWindow.hpp"
 #include "wxUltra64.hpp"
+#include "JoystickConfigDialog.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <filesystem>
@@ -14,6 +15,7 @@ wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
     EVT_MENU(ID_debug_pif_rom, MainWindow::OnDebugPIFROM)
     EVT_MENU(ID_debug_rom, MainWindow::OnDebugROM)
     EVT_MENU(ID_debug_registers, MainWindow::OnDebugRegisters)
+    EVT_MENU(ID_joystick_dialog, MainWindow::OnJoystickConfigDialog)
     EVT_PAINT(MainWindow::OnPaint)
 wxEND_EVENT_TABLE()
 
@@ -36,10 +38,14 @@ MainWindow::MainWindow(const wxString& title, const wxPoint& pos, const wxSize& 
     menuDebug->Append(ID_debug_rom, "View &ROM", "");
     menuDebug->Append(ID_debug_registers, "View R&egisters", "");
 
+    wxMenu *menuJoystick = new wxMenu;
+    menuJoystick->Append(ID_joystick_dialog, "Joystick Configuration", "");
+
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
     menuBar->Append(menuState, "&State");
     menuBar->Append(menuDebug, "&Debug");
+    menuBar->Append(menuJoystick, "&Joystick");
     SetMenuBar(menuBar);
 
     CreateStatusBar(1);
@@ -89,6 +95,12 @@ void MainWindow::OnOpenROM(wxCommandEvent& event)
     std::cout << "Opening " << rom << std::endl;
 
     start(rom);
+}
+
+void MainWindow::OnJoystickConfigDialog(wxCommandEvent& event)
+{
+    JoystickConfigDialog dialog(this, wxID_ANY, "Joystick Configuration", wxDefaultPosition, wxSize(600, 350), 0);
+    dialog.ShowModal();
 }
 
 void open_debugger()

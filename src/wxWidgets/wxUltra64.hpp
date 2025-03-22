@@ -33,7 +33,9 @@ enum
     ID_debug_rom = 11,
     ID_debug_registers = 12,
 
-    BUTTON_cpu_step = 20,
+    ID_joystick_dialog = 20,
+
+    BUTTON_cpu_step = 30,
 };
 
 std::vector<std::string> render_registers(N64 *n64);

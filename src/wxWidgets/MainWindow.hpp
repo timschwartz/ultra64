@@ -20,5 +20,7 @@ class MainWindow: public wxFrame
     void OnDebugROM(wxCommandEvent &event);
     void OnDebugRegisters(wxCommandEvent &event);
 
+    void OnJoystickConfigDialog(wxCommandEvent &event);
+
     wxDECLARE_EVENT_TABLE();
 };

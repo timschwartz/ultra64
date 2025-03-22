@@ -15,7 +15,7 @@ wxIMPLEMENT_APP(wxUltra64);
 
 bool wxUltra64::OnInit()
 {
-    this->frame = new MainWindow("Ultra64", wxPoint(20, 20), wxSize(320, 240));
+    this->frame = new MainWindow("Ultra64", wxPoint(20, 20), wxSize(640, 480));
     this->frame->Show(true);
 
     std::string argv1;
