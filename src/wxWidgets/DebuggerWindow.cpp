@@ -97,7 +97,7 @@ void DebuggerWindow::OnCPUStep(wxCommandEvent& event)
     debugger_pc->Clear();
     debugger_pc->AppendText(message);
 
-//    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
+    if(wxGetApp().registers != NULL) wxGetApp().registers->UpdateRegisters(wxGetApp().render_vr4300_registers());
 }
 
 void DebuggerWindow::view(uint32_t start_addr, uint32_t end_addr)

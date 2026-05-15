@@ -90,5 +90,6 @@ void JoystickConfigDialog::OnJoystickEvent(wxJoystickEvent &event)
 
 void JoystickConfigDialog::OnTimer(wxTimerEvent &event)
 {
+    std::cout << "JoystickConfigDialog::OnTimer" << std::endl;
     ListJoysticks();
 }

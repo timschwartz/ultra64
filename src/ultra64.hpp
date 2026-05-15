@@ -42,4 +42,6 @@ class ultra64
                 void (*read_handler)(memory_section s, uint64_t value));
 
     uint32_t read_word_raw(uint32_t addr);
+
+    std::vector<std::string> render_vr4300_registers();
 };

@@ -56,6 +56,8 @@ class vr4300
     uint32_t PC, HI, LO;
     uint64_t GPR[32] = { 0 };
     uint64_t CP0[32] = { 0 };
+
+    std::vector<std::string> render_registers();
   private:
     void (*opcode[0x40])(vr4300 *);
     void (*opcode_cp0[0x40])(vr4300 *);

@@ -102,6 +102,30 @@ nlohmann::json vr4300::save_state()
     return state;
 }
 
+std::vector<std::string> vr4300::render_registers()
+{
+    std::vector<std::string> data;
+    char temp[1024];
+
+    uint32_t count = 0;
+    while(count < 32)
+    {
+        sprintf(temp, "GPR[%.2d]=0x%.16lX  GPR[%.2d]=0x%.16lX  CP0[%.2d]=0x%.16lX  CP0[%.2d]=0x%.16lX",
+                count, this->GPR[count], count + 1, this->GPR[count + 1],
+                count, this->CP0[count], count + 1, this->CP0[count + 1]);
+        data.push_back(temp);
+        count += 2;
+    }
+
+    sprintf(temp, "HI=0x%.4x  LO=0x%.4x", this->HI, this->LO);
+    data.push_back(temp);
+
+    sprintf(temp, "PC = 0x%.8X", this->PC);
+    data.push_back(temp);
+
+    return data;
+}
+
 void vr4300::step()
 {
     this->current_instruction = this->n64->mmu.read_word(this->PC);

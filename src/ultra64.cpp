@@ -172,3 +172,8 @@ uint32_t ultra64::read_word_raw(uint32_t addr)
 {
     return this->n64.mmu.read_word_raw(addr);
 }
+
+std::vector<std::string> ultra64::render_vr4300_registers()
+{
+    return this->n64.cpu.render_registers();
+}
