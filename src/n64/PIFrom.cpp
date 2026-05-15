@@ -1,8 +1,7 @@
 #include <fstream>
-#include "PIFrom.hpp" 
+#include <cstdint>
+#include "PIFrom.hpp"
 #include <iostream>
-
-using namespace ultra64;
 
 PIFrom::PIFrom(std::string filename)
 {
@@ -34,7 +33,7 @@ PIFrom::PIFrom(std::string filename)
     }
 }
 
-std::byte *PIFrom::get_pointer()
+const std::byte *PIFrom::get_pointer()
 {
     return data;
 }

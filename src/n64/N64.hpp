@@ -1,26 +1,22 @@
 #pragma once
 
-#include "MMU.hpp"
 #include "vr4300/vr4300.hpp"
 #include "rcp/RSP.hpp"
-#include "ROM.hpp"
 
-namespace ultra64 
+class MMU;
+class ROM;
+class RSP;
+
+class N64
 {
-    class ROM;
-    class N64
+  public:
+    N64()
     {
-        public:
-          N64()
-          {
-              this->mmu = new MMU();
-              this->cpu.set_n64(this);
-              this->rsp.set_n64(this);
-          };
-          MMU *mmu;
-          vr4300 cpu;
-          RSP rsp;
-          ROM *rom;
-          void load_pif_rom(std::string filepath);
+        this->cpu.set_n64(this);
+        this->rsp.set_n64(this);
     };
-}
+    MMU mmu;
+    vr4300 cpu;
+    RSP rsp;
+    void pif_rom_load(std::string filepath);
+};

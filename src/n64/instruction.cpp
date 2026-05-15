@@ -4,8 +4,6 @@
 #include <sstream>
 #include <iostream>
 
-using namespace ultra64;
-
 auto const upper = std::uppercase;
 
 instruction::instruction(uint32_t i)

@@ -3,23 +3,11 @@
 
 #include <iostream>
 
-using namespace ultra64;
-
-void rom_write(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    ROM: Wrote " << std::hex << value << " to " << s.addr << std::endl;
-}
-
-void rom_read(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    ROM: Read " << std::hex << value << " from " << s.addr << std::endl;
-}
-
 ROM::ROM()
 {
 }
 
-void ROM::Open(N64 *n64, std::string filename)
+void ROM::open(std::string filename)
 {
     this->filename = filename;
 
@@ -59,24 +47,6 @@ void ROM::Open(N64 *n64, std::string filename)
 
     std::cout << "Game name: " << this->header->name << std::endl;
     std::cout << "PC: 0x" << std::hex << this->header->pc << std::endl;
-
-    ultra64::map_memory(n64->mmu, "rom", 0x10000000, this->filesize, 0x0FBFFFFF, new std::byte[this->filesize], nullptr, nullptr);
-    
-    uint32_t count = 0;
-    uint32_t *v = (uint32_t *)this->data;
-    while(count < this->filesize)
-    {
-        n64->mmu->write_word_raw(0x10000000 + count, *v);
-        v++;
-        count += 4;
-    }    
-
-    for(auto &[name, section] : n64->mmu->memory)
-    {
-        if(name != "rom") continue;
-        section.write_handler = &rom_write;
-        section.read_handler = &rom_read;
-    }
 }
 
 void ROM::byte_swap()
@@ -96,7 +66,12 @@ const size_t ROM::size()
     return this->filesize;
 }
 
-std::byte *ROM::get_pointer()
+const std::byte *ROM::get_pointer()
 {
     return this->data;
+}
+
+const uint32_t ROM::crc()
+{
+    return CRC::Calculate((this->data + 0x40), 0xFC0, CRC::CRC_32());
 }

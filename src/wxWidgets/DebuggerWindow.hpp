@@ -1,5 +1,6 @@
 #pragma once
 #include <wx/wx.h>
+#include <cstdint>
 
 class DebuggerWindow: public wxFrame
 {

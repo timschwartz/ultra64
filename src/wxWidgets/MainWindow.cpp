@@ -1,10 +1,10 @@
 #include "MainWindow.hpp"
 #include "wxUltra64.hpp"
+#include "JoystickConfigDialog.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
-#include <json/json.h>
 
 wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
     EVT_MENU(wxID_EXIT,  MainWindow::OnExit)
@@ -15,6 +15,7 @@ wxBEGIN_EVENT_TABLE(MainWindow, wxFrame)
     EVT_MENU(ID_debug_pif_rom, MainWindow::OnDebugPIFROM)
     EVT_MENU(ID_debug_rom, MainWindow::OnDebugROM)
     EVT_MENU(ID_debug_registers, MainWindow::OnDebugRegisters)
+    EVT_MENU(ID_joystick_dialog, MainWindow::OnJoystickConfigDialog)
     EVT_PAINT(MainWindow::OnPaint)
 wxEND_EVENT_TABLE()
 
@@ -37,10 +38,14 @@ MainWindow::MainWindow(const wxString& title, const wxPoint& pos, const wxSize& 
     menuDebug->Append(ID_debug_rom, "View &ROM", "");
     menuDebug->Append(ID_debug_registers, "View R&egisters", "");
 
+    wxMenu *menuJoystick = new wxMenu;
+    menuJoystick->Append(ID_joystick_dialog, "Joystick Configuration", "");
+
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
     menuBar->Append(menuState, "&State");
     menuBar->Append(menuDebug, "&Debug");
+    menuBar->Append(menuJoystick, "&Joystick");
     SetMenuBar(menuBar);
 
     CreateStatusBar(1);
@@ -58,7 +63,7 @@ void MainWindow::OnExit(wxCommandEvent& event)
 
 void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
 {
-    std::string pif_path = wxGetApp().config["pif_rom_path"].asString();
+    std::string pif_path = wxGetApp().option_get("pif_rom_path");
 
     wxFileDialog rom_dialog(this, _("Open PIF ROM file"), pif_path, "",
                                 "ROM files (*.bin)|*.bin|All files (*.*)|*.*",
@@ -68,13 +73,13 @@ void MainWindow::OnSelectPIFROM(wxCommandEvent& event)
 
     std::string filename = rom_dialog.GetFilename().ToStdString();
     if(!filename.size()) return;
-    wxGetApp().config["pif_rom"] = filename;
-    wxGetApp().save_config();
+    wxGetApp().option_set("pif_rom", filename);
+    wxGetApp().config_save();
 }
 
 void MainWindow::OnOpenROM(wxCommandEvent& event)
 {
-    std::string rom_path = wxGetApp().config["rom_path"].asString();
+    std::string rom_path = wxGetApp().option_get("rom_path");
 
     wxFileDialog rom_dialog(this, _("Open N64 ROM file"), rom_path, "",
                                 "N64 ROM files (*.n64;*.v64;*.z64;*.bin)|*.n64;*.v64;*.bin|All files (*.*)|*.*",
@@ -83,8 +88,8 @@ void MainWindow::OnOpenROM(wxCommandEvent& event)
     if(wxID_CANCEL == rom_dialog.ShowModal()) return;
 
     std::string directory = rom_dialog.GetDirectory().ToStdString();
-    wxGetApp().config["rom_path"] = directory;
-    wxGetApp().save_config();
+    wxGetApp().option_set("rom_path", directory);
+    wxGetApp().config_save();
 
     std::string rom = rom_dialog.GetPath().ToStdString();
     std::cout << "Opening " << rom << std::endl;
@@ -92,21 +97,31 @@ void MainWindow::OnOpenROM(wxCommandEvent& event)
     start(rom);
 }
 
+void MainWindow::OnJoystickConfigDialog(wxCommandEvent& event)
+{
+    JoystickConfigDialog dialog(this, wxID_ANY, "Joystick Configuration", wxDefaultPosition, wxSize(600, 350), 0);
+    dialog.ShowModal();
+}
+
 void open_debugger()
 {
     if(!wxGetApp().debugger) 
     {
+        std::cout << "Creating debugger window" << std::endl;
         wxGetApp().debugger = new DebuggerWindow(wxGetApp().frame, 
                               "Ultra 64 Debugger", wxPoint(150, 50), wxSize(1000, 480));
+        std::cout << "Created" << std::endl;
     }
 
     wxGetApp().debugger->Layout();
+    std::cout << "Layout()" << std::endl;
 }
 
 void MainWindow::OnDebugPIFROM(wxCommandEvent& event)
 {
     open_debugger();
     wxGetApp().debugger->view(0x1FC00000, 0x1FC007BF);
+    std::cout << "viewing" << std::endl;
 }
 
 void MainWindow::OnDebugROM(wxCommandEvent& event)
@@ -125,21 +140,23 @@ void MainWindow::OnDebugRegisters(wxCommandEvent &event)
     wxGetApp().registers->SetBackgroundColour(wxColour(*wxWHITE));
     wxGetApp().registers->Show(true);
 
-    wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
+//     wxGetApp().registers->UpdateRegisters(render_registers(wxGetApp().n64));
 }
 
 void MainWindow::OnSaveState(wxCommandEvent &event)
 {
-    Json::Value state = wxGetApp().n64->cpu.save_state();
+    nlohmann::json state = wxGetApp().state_save();
+    std::ofstream state_file("./mario64.save");
+    state_file << state;
     std::cout << state << std::endl;
 }
 
 void MainWindow::OnLoadState(wxCommandEvent &event)
 {
-    Json::Value state;
+    nlohmann::json state;
 
     std::ifstream state_file("./mario64.save");
     state_file >> state;
 
-    wxGetApp().n64->cpu.load_state(state);
+    wxGetApp().state_load(state);
 }

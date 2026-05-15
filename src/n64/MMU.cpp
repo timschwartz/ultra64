@@ -4,9 +4,17 @@
 #include <sstream>
 #include <cstring>
 
-using namespace ultra64;
+void MMU::generic_write_logger(memory_section s, uint64_t value)
+{
+    std::cout << "     Wrote " << std::hex << value << " to " << s.addr << std::endl;
+}
 
-void sp_register_write(MMU *mmu, memory_section s, uint64_t value)
+void MMU::generic_read_logger(memory_section s, uint64_t value)
+{
+    std::cout << "     Read " << std::hex << value << " from " << s.addr << std::endl;
+}
+
+void sp_register_write(memory_section s, uint64_t value)
 {
     switch(s.addr)
     {
@@ -23,7 +31,7 @@ void sp_register_write(MMU *mmu, memory_section s, uint64_t value)
     }
 }
 
-void sp_register_read(MMU *mmu, memory_section s, uint64_t value)
+void sp_register_read(memory_section s, uint64_t value)
 {
     switch(s.addr)
     {
@@ -44,12 +52,7 @@ void sp_register_read(MMU *mmu, memory_section s, uint64_t value)
     }
 }
 
-void pi_register_write(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    pi_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
-}
-
-void si_register_write(MMU *mmu, memory_section s, uint64_t value)
+void si_register_write(memory_section s, uint64_t value)
 {
     switch(s.addr)
     {
@@ -67,7 +70,7 @@ void si_register_write(MMU *mmu, memory_section s, uint64_t value)
     }
 }
 
-void si_register_read(MMU *mmu, memory_section s, uint64_t value)
+void si_register_read(memory_section s, uint64_t value)
 {
     switch(s.addr)
     {
@@ -85,55 +88,8 @@ void si_register_read(MMU *mmu, memory_section s, uint64_t value)
     }
 }
 
-void pif_ram_write(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    pif_ram_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
-}
-
-void dp_register_write(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    dp_register_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
-}
-
-void dp_register_read(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    dp_register_read(): Read " << std::hex << value << " from " << s.addr << std::endl;
-}
-
-void sp_dmem_write(MMU *mmu, memory_section s, uint64_t value)
-{
-    std::cout << "    sp_dmem_write(): Wrote " << std::hex << value << " to " << s.addr << std::endl;
-}
-
-void ultra64::map_memory(MMU *mmu, std::string name, uint32_t addr, uint32_t size, uint32_t max_size, std::byte *ptr, 
-                void (*write_handler)(MMU *mmu, memory_section s, uint64_t value),
-                void (*read_handler)(MMU *mmu, memory_section s, uint64_t value))
-{
-    memory_section s;
-
-    s.offset = addr;
-    s.size = size;
-    s.max_size = max_size;
-    s.ptr = ptr;
-    s.write_handler = write_handler;
-    s.read_handler = read_handler;
-    memset(s.ptr, 0, s.size);
-
-    mmu->register_memory(name, s);
-}
-
 MMU::MMU()
 {
-    map_memory(this, "pif_ram", 0x1FC007C0, 0x40, 0x40, new std::byte[0x40], &pif_ram_write, nullptr);
-    map_memory(this, "sp_dmem", 0x04000000, 0x1000, 0x1000, new std::byte[0x1000], &sp_dmem_write, nullptr);
-    map_memory(this, "sp_imem", 0x04001000, 0x1000, 0x1000, new std::byte[0x1000], nullptr, nullptr);
-    map_memory(this, "sp_registers", 0x04040000, 0x20, 0x20, new std::byte[0x20], &sp_register_write, &sp_register_read);
-    map_memory(this, "dp_registers", 0x04100000, 0x20, 0x20, new std::byte[0x20], &dp_register_write, &dp_register_read);
-    map_memory(this, "vi_registers", 0x04400000, 0x38, 0x38, new std::byte[0x38], nullptr, nullptr);
-    map_memory(this, "ai_registers", 0x04500000, 0x18, 0x18, new std::byte[0x18], nullptr, nullptr);
-    map_memory(this, "pi_registers", 0x04600000, 0x34, 0x34, new std::byte[0x34], &pi_register_write, nullptr);
-    map_memory(this, "si_registers", 0x04800000, 0x1C, 0x1C, new std::byte[0x1C], nullptr, &si_register_read);
-    map_memory(this, "dd_ipl_rom", 0x06000000, 0x400000, 0x400000, new std::byte[0x400000], nullptr, nullptr);
 }
 
 void MMU::Dump()
@@ -158,7 +114,7 @@ MMU::~MMU()
     }
 }
 
-void MMU::register_memory(std::string name, memory_section s)
+void MMU::memory_register(std::string name, memory_section s)
 {
     this->memory[name] = s;
 }
@@ -213,7 +169,7 @@ void MMU::write_word_impl(uint32_t addr, uint32_t value, bool call_handler)
 
     *p = value;
     if(!call_handler) return;
-    if(s.write_handler != nullptr) s.write_handler(this, s, value);
+    if(s.write_handler != nullptr) s.write_handler(s, value);
 }
 
 uint32_t MMU::read_word(uint32_t addr)
@@ -237,6 +193,6 @@ uint32_t MMU::read_word_impl(uint32_t addr, bool call_handler)
 
     if(!call_handler) return value;
 
-    if(s.read_handler != nullptr) s.read_handler(this, s, value);
+    if(s.read_handler != nullptr) s.read_handler(s, value);
     return value;
 }
